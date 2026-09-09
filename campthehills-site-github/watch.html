@@ -686,6 +686,9 @@ footer a{color:#fff}
   opacity:0;pointer-events:none;transition:opacity .16s ease,transform .16s ease}
 .rail-i:hover span,.rail-i:focus-visible span{opacity:1;transform:translateY(-50%) translateX(0)}
 body.at-foot .rail{opacity:0;transform:translateY(-50%) translateX(100%);pointer-events:none}
+/* the landing hides the platform rail on phones; this page never had the
+   rule, so it stayed pinned to the right edge on top of the clips */
+@media (max-width:900px){.rail{display:none}}
 
 /* out-now card that slides in from the left, under the joinbox */
 .outnow{position:fixed;right:0;bottom:calc(clamp(72px,11vh,124px) + env(safe-area-inset-bottom));z-index:38;
@@ -1369,6 +1372,33 @@ footer{position:relative;z-index:1}
 body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transition:none!important}
 /* iOS zooms the page when it focuses an input smaller than 16px */
 @media (max-width:900px){.jb-field input{font-size:16px}}
+
+/* ---- clips on a phone: a grid, not a swipe ----------------------
+   The ring used to unroll into a horizontal scroller, which meant
+   swiping sideways through twelve cards - and it stranded the music
+   video inside that strip, because .ring-core lives inside .ring-tilt
+   for the 3D depth on desktop, so `order` set on .clipring never
+   reached it. Here .ring-tilt becomes the grid and .ring-inner goes
+   display:contents so the cards become its grid items directly.
+   The ring carries each clip twice (1-6, 1-6) to fill the circle;
+   that reads as a mistake in a static grid, so the second set is
+   hidden and six clips show, evenly, with nothing to scroll. */
+@media (max-width:680px){
+  /* the twelve ring positions are set by .ring-item:nth-child(n) rules, which
+     outrank a bare .ring-item reset - hence the #clips prefix on every line */
+  #clips .clipring{display:block;height:auto;perspective:none;overflow:visible}
+  #clips .ring-tilt{
+    position:static;transform:none;overflow:visible;padding-bottom:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(10px,2.8vw,16px);
+  }
+  #clips .ring-inner{display:contents}
+  #clips .ring-item{position:static;transform:none;margin:0;width:auto;flex:none}
+  #clips .ring-item:nth-child(n+7){display:none}
+  #clips .ring-core{grid-column:1/-1;order:-1;position:static;transform:none;
+    width:auto;margin:0 0 clamp(4px,1.4vw,10px)}
+  #clips .ring-face{animation:none;transform:none}
+}
 </style>
 </head>
 
