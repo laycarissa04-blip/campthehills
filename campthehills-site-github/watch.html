@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<!--
+  campthehills.net
+  Designed and built by Riss Creative Co. — https://risscreativeco.com
+  Structure, styling, interaction and search markup all written from scratch. No template.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>watch — campthehills videos and lyric pieces</title>
+<meta name="description" content="Music videos and hand-drawn lyric videos by campthehills (Campbell Rolston-Clemmer), including limousine and watch my mouth.">
+<link rel="canonical" href="https://campthehills.net/watch">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="campthehills">
+<meta property="og:description" content="One person. Artist, record producer and samplemaker. Los Angeles, from Montana.">
+<meta property="og:url" content="https://campthehills.net/watch">
+<meta property="og:image" content="https://campthehills.net/assets/art-brayfool.jpg">
+<meta property="og:image:width" content="468">
+<meta property="og:image:height" content="466">
+<meta property="og:image:alt" content="Cover art for bray fool by campthehills: a painted yellow donkey inside a rainbow ring.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f2f0fa">
+<link rel="icon" href="assets/icon-small.png" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://campthehills.net/watch#webpage",
+      "url": "https://campthehills.net/watch",
+      "name": "watch",
+      "description": "Videos and lyric pieces by campthehills.",
+      "isPartOf": {
+        "@id": "https://campthehills.net/#website"
+      },
+      "about": {
+        "@id": "https://campthehills.net/#campbell"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "campthehills",
+          "item": "https://campthehills.net/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "watch"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#000000;
+  --rule:#d9d9d9;
+  --dim:#6d6d6d;
+  --red:#e8322a;
+  --yellow:#ffd200;
+  --gutter:clamp(18px,4.5vw,64px);
+  --maxw:1320px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-variation-settings:"wdth" 100,"wght" 400;
+  font-size:clamp(15px,1.05vw,17px);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+
+/* ---------- shared type ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+
+.sec-head{
+  display:flex;align-items:baseline;gap:clamp(12px,2vw,26px);
+  margin:0 0 clamp(22px,3.4vw,42px);
+}
+.sec-head h2{
+  margin:0;
+  font-size:clamp(30px,5.4vw,68px);
+  font-variation-settings:"wdth" 118,"wght" 900;
+  letter-spacing:-.022em;
+  line-height:.9;
+  text-transform:lowercase;
+}
+.sec-head .line{flex:1;height:0;border-top:1px solid var(--ink);transform:translateY(-.22em)}
+.sec-head .num{
+  font-size:12px;font-variation-settings:"wdth" 88,"wght" 700;
+  color:var(--dim);transform:translateY(-.9em);white-space:nowrap;
+}
+
+.lede{
+  font-size:clamp(17px,1.65vw,22px);
+  line-height:1.42;max-width:34ch;
+  font-variation-settings:"wdth" 100,"wght" 450;
+}
+
+/* the fixed chrome and the 3D clip ring overhang the viewport by a few px;
+   clip it so no page can ever scroll sideways (hidden is the old-browser fallback) */
+html,body{overflow-x:hidden;overflow-x:clip}
+section{padding:clamp(54px,7vw,104px) 0;position:relative;background:var(--paper);z-index:2;scroll-margin-top:76px}
+
+/* credits */
+.credits{display:grid;gap:0;margin-top:clamp(26px,3.4vw,44px);border-top:1px solid var(--rule)}
+.credit{
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto;
+  gap:clamp(10px,2vw,28px);align-items:baseline;
+  padding:clamp(14px,1.7vw,20px) 0;border-bottom:1px solid var(--rule);
+}
+.credit .t{font-size:clamp(17px,2vw,23px);font-variation-settings:"wdth" 92,"wght" 640;line-height:1.15}
+.credit .a{font-size:clamp(13px,1.35vw,15px);color:var(--dim);font-variation-settings:"wdth" 90,"wght" 500}
+.credit .r{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);white-space:nowrap;font-variation-settings:"wdth" 86,"wght" 620}
+@media (max-width:640px){
+  .credit{grid-template-columns:1fr;gap:3px}
+  .credit .r{margin-top:2px}
+}
+.credits-note{margin-top:clamp(18px,2.4vw,30px);max-width:62ch;font-size:13px;line-height:1.55;color:var(--dim)}
+
+/* shows */
+.shows-empty{
+  margin-top:clamp(24px,3.2vw,42px);padding:clamp(26px,4vw,46px);
+  border:1px solid var(--rule);text-align:center;
+}
+.shows-empty p{font-size:clamp(19px,2.4vw,28px);font-variation-settings:"wdth" 92,"wght" 660;line-height:1.2}
+.shows-empty span{display:block;margin-top:10px;font-size:13px;color:var(--dim);font-variation-settings:"wdth" 90,"wght" 500}
+.shows-empty .actions{justify-content:center;margin-top:22px}
+.showlist{margin-top:clamp(24px,3.2vw,42px);border-top:1px solid var(--rule)}
+.show{
+  display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(12px,2.4vw,32px);
+  align-items:baseline;padding:clamp(14px,1.7vw,20px) 0;border-bottom:1px solid var(--rule);
+}
+.show .d{font-size:12px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;font-variation-settings:"wdth" 86,"wght" 700}
+.show .v{font-size:clamp(16px,1.9vw,21px);font-variation-settings:"wdth" 92,"wght" 600}
+@media (max-width:640px){.show{grid-template-columns:1fr;gap:3px}}
+
+/* press kit */
+.press{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);margin-top:clamp(26px,3.4vw,44px);align-items:start}
+@media (max-width:860px){.press{grid-template-columns:1fr}}
+.press-bio p{font-size:clamp(15px,1.55vw,17px);line-height:1.6;max-width:56ch}
+.press-bio p + p{margin-top:1em}
+.press-bio .actions{margin-top:26px}
+.press-shots{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.6vw,18px)}
+.press-shots figure{border:1px solid var(--rule);align-self:start}
+.press-shots img{width:100%;height:auto}
+.press-shots figcaption{padding:9px 11px;font-size:11px;letter-spacing:.05em;color:var(--dim);border-top:1px solid var(--rule);font-variation-settings:"wdth" 88,"wght" 560}
+
+section + section{border-top:1px solid var(--rule)}
+
+/* ---------- fixed video bed ---------- */
+#bed{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0a0a0a}
+#bed video{width:100%;height:100%;object-fit:cover;filter:saturate(1.1) contrast(1.05)}
+#bed::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(to bottom,rgba(0,0,0,.42) 0%,rgba(0,0,0,.18) 42%,rgba(0,0,0,.66) 100%)}
+
+/* ---------- hero ---------- */
+#hero{
+  position:relative;z-index:1;background:transparent;border:0;
+  min-height:100svh;padding:0;
+  display:flex;flex-direction:column;justify-content:space-between;
+  color:#fff;
+}
+#hero .wrap{width:100%}
+.hero-top{padding-top:clamp(66px,7vw,96px)}
+.hero-mid{padding-top:clamp(24px,4vw,44px);padding-bottom:clamp(24px,4vw,44px)}
+.hero-bot{padding-bottom:clamp(20px,3vw,32px)}
+
+.eyebrow{
+  font-size:11.5px;font-variation-settings:"wdth" 86,"wght" 700;
+  letter-spacing:.06em;color:rgba(255,255,255,.72);
+}
+
+/* the misregistered wordmark — the one loud thing on this page */
+.mark{position:relative;display:block;width:max-content;max-width:100%;line-height:.82;padding-bottom:.06em;font-size:clamp(46px,12.4vw,190px)}
+.mark .layer{
+  margin:0;
+  font-size:inherit;
+  font-variation-settings:"wdth" 125,"wght" 900;
+  letter-spacing:-.038em;
+  text-transform:lowercase;
+  white-space:nowrap;
+}
+.mark .layer.ghost{position:absolute;left:0;top:0;pointer-events:none;mix-blend-mode:screen}
+.mark .w{display:inline;white-space:nowrap}
+.mark .g-red{color:var(--red);animation:reg-r 1250ms cubic-bezier(.2,.7,.3,1) both}
+.mark .g-yel{color:var(--yellow);animation:reg-y 1250ms cubic-bezier(.2,.7,.3,1) both}
+.mark .top{position:relative;color:#fff;animation:reg-k 1250ms cubic-bezier(.2,.7,.3,1) both}
+@keyframes reg-r{from{transform:translate3d(-4.2%,-3.4%,0)}to{transform:translate3d(-.42%,-.3%,0)}}
+@keyframes reg-y{from{transform:translate3d(4.6%,3.2%,0)}to{transform:translate3d(.46%,.32%,0)}}
+@keyframes reg-k{from{opacity:0}to{opacity:1}}
+
+.aka{
+  margin:clamp(18px,2.4vw,26px) 0 0;
+  font-size:clamp(12px,1.15vw,15px);
+  font-variation-settings:"wdth" 92,"wght" 550;
+  color:rgba(255,255,255,.82);
+  display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.1em;row-gap:.35em;
+}
+.aka span{white-space:nowrap}
+.aka i{font-style:normal;color:rgba(255,255,255,.4);padding:0 .5em}
+
+.hero-bot .row{
+  display:flex;flex-wrap:wrap;gap:clamp(12px,2.4vw,34px);
+  align-items:flex-end;justify-content:space-between;
+}
+.nowplaying{font-size:12px;font-variation-settings:"wdth" 88,"wght" 550;color:rgba(255,255,255,.78);max-width:44ch}
+.nowplaying b{font-variation-settings:"wdth" 88,"wght" 800}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:7px;transform:translateY(-1px)}
+.scroll-cue{font-size:12px;font-variation-settings:"wdth" 88,"wght" 700;color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:15px 26px;border:1px solid var(--ink);background:var(--ink);color:#fff;
+  font:inherit;font-size:15px;font-variation-settings:"wdth" 96,"wght" 750;
+  text-decoration:none;cursor:pointer;border-radius:0;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn .plus{width:1em;height:1em;flex:none}
+
+/* ---------- release / pre-save ---------- */
+.release{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(24px,5vw,72px);align-items:center}
+.release figure{margin:0;position:relative}
+.release figure img{width:100%;border:1px solid var(--rule)}
+.tag{
+  position:absolute;top:-14px;left:-10px;
+  background:var(--yellow);color:var(--ink);
+  padding:6px 12px;font-size:12px;font-variation-settings:"wdth" 90,"wght" 800;
+  transform:rotate(-2.2deg);
+}
+.release h3{
+  margin:0 0 14px;font-size:clamp(38px,7vw,92px);line-height:.86;
+  font-variation-settings:"wdth" 122,"wght" 900;letter-spacing:-.035em;text-transform:lowercase;
+}
+.release .meta{color:var(--dim);font-size:14px;margin:0 0 clamp(20px,3vw,30px);font-variation-settings:"wdth" 92,"wght" 550}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- covers ---------- */
+.covers{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.6vw,22px)}
+.cover{position:relative;display:block;text-decoration:none;color:var(--ink)}
+.cover .frame{display:block;position:relative;overflow:hidden;border:1px solid var(--rule);background:#f2f2f2;aspect-ratio:1/1}
+.cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.cover:hover img,.cover:focus-visible img{transform:scale(1.045)}
+.cover .play{
+  position:absolute;left:0;right:0;bottom:0;padding:12px 13px;
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));
+  color:#fff;opacity:0;transition:opacity .18s ease;
+  font-size:12px;font-variation-settings:"wdth" 90,"wght" 750;
+}
+.cover:hover .play,.cover:focus-visible .play{opacity:1}
+.cover .cap{display:flex;justify-content:space-between;gap:10px;padding-top:10px;font-size:13.5px}
+.cover .cap b{font-variation-settings:"wdth" 96,"wght" 750;font-weight:400}
+.cover .cap span{color:var(--dim);font-variation-settings:"wdth" 88,"wght" 500}
+.cover.pending .frame{background:var(--ink);display:grid;place-items:center;padding:16px}
+.cover.pending .frame p{
+  margin:0;color:#fff;text-align:center;line-height:.94;
+  font-size:clamp(20px,2.4vw,34px);font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.03em;
+}
+.cover.pending .frame small{display:block;margin-top:12px;font-size:11px;color:rgba(255,255,255,.5);font-variation-settings:"wdth" 88,"wght" 600;letter-spacing:.04em}
+
+/* ---------- song card ---------- */
+.songcard{
+  display:grid;grid-template-columns:220px minmax(0,1fr);
+  gap:clamp(20px,3vw,36px);align-items:center;
+  border:1px solid var(--rule);padding:clamp(16px,2.2vw,24px);
+  margin-top:clamp(28px,4vw,44px);
+  max-width:min(100%,740px);
+}
+.sc-media{width:100%}
+.sc-media{position:relative;background:#f2f2f2;line-height:0}
+.sc-media video{width:100%;aspect-ratio:1/1;object-fit:cover}
+.sc-sound{
+  position:absolute;left:9px;bottom:9px;
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(0,0,0,.72);color:#fff;border:0;cursor:pointer;
+  padding:7px 11px;font:inherit;font-size:11.5px;
+  font-variation-settings:"wdth" 88,"wght" 700;letter-spacing:.02em;
+  transition:background .16s ease;
+}
+.sc-sound:hover{background:var(--red)}
+.sc-sound.hint{background:var(--red)}
+.sc-sound svg{width:12px;height:12px;flex:none}
+.sc-kicker{margin:0 0 6px;font-size:12px;color:var(--dim);
+  font-variation-settings:"wdth" 88,"wght" 700;letter-spacing:.04em}
+.songcard h3{margin:0 0 6px;font-size:clamp(28px,4vw,52px);line-height:.88;
+  font-variation-settings:"wdth" 120,"wght" 900;letter-spacing:-.032em;text-transform:lowercase}
+.sc-meta{margin:0 0 clamp(16px,2.2vw,22px);font-size:14px;color:var(--dim);max-width:38ch}
+.sc-alt{margin:14px 0 0;font-size:13px}
+.sc-alt a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.sc-alt a:hover,.sc-alt a:focus-visible{color:var(--red);border-color:var(--red)}
+@media (max-width:720px){
+  .songcard{grid-template-columns:1fr}
+  .sc-media{max-width:340px}
+}
+
+/* ---------- clips ---------- */
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.track{display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;animation:slide 64s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.clip{width:clamp(158px,17vw,230px);flex:none;border:1px solid var(--rule);background:#111}
+.clip video{width:100%;aspect-ratio:9/16;object-fit:cover}
+
+/* ---------- portrait scene ---------- */
+.scene{position:relative;padding:clamp(30px,5vw,64px) 0;max-width:min(100%,1040px)}
+.scene-photos{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);
+  gap:clamp(18px,3vw,44px);align-items:end;
+}
+.scene figure{margin:0}
+.scene figure img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+.p-alt{transform:translateY(clamp(-40px,-3vw,-14px))}
+
+.stickers{position:absolute;inset:0;z-index:1;pointer-events:none}
+.sticker{
+  position:absolute;display:block;
+  border:6px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.16);
+}
+.s1{width:clamp(96px,13vw,158px);top:2%;left:-3%;transform:rotate(-7deg)}
+.s2{width:clamp(60px,7vw,92px);top:30%;right:-3%;transform:rotate(6deg)}
+.s3{width:clamp(70px,8.4vw,108px);bottom:-14px;left:1%;transform:rotate(5deg)}
+.s4{width:clamp(92px,11.5vw,148px);bottom:2%;right:-3%;transform:rotate(-6deg)}
+.s5{width:clamp(62px,7.4vw,96px);top:2%;left:48%;transform:rotate(-5deg)}
+.s6{width:clamp(70px,8.4vw,106px);top:1%;left:27%;transform:rotate(11deg)}
+
+.scene-cap{
+  position:relative;z-index:2;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
+  padding-top:clamp(16px,2.2vw,22px);
+  font-size:13px;font-variation-settings:"wdth" 92,"wght" 600;
+}
+.scene-cap .r{color:var(--dim)}
+@media (max-width:760px){
+  .scene-photos{grid-template-columns:1fr;gap:16px}
+  .p-alt{transform:none;max-width:74%;margin-left:auto}
+  .s5,.s6{display:none}
+  .s1{top:-6px;left:-2%}
+  .s2{top:auto;bottom:34%;right:-4%}
+}
+
+/* ---------- links list ---------- */
+.links{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.links li{border-bottom:1px solid var(--rule)}
+.links a{
+  display:flex;align-items:baseline;gap:16px;text-decoration:none;
+  padding:clamp(13px,1.7vw,20px) 4px;
+  transition:padding-left .2s cubic-bezier(.2,.7,.3,1),background .2s ease,color .2s ease;
+}
+.links a:hover,.links a:focus-visible{background:var(--ink);color:#fff;padding-left:18px}
+.links .plat{font-size:clamp(21px,3vw,38px);line-height:1;font-variation-settings:"wdth" 112,"wght" 800;letter-spacing:-.025em;text-transform:lowercase}
+.links .handle{margin-left:auto;font-size:13px;color:var(--dim);font-variation-settings:"wdth" 88,"wght" 550}
+.links a:hover .handle,.links a:focus-visible .handle{color:rgba(255,255,255,.7)}
+
+/* ---------- mailing ---------- */
+.signup{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.field{display:flex;border:1px solid var(--ink)}
+.field input{
+  flex:1;min-width:0;border:0;padding:16px 18px;font:inherit;font-size:16px;background:transparent;color:var(--ink);
+}
+.field input::placeholder{color:var(--dim)}
+.field input:focus{outline:none;background:#fafafa}
+.field button{border:0;border-left:1px solid var(--ink)}
+.formnote{margin:12px 0 0;font-size:13px;color:var(--dim)}
+.formnote[data-state="done"]{color:var(--ink);font-variation-settings:"wdth" 92,"wght" 700}
+
+/* ---------- sticky top bar ---------- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:clamp(11px,1.6vw,16px) clamp(14px,4.5vw,64px);
+  background:var(--paper);border-bottom:1px solid var(--rule);
+  transition:background .28s ease,border-color .28s ease;
+}
+.topbar.solid{background:var(--paper);border-bottom-color:var(--rule)}
+.topbar.solid{box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.tb-slot{position:relative;display:flex;align-items:center;min-width:clamp(46px,13vw,190px);height:clamp(40px,4.6vw,54px);flex:none}
+.tb-slot > *{position:absolute;left:0;top:50%;transform:translateY(-50%)}
+.tb-icon{display:block;line-height:0;opacity:1;transition:opacity .3s ease,transform .3s ease}
+.tb-icon img{display:block;width:auto;height:clamp(40px,4.6vw,54px);object-fit:contain}
+.topbar.solid .tb-icon{opacity:0;transform:translateY(-50%) scale(.9);pointer-events:none}
+.tb-mark{
+  text-decoration:none;color:var(--ink);
+  font-size:clamp(14px,1.5vw,19px);line-height:1;
+  font-variation-settings:"wdth" 122,"wght" 900;letter-spacing:-.028em;text-transform:lowercase;
+  opacity:0;transform:translateY(-50%) translateY(-5px);pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease;
+}
+.topbar.solid .tb-mark{opacity:1;transform:translateY(-50%);pointer-events:auto}
+.tb-mark:hover{color:var(--red)}
+.tb-nav{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);margin-left:clamp(14px,2.6vw,38px);min-width:0}
+.tb-nav a{
+  font-size:clamp(13px,1.15vw,15px);letter-spacing:.005em;text-decoration:none;color:var(--ink);
+  font-variation-settings:"wdth" 92,"wght" 720;white-space:nowrap;text-transform:lowercase;
+  padding:3px 0 3px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+}
+.tb-nav a:hover,.tb-nav a:focus-visible{color:var(--red);border-bottom-color:var(--red)}
+.tb-nav a[aria-current="page"]{border-bottom-color:var(--ink)}
+.tb-nav a[aria-current="page"]:hover{border-bottom-color:var(--red)}
+@media (max-width:900px){
+  .tb-share-label{display:none}
+  .tb-nav{gap:14px;margin-left:14px;overflow-x:auto;scrollbar-width:none}
+  .tb-nav::-webkit-scrollbar{display:none}
+  .tb-nav a{font-size:13px}
+}
+@media (max-width:620px){
+  /* contact used to be hidden here; the nav already scrolls, so let it scroll */
+  .tb-nav{padding-right:2px}
+}
+.tb-actions{display:flex;align-items:center;gap:9px;margin-left:auto}
+.tb-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--paper);color:var(--ink);border:1px solid var(--ink);
+  padding:9px 16px;text-decoration:none;cursor:pointer;border-radius:0;
+  font:inherit;font-size:13px;font-variation-settings:"wdth" 94,"wght" 800;letter-spacing:.01em;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.tb-btn:hover,.tb-btn:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
+.tb-btn svg{width:14px;height:14px;flex:none}
+.tb-btn .bd{width:6px;height:6px;background:var(--red);border-radius:50%;flex:none}
+.tb-btn:hover .bd,.tb-btn:focus-visible .bd{background:#fff}
+@media (max-width:520px){
+  .tb-btn{padding:8px 12px;font-size:12px;gap:6px}
+  .tb-actions{gap:7px}
+  .tb-mark{font-size:13px}
+}
+@media (max-width:380px){.tb-share-label{display:none}}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;left:50%;bottom:24px;z-index:60;
+  transform:translateX(-50%) translateY(10px);
+  background:var(--ink);color:#fff;padding:11px 18px;
+  font-size:13px;font-variation-settings:"wdth" 92,"wght" 650;
+  opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- scroll reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);
+  transition:opacity .65s cubic-bezier(.2,.7,.3,1),transform .65s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- contact ---------- */
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);
+  gap:clamp(28px,5vw,90px);align-items:start;
+}
+
+.f-row{margin-bottom:clamp(18px,2.4vw,26px)}
+.f-row label{
+  display:block;margin-bottom:6px;
+  font-size:12px;font-variation-settings:"wdth" 88,"wght" 750;letter-spacing:.05em;color:var(--dim);
+}
+.f-row input,.f-row select,.f-row textarea{
+  width:100%;font:inherit;font-size:16px;color:var(--ink);
+  background:transparent;border:0;border-bottom:1px solid var(--ink);
+  padding:9px 2px;border-radius:0;
+}
+.f-row textarea{resize:vertical;min-height:96px;line-height:1.45}
+.f-row select{appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);
+  background-position:calc(100% - 12px) 55%,calc(100% - 7px) 55%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:26px}
+.f-row input:focus,.f-row select:focus,.f-row textarea:focus{outline:none;border-bottom-color:var(--red);background:#fafafa}
+.f-row input:invalid:not(:placeholder-shown){border-bottom-color:var(--red)}
+.f-two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px)}
+.f-send{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:clamp(6px,1.4vw,12px)}
+.f-note{margin:14px 0 0;font-size:13px;color:var(--dim);max-width:44ch;line-height:1.5}
+.f-note[data-state="done"]{color:var(--ink);font-variation-settings:"wdth" 92,"wght" 700}
+.f-note[data-state="error"]{color:var(--red);font-variation-settings:"wdth" 92,"wght" 700}
+
+.direct h3{margin:0 0 8px;font-size:12px;font-variation-settings:"wdth" 88,"wght" 750;letter-spacing:.05em;color:var(--dim)}
+.direct .blk{padding-bottom:clamp(16px,2.2vw,22px);margin-bottom:clamp(16px,2.2vw,22px);border-bottom:1px solid var(--rule)}
+.direct .blk:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.direct a.big{
+  font-size:clamp(15px,1.5vw,19px);font-variation-settings:"wdth" 100,"wght" 700;
+  letter-spacing:-.015em;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:2px;
+  word-break:break-word;
+}
+.direct a.big:hover{color:var(--red);border-color:var(--red)}
+.direct .where{margin:10px 0 0;font-size:13.5px;color:var(--dim);line-height:1.5}
+
+/* ---------- platform tiles ---------- */
+.apps{
+  display:flex;flex-wrap:wrap;gap:clamp(14px,2.2vw,26px);
+  margin-bottom:clamp(30px,4.5vw,50px);
+  padding-bottom:clamp(28px,4vw,44px);
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+.app{
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  text-decoration:none;color:rgba(255,255,255,.6);
+  font-size:11.5px;font-variation-settings:"wdth" 88,"wght" 650;letter-spacing:.01em;
+  transition:color .18s ease;
+}
+.app svg{
+  width:clamp(46px,6vw,56px);height:auto;display:block;
+  transition:transform .2s cubic-bezier(.2,.7,.3,1);
+}
+.app:hover,.app:focus-visible{color:#fff}
+.app:hover svg,.app:focus-visible svg{transform:translateY(-4px) scale(1.05)}
+@media (max-width:560px){
+  .apps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 8px;justify-items:center}
+  .app{font-size:10.5px;gap:7px;text-align:center}
+  .app svg{width:clamp(42px,12.5vw,52px)}
+}
+
+
+/* ---------- join the camp ---------- */
+.joinbox{
+  position:fixed;left:clamp(14px,3vw,32px);bottom:clamp(14px,3vw,30px);z-index:55;
+  opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.3,1);
+}
+.joinbox.up{opacity:1;transform:none;pointer-events:auto}
+
+.jb-tab{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--ink);color:#fff;border:0;cursor:pointer;
+  padding:13px 18px;font:inherit;font-size:13.5px;
+  font-variation-settings:"wdth" 92,"wght" 800;letter-spacing:.01em;
+  box-shadow:0 10px 30px rgba(0,0,0,.26);
+  transition:background .16s ease;
+}
+.jb-tab:hover,.jb-tab:focus-visible{background:var(--red)}
+.jb-tab svg{width:11px;height:11px;flex:none}
+.jb-tab .bd{width:6px;height:6px;border-radius:50%;background:var(--red);flex:none}
+.jb-tab:hover .bd,.jb-tab:focus-visible .bd{background:#fff}
+
+.jb-panel{
+  display:none;position:relative;
+  width:min(340px,calc(100vw - 28px));
+  background:var(--ink);color:#fff;padding:20px 20px 16px;
+  box-shadow:0 14px 40px rgba(0,0,0,.28);
+}
+.joinbox.open .jb-tab{display:none}
+.joinbox.open .jb-panel{display:block}
+.jb-close{
+  position:absolute;top:8px;right:8px;width:28px;height:28px;
+  background:transparent;border:0;color:rgba(255,255,255,.6);
+  font:inherit;font-size:19px;line-height:1;cursor:pointer;padding:0;
+}
+.jb-close:hover,.jb-close:focus-visible{color:#fff}
+.jb-title{margin:0 0 8px;font-size:26px;line-height:.92;
+  font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.03em;text-transform:lowercase}
+.jb-copy{margin:0 0 14px;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.76)}
+.jb-field{display:flex;border:1px solid rgba(255,255,255,.4)}
+.jb-field input{
+  flex:1;min-width:0;background:transparent;border:0;color:#fff;
+  font:inherit;font-size:15px;padding:11px 12px;
+}
+.jb-field input::placeholder{color:rgba(255,255,255,.42)}
+.jb-field input:focus{outline:none;background:rgba(255,255,255,.06)}
+.jb-field button{
+  border:0;border-left:1px solid rgba(255,255,255,.4);background:#fff;color:var(--ink);
+  font:inherit;font-size:13.5px;padding:11px 16px;cursor:pointer;
+  font-variation-settings:"wdth" 94,"wght" 800;
+  transition:background .16s ease,color .16s ease;
+}
+.jb-field button:hover,.jb-field button:focus-visible{background:var(--red);color:#fff}
+.jb-note{margin:11px 0 0;font-size:10.5px;line-height:1.45;color:rgba(255,255,255,.44)}
+.jb-note[data-state="error"]{color:#ff8d86}
+.jb-done{margin:0;font-size:14px;line-height:1.45;color:rgba(255,255,255,.86)}
+@media (max-width:520px){
+  .joinbox{left:12px;right:12px;bottom:12px}
+  .jb-panel{width:auto;padding:17px 17px 14px}
+  .jb-title{font-size:23px}
+}
+
+footer{background:var(--ink);color:#fff;position:relative;z-index:2;padding:clamp(40px,6vw,72px) 0}
+footer .fwrap{display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;align-items:flex-end}
+footer .fmark{font-size:clamp(30px,6.6vw,86px);line-height:.82;font-variation-settings:"wdth" 125,"wght" 900;letter-spacing:-.04em}
+footer .fine{font-size:12px;color:rgba(255,255,255,.55);max-width:40ch;line-height:1.55}
+footer .fdraw{
+  flex:none;width:auto;height:clamp(88px,10.5vw,172px);align-self:flex-end;
+  margin-bottom:-2px;
+}
+@media (max-width:700px){footer .fdraw{height:76px}}
+footer a{color:#fff}
+
+/* ---------- a11y / motion ---------- */
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{position:fixed;left:16px;top:16px;z-index:99;background:#fff;color:#000;padding:10px 14px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .track{animation:none;flex-wrap:wrap;width:auto}
+  .rv{opacity:1;transform:none}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .release,.signup{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .covers{grid-template-columns:repeat(2,1fr)}
+  .release figure{max-width:420px}
+}
+@media (max-width:640px){
+  .mark .layer{white-space:normal}
+  .mark .w{display:block;white-space:nowrap}
+}
+@media (max-width:560px){
+  .sec-head .num{display:none}
+  .f-two{grid-template-columns:1fr}
+  .f-send{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media (max-width:520px){
+  .aka i{padding:0 .34em}
+  .hero-bot .row{flex-direction:column;align-items:flex-start;gap:14px}
+}
+</style>
+<style>
+/* platform rail - fixed to the right edge of the landing page */
+.rail{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:37;
+  display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-right:0;
+  transition:opacity .3s ease,transform .3s ease}
+.rail-i{position:relative;display:flex;align-items:center;justify-content:center;
+  width:clamp(38px,3.4vw,46px);height:clamp(38px,3.4vw,46px);background:var(--paper);text-decoration:none}
+.rail-i svg{width:60%;height:60%;display:block;transition:transform .16s ease}
+.rail-i:hover svg,.rail-i:focus-visible svg{transform:scale(1.12)}
+.rail-i span{
+  position:absolute;right:100%;top:50%;transform:translateY(-50%) translateX(6px);
+  background:var(--ink);color:#fff;white-space:nowrap;padding:6px 10px;margin-right:1px;
+  font-size:11px;letter-spacing:.06em;font-variation-settings:"wdth" 88,"wght" 700;
+  opacity:0;pointer-events:none;transition:opacity .16s ease,transform .16s ease}
+.rail-i:hover span,.rail-i:focus-visible span{opacity:1;transform:translateY(-50%) translateX(0)}
+body.at-foot .rail{opacity:0;transform:translateY(-50%) translateX(100%);pointer-events:none}
+
+/* out-now card that slides in from the left, under the joinbox */
+.outnow{position:fixed;right:0;bottom:clamp(72px,11vh,124px);z-index:38;
+  display:flex;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--ink);border-right:0;
+  transform:translateX(104%);transition:transform .5s cubic-bezier(.2,.7,.3,1);max-width:min(92vw,340px)}
+.outnow.up{transform:none}
+.outnow img{width:78px;height:78px;object-fit:cover;flex:none;border-right:1px solid var(--rule)}
+.outnow{position:fixed}
+.outnow .on-body{padding:10px 12px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.outnow .on-kick{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);font-variation-settings:"wdth" 86,"wght" 760}
+.outnow .on-t{font-size:17px;line-height:1.05;font-variation-settings:"wdth" 92,"wght" 800;margin-top:2px}
+.outnow .on-l{margin-top:5px;font-size:11px;color:#585858;text-decoration:none;border-bottom:1px solid var(--rule);align-self:flex-start;font-variation-settings:"wdth" 88,"wght" 620}
+.outnow .on-l:hover{color:var(--red);border-bottom-color:var(--red)}
+.outnow .on-x{position:absolute;top:-1px;left:-1px;width:22px;height:22px;border:0;background:var(--ink);color:#fff;font-size:13px;line-height:1;cursor:pointer;padding:0}
+.outnow .on-x:hover{background:var(--red)}
+.outnow.mini{transform:translateX(calc(100% - 30px))}
+.on-tab{position:fixed;right:0;bottom:clamp(18px,3vh,34px);z-index:37;display:none;
+  align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;cursor:pointer;
+  padding:9px 13px;font:inherit;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  font-variation-settings:"wdth" 86,"wght" 740;writing-mode:vertical-rl;transform:rotate(180deg);
+  height:auto;max-height:none;line-height:1.1;white-space:nowrap}
+.on-tab:hover{background:var(--red)}
+.on-tab.show{display:flex}
+@media (max-width:560px){.outnow{bottom:clamp(64px,9vh,92px)}.outnow img{width:62px;height:62px}}
+
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
+.page-head{padding-top:clamp(96px,11vw,150px)}
+.page-lede{margin-top:clamp(16px,2vw,26px);max-width:56ch;font-size:clamp(15px,1.5vw,17px);line-height:1.6;color:var(--dim)}
+
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.track{display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;animation:slide 64s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.clip{width:clamp(158px,17vw,230px);flex:none;border:1px solid var(--rule);background:#111}
+.clip video{width:100%;aspect-ratio:9/16;object-fit:cover}
+
+
+/* bubbles - they wake up while the cursor is inside the clips section */
+#clips{position:relative}
+#bubbles{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:20}
+@media (prefers-reduced-motion: reduce){#bubbles{display:none}}
+
+
+/* watch grid */
+/* the page rides on we can't behave: fixed behind everything, with a paper
+   wash over it so type and artwork still read */
+#bgvid{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0b0b0b}
+#bgvid video{width:100%;height:100%;object-fit:cover;display:block}
+#bgveil{position:absolute;inset:0;background:
+  linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.84) 22%, rgba(255,255,255,.82) 78%, rgba(255,255,255,.96) 100%)}
+body{background:transparent}
+#main{position:relative;z-index:1}
+#main section{background:transparent}
+#main section + section{border-top:0}
+footer{position:relative;z-index:1}
+
+/* the two lyric pieces get the whole screen, under the bar */
+.vfull{padding:0!important;min-height:calc(100vh - 88px);display:flex;align-items:center}
+.vfull .wrap{width:100%}
+.grp-full{margin-top:0}
+.grp-full h3{font-size:clamp(24px,3.4vw,44px)}
+.vstage{margin-top:clamp(16px,2.2vw,28px);display:flex;justify-content:center}
+.vstage .vcard{width:auto;max-width:100%;max-height:calc(100vh - 260px);border:1px solid rgba(0,0,0,.14);background:transparent}
+.vstage .vcard video{width:auto;max-width:100%;max-height:calc(100vh - 260px);height:auto;display:block}
+@media (max-width:760px){
+  .vfull{min-height:0;padding:clamp(24px,5vw,40px) 0!important}
+  .vstage .vcard,.vstage .vcard video{max-height:none;width:100%}
+}
+
+.feature{position:relative;display:block;width:100%;margin:clamp(26px,3.4vw,44px) 0 clamp(10px,1.6vw,20px);
+  padding:0;border:1px solid var(--rule);background:#111;overflow:hidden;cursor:pointer;color:inherit;text-align:left}
+.feature img,.feature video{display:block;width:100%;height:auto}
+.feature .vplay span{width:clamp(58px,6vw,84px);height:clamp(58px,6vw,84px)}
+.feature .vplay svg{width:22px;height:22px}
+.feature-cap{position:absolute;left:0;bottom:0;z-index:3;padding:clamp(14px,2vw,24px);color:#fff;
+  font-size:clamp(12px,1.3vw,15px);line-height:1.35;font-variation-settings:"wdth" 90,"wght" 520;
+  text-shadow:0 1px 14px rgba(0,0,0,.6)}
+.feature-cap b{display:block;font-size:clamp(20px,2.8vw,36px);line-height:1;letter-spacing:-.025em;
+  font-variation-settings:"wdth" 100,"wght" 850;margin-bottom:5px}
+
+.vgrid{display:grid;gap:clamp(14px,2vw,26px);margin-top:clamp(24px,3.2vw,42px)}
+.vgrid.v916{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.vgrid.v43{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.vgrid.v11{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.vbig{margin-top:clamp(20px,2.8vw,34px)}
+.vbig .vcard{width:100%;max-width:min(100%,900px);border:1px solid var(--rule)}
+.vauto{cursor:default}
+.vauto video{display:block;width:100%;height:auto}
+.vcard{position:relative;border:1px solid var(--rule);background:#f2f2f2;overflow:hidden;cursor:pointer;padding:0;width:100%;display:block;color:inherit;text-align:left}
+.vcard img,.vcard video{display:block;width:100%;height:auto}
+.vcard .vplay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.14);transition:background .18s;
+}
+.vcard:hover .vplay{background:rgba(232,50,42,.30)}
+.vcard .vplay span{
+  width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;
+  box-shadow:0 2px 14px rgba(0,0,0,.22);
+}
+.vcard .vplay svg{width:16px;height:16px;margin-left:2px;fill:var(--ink)}
+.vcap{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:10px 2px 0;font-size:12px;color:var(--dim);font-variation-settings:"wdth" 88,"wght" 560}
+.vcap b{color:var(--ink);font-variation-settings:"wdth" 90,"wght" 700}
+.grp{margin-top:clamp(40px,5vw,70px)}
+.grp:first-of-type{margin-top:clamp(22px,3vw,38px)}
+.grp h3{font-size:clamp(19px,2.3vw,27px);font-variation-settings:"wdth" 92,"wght" 700;line-height:1.1}
+.grp p{margin-top:7px;font-size:13px;color:var(--dim);max-width:52ch;line-height:1.55}
+
+/* flyer strip */
+.flyers{margin-top:clamp(22px,3vw,36px);overflow-x:auto;scrollbar-width:thin}
+.flyers-track{display:flex;gap:clamp(12px,1.8vw,20px);padding-bottom:12px}
+.flyer{flex:none;width:clamp(190px,24vw,260px)}
+.flyer .frame{border:1px solid var(--rule);background:#f2f2f2;aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden}
+.flyer .frame img{width:100%;height:100%;object-fit:cover}
+.flyer .ph{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b4b4b4}
+.flyer .cap{padding-top:9px;font-size:12px;color:var(--dim);font-variation-settings:"wdth" 88,"wght" 560}
+.flyer .cap b{display:block;color:var(--ink);font-variation-settings:"wdth" 90,"wght" 700}
+
+/* ---------- song bands: lyric video beside a Spotify-style plaque ---------- */
+.song-split{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);
+  gap:clamp(22px,3.4vw,52px);align-items:center;
+  margin-top:clamp(16px,2.2vw,28px);
+}
+.song-split .vstage{margin-top:0}
+.song-split .vstage .vcard,.song-split .vstage .vcard video{max-height:calc(100vh - 300px)}
+@media (max-width:980px){
+  .song-split{grid-template-columns:1fr}
+  .song-split .vstage .vcard,.song-split .vstage .vcard video{max-height:none;width:100%}
+}
+.vstage .vcard{position:relative}
+
+/* the plaque */
+.songcard.sp{
+  display:block;margin:0;max-width:none;border:0;color:#fff;
+  padding:clamp(20px,2.6vw,34px);
+  background:linear-gradient(155deg,var(--sp-a) 0%,var(--sp-b) 78%);
+  box-shadow:0 16px 46px rgba(0,0,0,.22);
+}
+.sp-top{display:flex;gap:clamp(15px,1.9vw,24px);align-items:flex-end}
+.sp-art{
+  width:clamp(94px,10.5vw,152px);flex:none;aspect-ratio:1/1;overflow:hidden;
+  background:#111;box-shadow:0 10px 32px rgba(0,0,0,.5);line-height:0;
+}
+.sp-art img{width:100%;height:100%;object-fit:cover}
+.sp-head{min-width:0}
+.sp-kicker{margin:0 0 7px;font-size:11.5px;color:rgba(255,255,255,.88);
+  font-variation-settings:"wdth" 88,"wght" 700;letter-spacing:.05em}
+.songcard.sp h3{
+  margin:0 0 11px;color:#fff;line-height:.86;
+  font-size:clamp(28px,3.2vw,50px);
+  font-variation-settings:"wdth" 112,"wght" 900;letter-spacing:-.034em;text-transform:lowercase;
+  overflow-wrap:anywhere;
+}
+.sp-meta{
+  display:flex;align-items:center;flex-wrap:wrap;gap:0 7px;margin:0;
+  font-size:13px;color:rgba(255,255,255,.72);
+  font-variation-settings:"wdth" 90,"wght" 520;
+}
+.sp-meta img{width:21px;height:21px;border-radius:50%;object-fit:cover;flex:none;margin-right:2px;
+  background:rgba(255,255,255,.14)}
+.sp-meta b{color:#fff;font-variation-settings:"wdth" 90,"wght" 720}
+.sp-meta span::before{content:"\2022";margin-right:7px;color:rgba(255,255,255,.42)}
+.songcard.sp .sc-meta{margin:clamp(16px,2vw,22px) 0 0;color:rgba(255,255,255,.72);max-width:44ch}
+.sc-links{display:flex;flex-wrap:wrap;gap:9px;margin:clamp(16px,2vw,24px) 0 0}
+.songcard.sp .btn{background:#fff;color:#111;border-color:#fff}
+.songcard.sp .btn:hover{background:var(--red);border-color:var(--red);color:#fff}
+.songcard.sp .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.46)}
+.songcard.sp .btn.ghost:hover{background:#fff;color:#111;border-color:#fff}
+.songcard.sp .sc-alt a{color:rgba(255,255,255,.74);border-color:rgba(255,255,255,.3)}
+.songcard.sp .sc-alt a:hover,.songcard.sp .sc-alt a:focus-visible{color:#fff;border-color:#fff}
+@media (max-width:420px){
+  .sp-top{flex-direction:column;align-items:flex-start;gap:14px}
+  .sp-art{width:130px}
+}
+
+.song-cap{margin:0;font-size:13px;color:var(--dim);max-width:52ch;line-height:1.55}
+
+
+/* ---------- next-show alert (topbar) ---------- */
+.tb-show{
+  display:none;align-items:center;gap:10px;margin-left:auto;margin-right:clamp(10px,2vw,26px);
+  text-decoration:none;color:var(--ink);white-space:nowrap;
+  border:1px solid var(--ink);background:var(--paper);
+  padding:7px 13px 7px 11px;
+  opacity:0;transform:translateY(-6px);pointer-events:none;
+  transition:opacity .34s ease,transform .34s ease,background .16s ease,color .16s ease,border-color .16s ease;
+}
+.topbar.solid .tb-show{opacity:1;transform:none;pointer-events:auto}
+.tb-show:hover,.tb-show:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
+.tbs-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none;animation:tbs-pulse 1.9s ease-in-out infinite}
+.tb-show:hover .tbs-dot,.tb-show:focus-visible .tbs-dot{background:#fff}
+@keyframes tbs-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
+.tbs-lab{
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  font-variation-settings:"wdth" 88,"wght" 800;color:var(--dim);
+}
+.tb-show:hover .tbs-lab,.tb-show:focus-visible .tbs-lab{color:rgba(255,255,255,.78)}
+.tbs-txt{font-size:13px;font-variation-settings:"wdth" 94,"wght" 650;letter-spacing:-.005em}
+.tbs-txt b{font-variation-settings:"wdth" 100,"wght" 900}
+.tbs-txt i{font-style:normal;opacity:.42;padding:0 .32em}
+@media (min-width:860px){.tb-show{display:inline-flex}}
+@media (max-width:1080px){.tbs-lab{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .tbs-dot{animation:none}
+  .tb-show{transition:none}
+}
+
+
+/* ================================================================
+   watch page, Sep 2026: bright / glittery / nostalgic pass
+   ================================================================ */
+
+/* --- iridescent ground behind the paper wash --- */
+#sheen{
+  position:fixed;inset:-25%;z-index:0;pointer-events:none;
+  background:conic-gradient(from 0deg at 50% 50%,
+    #ffd9ec,#cdefff,#d6ffe4,#fff6c8,#ffd2e8,#dcdcff,#c9fff2,#ffd9ec);
+  filter:blur(80px) saturate(150%);
+  opacity:.5;mix-blend-mode:multiply;
+  animation:sheen-turn 54s linear infinite;
+}
+@keyframes sheen-turn{to{transform:rotate(360deg)}}
+
+/* --- fine glitter, two layers twinkling out of phase --- */
+#glitter{position:fixed;inset:0;z-index:22;pointer-events:none;overflow:hidden}
+#glitter::before,#glitter::after{
+  content:"";position:absolute;inset:-10%;
+  background-repeat:repeat;background-size:520px 520px;
+}
+#glitter::before{
+  background-image:
+    radial-gradient(1.7px 1.7px at 40px 60px,#fff 45%,transparent 60%),
+    radial-gradient(1.3px 1.3px at 170px 200px,#ffe9f6 45%,transparent 60%),
+    radial-gradient(2.1px 2.1px at 300px 90px,#fff 45%,transparent 60%),
+    radial-gradient(1.2px 1.2px at 90px 380px,#dff4ff 45%,transparent 60%),
+    radial-gradient(1.6px 1.6px at 430px 300px,#fff 45%,transparent 60%),
+    radial-gradient(1.1px 1.1px at 230px 460px,#fff8d6 45%,transparent 60%);
+  opacity:.85;animation:glit-a 3.6s ease-in-out infinite alternate;
+}
+#glitter::after{
+  background-image:
+    radial-gradient(1.4px 1.4px at 120px 30px,#fff 45%,transparent 60%),
+    radial-gradient(2.3px 2.3px at 380px 150px,#fff 45%,transparent 60%),
+    radial-gradient(1.2px 1.2px at 60px 250px,#e8ffef 45%,transparent 60%),
+    radial-gradient(1.8px 1.8px at 470px 430px,#fff 45%,transparent 60%),
+    radial-gradient(1.3px 1.3px at 260px 340px,#ffe4f4 45%,transparent 60%);
+  opacity:.6;animation:glit-b 5.1s ease-in-out infinite alternate;
+}
+@keyframes glit-a{from{opacity:.25;transform:translate3d(0,0,0) scale(1)}to{opacity:.9;transform:translate3d(-10px,-14px,0) scale(1.03)}}
+@keyframes glit-b{from{opacity:.75;transform:translate3d(0,0,0)}to{opacity:.2;transform:translate3d(12px,10px,0)}}
+
+/* --- the holographic sheen you can hang on any box --- */
+.glitz{position:relative;isolation:isolate}
+.glitz::after{
+  content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+  background:linear-gradient(115deg,
+    rgba(255,214,236,.62) 0%, rgba(205,239,255,.55) 20%, rgba(214,255,228,.5) 38%,
+    rgba(255,246,200,.58) 54%, rgba(255,210,232,.55) 72%, rgba(217,220,255,.6) 100%);
+  background-size:230% 230%;
+  mix-blend-mode:overlay;opacity:.72;
+  animation:irid-drift 11s ease-in-out infinite alternate;
+}
+@keyframes irid-drift{from{background-position:0% 50%}to{background-position:100% 50%}}
+
+/* headings match every other section on the site: flat black */
+#main .sec-head h2{color:var(--ink)}
+
+/* ---------------- clips: a slowly turning ring ---------------- */
+.clipring{
+  --ring-r:clamp(245px,31vw,425px);
+  position:relative;height:clamp(400px,47vw,560px);
+  margin-top:clamp(14px,2vw,24px);
+  perspective:2100px;perspective-origin:50% 44%;
+}
+.ring-tilt{position:absolute;inset:0;transform:rotateX(-12deg);transform-style:preserve-3d}
+.ring-inner{
+  position:absolute;left:50%;top:50%;width:0;height:0;
+  transform-style:preserve-3d;
+  animation:ring-spin 46s linear infinite;
+}
+@keyframes ring-spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+.ring-item{
+  /* the wrapper is a plain box with transparent corners; letting it take the
+     pointer meant it stole hover from the video sitting behind it */
+  pointer-events:none;
+  position:absolute;left:0;top:0;
+  width:clamp(104px,11.6vw,152px);height:auto;
+  margin-left:calc(clamp(104px,11.6vw,152px) / -2);
+  margin-top:calc(clamp(104px,11.6vw,152px) * 16 / 9 / -2);
+  transform-style:preserve-3d;
+}
+.ring-face{
+  animation:ring-face 46s linear infinite;
+  transform-origin:50% 50%;
+}
+@keyframes ring-face{from{transform:rotateY(0deg)}to{transform:rotateY(-360deg)}}
+.clipring:hover .ring-inner,.clipring:hover .ring-face,
+.clipring:focus-within .ring-inner,.clipring:focus-within .ring-face{animation-play-state:paused}
+.clipring .clip{
+  pointer-events:auto;
+  width:100%;border:1px solid rgba(255,255,255,.9);background:#111;
+  box-shadow:0 14px 34px rgba(70,80,130,.28);
+  overflow:hidden;
+}
+.clipring .clip video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.clipring::after{
+  content:"";position:absolute;left:50%;bottom:4%;transform:translateX(-50%);
+  width:min(78%,760px);height:34px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(120,130,190,.22),transparent 70%);
+}
+.ring-item:nth-child(1){transform:rotateY(0deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(2){transform:rotateY(30deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(3){transform:rotateY(60deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(4){transform:rotateY(90deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(5){transform:rotateY(120deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(6){transform:rotateY(150deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(7){transform:rotateY(180deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(8){transform:rotateY(210deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(9){transform:rotateY(240deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(10){transform:rotateY(270deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(11){transform:rotateY(300deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(12){transform:rotateY(330deg) translateZ(var(--ring-r))}
+.ring-item:nth-child(1) .ring-face{animation-delay:-0s}
+.ring-item:nth-child(2) .ring-face{animation-delay:-3.833s}
+.ring-item:nth-child(3) .ring-face{animation-delay:-7.667s}
+.ring-item:nth-child(4) .ring-face{animation-delay:-11.5s}
+.ring-item:nth-child(5) .ring-face{animation-delay:-15.33s}
+.ring-item:nth-child(6) .ring-face{animation-delay:-19.17s}
+.ring-item:nth-child(7) .ring-face{animation-delay:-23s}
+.ring-item:nth-child(8) .ring-face{animation-delay:-26.83s}
+.ring-item:nth-child(9) .ring-face{animation-delay:-30.67s}
+.ring-item:nth-child(10) .ring-face{animation-delay:-34.5s}
+.ring-item:nth-child(11) .ring-face{animation-delay:-38.33s}
+.ring-item:nth-child(12) .ring-face{animation-delay:-42.17s}
+
+/* small screens and reduced motion: unroll the ring into a scrolling strip */
+@media (max-width:680px), (prefers-reduced-motion:reduce){
+  .clipring{height:auto;perspective:none;overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
+  .clipring::-webkit-scrollbar{display:none}
+  .clipring::after{display:none}
+  .ring-tilt{position:static;transform:none;display:flex;flex-direction:column;gap:clamp(14px,3vw,22px)}
+  .ring-core{order:-1;position:static;transform:none;width:100%}
+  .mv-card:hover{transform:none}
+  .mv-yt{opacity:1;transform:none}
+  .ring-inner{
+    position:static;width:auto;height:auto;transform:none;animation:none;
+    display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;
+  }
+  .ring-item{position:static;transform:none;margin:0;width:clamp(150px,42vw,210px);flex:none}
+  .ring-face{animation:none;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  #sheen,#glitter::before,#glitter::after,.glitz::after{animation:none}
+  #glitter{opacity:.5}
+}
+
+/* ---------------- song bands: one panel, nothing floating ---------------- */
+.vfull{padding:clamp(18px,2.2vw,34px) 0!important;min-height:0}
+/* .song-split carries its own top margin, which the band does not need */
+.vfull .song-split{margin-top:0}
+.vfull:first-of-type{padding-top:0!important}
+/* the clips section already ends on the TikTok button - no need to pad twice */
+#clips{padding-bottom:clamp(16px,2vw,28px)!important}
+/* .grp:first-of-type re-adds a top margin the full-bleed bands do not want */
+.vfull .grp-full{margin-top:0}
+.clipring{height:clamp(360px,43vw,505px)}
+.song-panel{
+  position:relative;
+  padding:clamp(18px,2.6vw,36px);
+  background:
+    linear-gradient(126deg, rgba(255,222,240,.42) 0%, rgba(214,240,255,.36) 26%,
+                    rgba(220,255,235,.3) 48%, rgba(255,248,214,.36) 70%, rgba(226,224,255,.42) 100%),
+    rgba(255,255,255,.66);
+  -webkit-backdrop-filter:blur(16px) saturate(1.35);
+  backdrop-filter:blur(16px) saturate(1.35);
+  border:1px solid rgba(255,255,255,.92);
+  box-shadow:0 26px 70px rgba(88,96,150,.20), inset 0 1px 0 rgba(255,255,255,.95);
+  align-items:stretch;
+}
+.song-split .vstage{
+  margin-top:0;flex-direction:column;align-items:center;justify-content:center;gap:0;
+}
+.song-split .vstage .vcard,.song-split .vstage .vcard video{max-height:calc(100vh - 420px)}
+.vstage .vcard{border:1px solid rgba(0,0,0,.14);box-shadow:0 16px 40px rgba(70,80,130,.24)}
+.songcard.sp{display:flex;flex-direction:column;justify-content:center}
+
+/* the caption now hangs off the video and says what the thing is made of */
+.song-split .song-cap{
+  margin:0;max-width:none;width:100%;align-self:stretch;
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 13px;
+  background:#111;color:#fff;
+  font-size:12.5px;line-height:1.45;
+  font-variation-settings:"wdth" 90,"wght" 600;
+}
+.song-split .cap-tag{
+  flex:none;background:var(--yellow,#ffd400);color:#111;
+  padding:3px 7px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  font-variation-settings:"wdth" 88,"wght" 850;
+}
+.song-split .cap-txt{min-width:0}
+@media (max-width:980px){
+  .song-split .vstage .vcard,.song-split .vstage .vcard video{max-height:none;width:100%}
+  .song-split .song-cap{max-width:none}
+}
+@media (max-width:560px){
+  .song-split .song-cap{flex-direction:column;gap:7px}
+}
+
+/* clips are links out to TikTok */
+.clipring .clip{display:block;text-decoration:none;color:inherit;cursor:pointer;position:relative;
+  transition:box-shadow .2s ease,border-color .2s ease}
+.clipring .clip{transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .2s ease,border-color .2s ease}
+.clipring .clip:hover,.clipring .clip:focus-visible{
+  border-color:#fff;box-shadow:0 18px 44px rgba(60,70,120,.42);transform:scale(1.07)}
+@media (prefers-reduced-motion:reduce){
+  .clipring .clip{transition:none}
+  .clipring .clip:hover{transform:none}
+}
+.clip-go{
+  position:absolute;left:0;right:0;bottom:0;z-index:5;
+  display:flex;align-items:center;gap:7px;
+  padding:9px 10px;
+  background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,0));
+  color:#fff;opacity:0;transition:opacity .18s ease;
+}
+.clip:hover .clip-go,.clip:focus-visible .clip-go{opacity:1}
+.clip-go b{font-size:11px;letter-spacing:.02em;font-variation-settings:"wdth" 88,"wght" 750}
+.clip-tt{width:15px;height:15px;flex:none}
+@media (max-width:680px){
+  /* no hover on touch - keep the label showing */
+  .clip-go{opacity:1;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
+}
+
+/* get updates: goes to the real list on Laylo */
+.jb-go{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  width:100%;padding:13px 16px;
+  background:#fff;color:var(--ink);text-decoration:none;
+  font-size:14px;font-variation-settings:"wdth" 94,"wght" 800;letter-spacing:.01em;
+  border:1px solid #fff;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.jb-go:hover,.jb-go:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
+.jb-go svg{width:15px;height:15px;flex:none}
+
+/* page-level heading for search and screen readers, not shown */
+.skip-h1{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;white-space:nowrap;margin:0;font-size:1px}
+
+
+
+
+/* ---------- the music video at the centre of the ring ----------
+   A facade: nothing is requested from YouTube until play is pressed.
+   It lives inside .ring-tilt so the browser depth-sorts it against the
+   spinning clips - they pass in front of it and behind it.
+*/
+.ring-core{
+  position:absolute;left:50%;top:50%;
+  width:clamp(240px,33vw,500px);
+  transform-style:preserve-3d;
+  /* --core-z is the card's depth in the ring. At 0 it sits on the ring's
+     axis, so cards at +R come over it and cards at -R go behind it. On
+     hover it pushes past +R and nothing can cross in front. */
+  --core-z:0px;
+  /* lifted so the card's middle sits on the top edge of the far side of the
+     ring: it reads as hovering over the ring rather than threaded through
+     it, and it leaves the whole upper half of the card unobstructed */
+  transform:translate(-50%,calc(-50% - clamp(74px,8.4vw,122px))) translateZ(var(--core-z));
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),opacity .3s cubic-bezier(.2,.7,.3,1);
+}
+.ring-core.core-up,.ring-core:focus-within{
+  --core-z:calc(var(--ring-r) + 90px);
+}
+.mv-card{
+  position:relative;display:block;overflow:hidden;
+  border:1px solid rgba(255,255,255,.9);background:#0a0a0a;
+  box-shadow:0 30px 74px rgba(40,50,100,.44),0 6px 16px rgba(40,50,100,.20);
+  transition:transform .32s cubic-bezier(.2,.7,.3,1),box-shadow .32s cubic-bezier(.2,.7,.3,1);
+}
+.mv-card:hover,.mv-card:focus-within{
+  transform:scale(1.07);
+  box-shadow:0 26px 70px rgba(50,60,110,.44);
+}
+.mv-card img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.mv-play{
+  position:absolute;inset:0;z-index:2;width:100%;
+  display:flex;align-items:flex-end;gap:clamp(10px,1.3vw,14px);
+  padding:clamp(11px,1.4vw,17px);
+  border:0;cursor:pointer;font:inherit;text-align:left;
+  background:linear-gradient(to top,rgba(0,0,0,.52),rgba(0,0,0,.04) 62%,rgba(0,0,0,0));
+  transition:background .22s cubic-bezier(.2,.7,.3,1);
+}
+.mv-card:hover .mv-play,.mv-play:focus-visible{
+  background:linear-gradient(to top,rgba(0,0,0,.30),rgba(0,0,0,.02) 66%,rgba(0,0,0,0))}
+.ytbtn{width:clamp(38px,4.2vw,54px);height:clamp(38px,4.2vw,54px);border-radius:50%;background:#fff;
+  display:grid;place-items:center;flex:none;transition:transform .2s}
+.mv-card:hover .ytbtn{transform:scale(1.08)}
+.ytbtn svg{width:56%;height:56%;fill:var(--ink)}
+/* the second option, revealed on hover */
+.mv-yt{
+  position:absolute;top:0;right:0;z-index:3;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 11px;background:#fff;color:var(--ink);text-decoration:none;
+  font-size:11px;letter-spacing:.02em;font-variation-settings:"wdth" 90,"wght" 800;
+  opacity:0;transform:translateY(-4px);
+  transition:opacity .22s cubic-bezier(.2,.7,.3,1),transform .22s cubic-bezier(.2,.7,.3,1),background .16s ease,color .16s ease;
+}
+.mv-card:hover .mv-yt,.mv-yt:focus-visible{opacity:1;transform:none}
+.mv-yt:hover,.mv-yt:focus-visible{background:var(--red);color:#fff}
+.mv-yt svg{width:12px;height:12px;flex:none}
+/* once it is playing */
+.mv-live{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+  border:1px solid rgba(255,255,255,.9);background:#0a0a0a;
+  box-shadow:0 26px 70px rgba(50,60,110,.44)}
+.mv-live iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+/* while it plays the ring stops competing */
+.clipring.is-playing .ring-inner,.clipring.is-playing .ring-face{animation-play-state:paused}
+.clipring.is-playing .ring-item{opacity:.4;transition:opacity .4s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion:reduce){
+  .mv-card,.mv-yt,.ytbtn,.mv-play,.mv-plaque{transition:none}
+  .mv-card:hover{transform:none}
+}
+
+/* the plaque slides up on hover: the same component language as
+   .songcard.sp, in the down with the snow blue, kept small so it
+   sits on the video like a caption rather than covering it. */
+.mv-plaque{
+  display:inline-flex;align-items:center;gap:9px;min-width:0;flex:0 1 auto;
+  max-width:calc(100% - 8px);
+  padding:6px 13px 6px 6px;
+  background:linear-gradient(150deg,var(--sp-a) 0%,var(--sp-b) 88%);
+  box-shadow:0 10px 26px rgba(0,0,0,.34);
+  opacity:0;transform:translateY(9px);
+  transition:opacity .26s cubic-bezier(.2,.7,.3,1),transform .26s cubic-bezier(.2,.7,.3,1);
+}
+.mv-card:hover .mv-plaque,.mv-play:focus-visible .mv-plaque{opacity:1;transform:none}
+.mv-art{width:clamp(28px,3vw,38px);flex:none;aspect-ratio:1/1;overflow:hidden;
+  background:#111;box-shadow:0 5px 14px rgba(0,0,0,.45);line-height:0}
+.mv-art img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+.mv-head{min-width:0}
+.mv-title{display:block;color:#fff;line-height:1;
+  font-size:clamp(12.5px,1.15vw,16px);
+  font-variation-settings:"wdth" 106,"wght" 850;letter-spacing:-.022em;text-transform:lowercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mv-meta{
+  display:block;margin-top:3px;
+  font-size:clamp(9px,.78vw,10.5px);color:rgba(255,255,255,.72);
+  font-variation-settings:"wdth" 90,"wght" 520;letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mv-meta i{font-style:normal;color:rgba(255,255,255,.4);padding:0 .42em}
+@media (prefers-reduced-motion:reduce){
+  .mv-plaque{transition:none;opacity:1;transform:none}
+}
+@media (max-width:680px){
+  .mv-plaque{opacity:1;transform:none}
+}
+
+/* ================================================================
+   ambient footage: home-video B-roll washed out behind the ring.
+   Drop more files in assets/watch/ and add them to AMBIENT in the
+   script at the foot of this page - it cross-fades between them.
+   ================================================================ */
+#clips{position:relative;isolation:isolate}
+#clips > .wrap,#clips > .clipring{position:relative;z-index:1}
+.ambient{
+  position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+  -webkit-mask-image:radial-gradient(112% 74% at 50% 58%,#000 26%,rgba(0,0,0,.58) 58%,transparent 92%);
+          mask-image:radial-gradient(112% 74% at 50% 58%,#000 26%,rgba(0,0,0,.58) 58%,transparent 92%);
+}
+.ambient video,.ambient img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.1);
+  filter:blur(13px) saturate(1.45) brightness(1.1) contrast(.9);
+  opacity:0;
+  transition:opacity .9s ease;
+  animation:amb-drift 46s ease-in-out infinite alternate;
+}
+.ambient video.on,.ambient img.on{opacity:.46}
+@keyframes amb-drift{
+  from{transform:scale(1.1) translate3d(-1.4%,-1%,0)}
+  to{transform:scale(1.16) translate3d(1.4%,1.2%,0)}
+}
+/* wash it back into the paper so the cards always win */
+.ambient::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    var(--paper) 0%,rgba(255,255,255,.42) 22%,rgba(255,255,255,.34) 76%,var(--paper) 100%);
+}
+@media (max-width:680px){
+  .ambient video,.ambient img{filter:blur(11px) saturate(1.3) brightness(1.08)}
+  .ambient video.on,.ambient img.on{opacity:.4}
+}
+@media (prefers-reduced-motion:reduce){
+  .ambient video,.ambient img{animation:none;transition:none}
+}
+
+/* ================================================================
+   phones + reduced motion: unroll the ring into a scrolling strip
+   with the music video stacked above it. These have to sit at the
+   foot of the sheet - the desktop .clipring / .ring-core rules are
+   the same weight and appear later, so an earlier copy loses.
+   ================================================================ */
+/* the fixed topbar wraps to two rows on a phone; the first section
+   needs to start below it */
+@media (max-width:680px){
+  #clips{padding-top:clamp(116px,30vw,132px)}
+}
+@media (max-width:680px), (prefers-reduced-motion:reduce){
+  .clipring{
+    height:auto;perspective:none;overflow:visible;
+    display:flex;flex-direction:column;gap:clamp(14px,3vw,22px);
+  }
+  .ring-core{order:-1;position:static;transform:none;width:100%}
+  .mv-card:hover,.mv-card:focus-within{transform:none}
+  .ring-tilt{
+    order:1;position:static;transform:none;display:block;
+    overflow-x:auto;scrollbar-width:none;padding-bottom:6px;
+  }
+  .ring-tilt::-webkit-scrollbar{display:none}
+  .ring-inner{
+    position:static;height:auto;transform:none;animation:none;
+    display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;
+  }
+  .ring-item{position:static;transform:none;margin:0;width:clamp(150px,42vw,210px);flex:none}
+  .ring-face{animation:none;transform:none}
+  .ambient{-webkit-mask-image:radial-gradient(150% 70% at 50% 62%,#000 22%,rgba(0,0,0,.55) 56%,transparent 92%);
+                   mask-image:radial-gradient(150% 70% at 50% 62%,#000 22%,rgba(0,0,0,.55) 56%,transparent 92%)}
+}
+
+/* ================================================================
+   hovering a clip brings it to the front of the whole ring, the
+   centre video included. Raising .ring-tilt lifts the back-side cards
+   over the video too, so every other card drops to a ghost - that is what
+   keeps it clean, and it doubles as the focus effect.
+   ================================================================ */
+/* the JS only sets these classes when the device actually has a pointer,
+   so no media query is needed here - and none is wanted, because these have
+   to out-rank the ring's own rules wherever they land in the cascade */
+#clips .clipring .ring-item .clip{
+  transition:transform .32s cubic-bezier(.2,.7,.3,1),box-shadow .32s cubic-bezier(.2,.7,.3,1);
+}
+#clips .clipring.is-focus .ring-tilt{z-index:6}
+#clips .clipring.is-focus .ring-core{opacity:.32}
+#clips .clipring.is-focus .ring-item{
+  opacity:.18;transition:opacity .3s cubic-bezier(.2,.7,.3,1);
+}
+#clips .clipring.is-focus .ring-item.is-hot{opacity:1}
+#clips .clipring .ring-item.is-hot .clip{
+  transform:scale(1.24);
+  box-shadow:0 26px 64px rgba(40,50,100,.42);
+}
+@media (prefers-reduced-motion:reduce){
+  #clips .clipring .ring-item .clip,#clips .clipring.is-focus .ring-item{transition:none}
+  #clips .clipring .ring-item.is-hot .clip{transform:none}
+}
+
+/* ================================================================
+   moving between pages
+   ---------------------------------------------------------------
+   Each page is its own document, so a click used to mean a white
+   flash and every entrance animation replaying. Three things fix
+   that: the browser cross-fades the navigation, the floating chrome
+   remembers it has already introduced itself, and links warm the
+   next page on hover.
+   ================================================================ */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){
+  animation-duration:.22s;
+  animation-timing-function:cubic-bezier(.2,.7,.3,1);
+}
+/* the fixed chrome should not slide with the page underneath it */
+.topbar,.rail,.joinbox,.outnow,.on-tab,.peek{view-transition-name:none}
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(root),::view-transition-new(root){animation:none}
+}
+/* second visit in a session: the chrome is already there, no entrance */
+body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transition:none!important}
+</style>
+</head>
+
+<body>
+<script>
+/* ---- moving between pages ----------------------------------------
+   1. Mark the session once the chrome has introduced itself, so the
+      next page shows it straight away instead of replaying.
+   2. Warm the next page on hover, so the click has nothing to wait for.
+   ------------------------------------------------------------------ */
+(function(){
+  var KEY='cth.chrome.seen';
+  try{ if(sessionStorage.getItem(KEY)==='1') document.body.classList.add('seen'); }catch(e){}
+  window.cthChromeDelay = function(ms){ return document.body.classList.contains('seen') ? 0 : ms; };
+  window.cthChromeSeen = function(){
+    if(document.body.classList.contains('seen')) return;
+    try{ sessionStorage.setItem(KEY,'1'); }catch(e){}
+  };
+
+  var warmed={};
+  function warm(href){
+    if(!href || warmed[href]) return;
+    warmed[href]=1;
+    var l=document.createElement('link');
+    l.rel='prefetch'; l.href=href; l.as='document';
+    document.head.appendChild(l);
+  }
+  function onHover(e){
+    var a=e.target.closest && e.target.closest('a[href]');
+    if(!a || a.target==='_blank') return;
+    var u;
+    try{ u=new URL(a.href, location.href); }catch(err){ return; }
+    if(u.origin!==location.origin || u.pathname===location.pathname) return;
+    warm(u.href);
+  }
+  document.addEventListener('pointerover', onHover, {passive:true});
+  document.addEventListener('focusin', onHover, {passive:true});
+
+  /* by three seconds the out-now card has introduced itself; from here on
+     this session the chrome appears without the entrance */
+  setTimeout(window.cthChromeSeen, 3000);
+})();
+</script>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar" id="topbar">
+  <div class="tb-slot">
+    <a class="tb-icon" href="index.html" aria-label="campthehills home"><img src="assets/icon-mark.png" alt="" width="244" height="340"></a>
+    <a class="tb-mark" href="index.html">campthehills</a>
+  </div>
+  <nav class="tb-nav" aria-label="Main">
+    <a href="index.html#listen">music</a>
+    <a href="index.html#video">video</a>
+    <a href="watch.html" aria-current="page">clips</a>
+    <a href="index.html#who">about</a>
+    <a href="index.html#shows">shows</a>
+    <a href="index.html#credits">credits</a>
+    <a href="index.html#contact">contact</a>
+  </nav>
+  <a class="tb-show" href="index.html#shows" aria-label="Next show: Dec 1 2026, New York, NY">
+    <span class="tbs-dot" aria-hidden="true"></span>
+    <span class="tbs-lab">next show</span>
+    <span class="tbs-txt"><b>Dec 1</b><i>/</i>New York, NY</span>
+  </a>
+  <div class="tb-actions">
+    <button class="tb-btn" id="shareBtn" type="button" aria-label="Share this page">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8 10.5V1.8M8 1.8 5.2 4.6M8 1.8l2.8 2.8M2.8 8.4v4.6a1.2 1.2 0 0 0 1.2 1.2h8a1.2 1.2 0 0 0 1.2-1.2V8.4"/>
+      </svg>
+      <span class="tb-share-label">Share</span>
+    </button>
+    <a class="tb-btn" href="index.html#contact"><span class="bd" aria-hidden="true"></span>Contact</a>
+  </div>
+</div>
+
+
+
+<div id="bgvid" aria-hidden="true">
+  <video poster="assets/watch/feature.jpg" muted loop playsinline preload="none">
+    <source src="assets/watch/feature.webm" type="video/webm">
+    <source src="assets/watch/feature.mp4" type="video/mp4">
+  </video>
+  <div id="bgveil"></div>
+</div>
+<div id="sheen" aria-hidden="true"></div>
+<div id="glitter" aria-hidden="true"></div>
+<canvas id="bubbles" aria-hidden="true"></canvas>
+<main id="main">
+  <h1 class="skip-h1">watch &mdash; campthehills</h1>
+
+
+
+  <!-- CLIPS -->
+  <section id="clips">
+    <!-- ambient home-video footage, muted and blurred back, behind the ring -->
+    <div class="ambient" id="ambient" aria-hidden="true">
+      <img id="ambPoster" src="assets/watch/ambient-1.jpg" alt="" decoding="async" loading="lazy">
+    </div>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>watch</h2>
+        <span class="line"></span>
+      </div>
+    </div>
+    <!-- CLIPS RING. Twelve items = six clips, each shown twice, so the ring reads full.
+         Every card links to https://www.tiktok.com/@campthehills. To send a card to its own
+         post instead, change that one href (and its duplicate, same data-clip number).
+         To refresh the reel, drop new assets/clipN.mp4 + clipN.jpg in and keep the names. -->
+    <div class="clipring" aria-label="Clips from TikTok">
+      <div class="ring-tilt">
+        <div class="ring-inner">
+          <div class="ring-item"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-label="Watch campthehills on TikTok" data-clip="1"><video src="assets/clip1.mp4" poster="assets/clip1.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-label="Watch campthehills on TikTok" data-clip="2"><video src="assets/clip2.mp4" poster="assets/clip2.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-label="Watch campthehills on TikTok" data-clip="3"><video src="assets/clip3.mp4" poster="assets/clip3.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-label="Watch campthehills on TikTok" data-clip="4"><video src="assets/clip4.mp4" poster="assets/clip4.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-label="Watch campthehills on TikTok" data-clip="5"><video src="assets/clip5.mp4" poster="assets/clip5.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-label="Watch campthehills on TikTok" data-clip="6"><video src="assets/clip6.mp4" poster="assets/clip6.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item" aria-hidden="true"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" data-clip="1"><video src="assets/clip1.mp4" poster="assets/clip1.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item" aria-hidden="true"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" data-clip="2"><video src="assets/clip2.mp4" poster="assets/clip2.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item" aria-hidden="true"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" data-clip="3"><video src="assets/clip3.mp4" poster="assets/clip3.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item" aria-hidden="true"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" data-clip="4"><video src="assets/clip4.mp4" poster="assets/clip4.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item" aria-hidden="true"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" data-clip="5"><video src="assets/clip5.mp4" poster="assets/clip5.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+          <div class="ring-item" aria-hidden="true"><div class="ring-face"><a class="clip glitz" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" data-clip="6"><video src="assets/clip6.mp4" poster="assets/clip6.jpg" muted loop playsinline preload="none"></video><span class="clip-go"><svg class="clip-tt" viewBox="0 0 48 48" aria-hidden="true"><path d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z" fill="currentColor"/></svg><b>Watch on TikTok</b></span></a></div></div>
+        </div>
+          <!-- The music video sits at the centre of the ring at Z=0, inside
+               .ring-tilt's 3D context. That is what makes the depth read: the
+               browser sorts it against the cards by their actual Z, so the
+               back half of the ring passes behind it and the front half
+               passes over it. Hovering pushes it forward past the whole ring. -->
+          <div class="ring-core">
+          <div class="mv-card" id="mvCard">
+            <img src="assets/poster.jpg" width="1400" height="788" decoding="async"
+                 alt="campthehills in profile at night, lit by streaks of coloured light, from the down with the snow video.">
+            <button class="mv-play" type="button" id="mvPlay" data-yt="s6Ya5daiqHo"
+                    aria-label="Play the down with the snow music video, directed by Jaxon Ray">
+              <span class="ytbtn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5v9l7.5-4.5z"/></svg>
+              </span>
+              <span class="mv-plaque" style="--sp-a:#1a3590;--sp-b:#0c206c">
+                <span class="mv-art"><img src="assets/art-dwts.jpg" alt="" width="300" height="300" decoding="async" loading="lazy"></span>
+                <span class="mv-head">
+                  <span class="mv-title">down with the snow</span>
+                  <span class="mv-meta">music video<i>&middot;</i>dir. Jaxon Ray</span>
+                </span>
+              </span>
+            </button>
+            <a class="mv-yt" href="https://www.youtube.com/watch?v=s6Ya5daiqHo" target="_blank" rel="noopener">
+              Watch on YouTube
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M6 4.5h5.5V10"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap" style="margin-top:clamp(26px,4vw,48px)">
+      <a class="btn ghost" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener">More on TikTok</a>
+    </div>
+  </section>
+
+  <section class="vfull">
+    <div class="wrap">
+      <div class="grp grp-full">
+        
+        <div class="song-split song-panel">
+          <div class="vstage">
+          <div class="vcard vauto">
+            <video id="limoVid" poster="assets/watch/limousine-letters.jpg"
+                   muted loop playsinline preload="metadata"
+                   aria-label="limousine lyric video: a stop-motion lyric video built from modeling clay by campthehills.">
+                     <source src="assets/watch/limousine-letters.webm" type="video/webm">
+                     <source src="assets/watch/limousine-letters.mp4" type="video/mp4">
+                 </video>
+            <button class="sc-sound" type="button" data-video="limoVid" aria-pressed="false">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7.2 3.2 4.4 5.6H2.2v4.8h2.2l2.8 2.4z"/><path d="M10.4 5.8a3.2 3.2 0 0 1 0 4.4"/>
+              </svg>
+              <span>Sound on</span>
+            </button>
+          </div>
+            <p class="song-cap"><span class="cap-tag">how it&#39;s made</span><span class="cap-txt">Stop motion lyric video built from modeling clay by campthehills.</span></p>
+          </div>
+
+          <article class="songcard sp glitz" style="--sp-a:#8a4137;--sp-b:#37130f">
+            <div class="sp-top">
+              <div class="sp-art"><img src="assets/art-limousine.jpg" alt="Cover art for limousine: a silhouetted figure and a white star behind a lit curtain." width="300" height="300" loading="lazy"></div>
+              <div class="sp-head">
+                <p class="sp-kicker">Song</p>
+                <h3>limousine</h3>
+                <p class="sp-meta"><img src="assets/icon-small.png" alt="" width="21" height="21"><b>campthehills</b><span>limousine</span><span>2025</span><span>2:42</span></p>
+              </div>
+            </div>
+            <div class="sc-links">
+              <a class="btn" href="https://open.spotify.com/track/3M0pCmfAqWQZ2zvetRLqEI" target="_blank" rel="noopener">
+                Play on Spotify
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg>
+              </a>
+              <a class="btn ghost" href="https://music.apple.com/us/artist/campthehills/1798568405" target="_blank" rel="noopener">Apple Music</a>
+              <a class="btn ghost" href="https://www.youtube.com/channel/UCYV_I3ySjhrtZ5H5hGZsPYw" target="_blank" rel="noopener">YouTube</a>
+              <a class="btn ghost" href="https://soundcloud.com/campthehills" target="_blank" rel="noopener">SoundCloud</a>
+            </div>
+            <p class="sc-alt"><a href="https://genius.com/artists/Campthehills" target="_blank" rel="noopener">Read the lyrics on Genius</a></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vfull">
+    <div class="wrap">
+      <div class="grp grp-full">
+        
+        <div class="song-split song-panel">
+          <div class="vstage">
+          <div class="vcard vauto">
+            <video id="wmmVid" poster="assets/watch/lyric-watchmymouth.jpg"
+                   muted loop playsinline preload="metadata"
+                   aria-label="watch my mouth lyric video: a stop-motion lyric video built from modeling clay by campthehills.">
+                     <source src="assets/watch/lyric-watchmymouth.webm" type="video/webm">
+                     <source src="assets/watch/lyric-watchmymouth.mp4" type="video/mp4">
+                 </video>
+            <button class="sc-sound" type="button" data-video="wmmVid" aria-pressed="false">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7.2 3.2 4.4 5.6H2.2v4.8h2.2l2.8 2.4z"/><path d="M10.4 5.8a3.2 3.2 0 0 1 0 4.4"/>
+              </svg>
+              <span>Sound on</span>
+            </button>
+          </div>
+            <p class="song-cap"><span class="cap-tag">how it&#39;s made</span><span class="cap-txt">Stop motion lyric video built from modeling clay by campthehills.</span></p>
+          </div>
+
+          <article class="songcard sp glitz" style="--sp-a:#bb3230;--sp-b:#590d07">
+            <div class="sp-top">
+              <div class="sp-art"><img src="assets/art-watchmymouth.jpg" alt="Cover art for watch my mouth: a crayon and ink star with an eye and a red streak, drawn on white paper." width="300" height="300" loading="lazy"></div>
+              <div class="sp-head">
+                <p class="sp-kicker">Song</p>
+                <h3>watch my mouth</h3>
+                <p class="sp-meta"><img src="assets/icon-small.png" alt="" width="21" height="21"><b>campthehills</b><span>watch my mouth</span><span>2025</span><span>1:57</span></p>
+              </div>
+            </div>
+            <div class="sc-links">
+              <a class="btn" href="https://open.spotify.com/track/1zixiAm4L99Hvn9LuuT0M8" target="_blank" rel="noopener">
+                Play on Spotify
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg>
+              </a>
+              <a class="btn ghost" href="https://music.apple.com/us/artist/campthehills/1798568405" target="_blank" rel="noopener">Apple Music</a>
+              <a class="btn ghost" href="https://www.youtube.com/watch?v=P2DzT_Tzdpc" target="_blank" rel="noopener">YouTube</a>
+              <a class="btn ghost" href="https://soundcloud.com/campthehills" target="_blank" rel="noopener">SoundCloud</a>
+            </div>
+            <p class="sc-alt"><a href="https://genius.com/artists/Campthehills" target="_blank" rel="noopener">Read the lyrics on Genius</a></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- fixed chrome: last in the DOM so keyboard focus reaches the page content first -->
+<nav class="rail" id="rail" aria-label="campthehills on other platforms">
+  <a class="rail-i" href="https://open.spotify.com/artist/01Xh6d2xRTGEpxZw0Khyrs" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#1ED760"/>     <g stroke="#fff" fill="none" stroke-linecap="round">      <path d="M13 18.4c6.6-2 14.6-1.3 21.2 2.3" stroke-width="4.2"/>      <path d="M14.7 24.9c5.4-1.6 12-1 17.4 1.9" stroke-width="3.4"/>      <path d="M16.2 31c4.3-1.2 9.4-.8 13.6 1.5" stroke-width="2.8"/>     </g>    </svg><span>spotify</span></a>
+  <a class="rail-i" href="https://music.apple.com/us/artist/campthehills/1798568405" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <defs><linearGradient id="r_amg" x1="0" y1="0" x2="0" y2="1">      <stop offset="0" stop-color="#FB5C74"/><stop offset="1" stop-color="#FA233B"/></linearGradient></defs>     <rect width="48" height="48" rx="11" fill="url(#r_amg)"/>     <g fill="#fff">      <rect x="20.2" y="15.4" width="2.5" height="15.8" rx="1.25"/>      <rect x="30.4" y="13.4" width="2.5" height="15.8" rx="1.25"/>      <path d="M20.2 16.1 32.9 13.4v4.9L20.2 21z"/>      <ellipse cx="17.9" cy="31.2" rx="4.3" ry="3.5"/>      <ellipse cx="28.1" cy="29.2" rx="4.3" ry="3.5"/>     </g>    </svg><span>apple music</span></a>
+  <a class="rail-i" href="https://www.instagram.com/campthehills/" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <defs><radialGradient id="r_igg" cx="0.28" cy="1.02" r="1.15">      <stop offset="0" stop-color="#FFDD77"/><stop offset=".32" stop-color="#F4776B"/>      <stop offset=".66" stop-color="#C93597"/><stop offset="1" stop-color="#6A38D0"/></radialGradient></defs>     <rect width="48" height="48" rx="11" fill="url(#r_igg)"/>     <rect x="13.2" y="13.2" width="21.6" height="21.6" rx="6.8" fill="none" stroke="#fff" stroke-width="2.6"/>     <circle cx="24" cy="24" r="5.5" fill="none" stroke="#fff" stroke-width="2.6"/>     <circle cx="30.7" cy="17.4" r="1.75" fill="#fff"/>    </svg><span>instagram</span></a>
+  <a class="rail-i" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#0A0A0A"/>     <rect x=".9" y=".9" width="46.2" height="46.2" rx="10.3" fill="none" stroke="#ffffff" stroke-opacity=".24" stroke-width="1.4"/>     <g><path id="r_ttn" d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z"/></g>     <use href="#ttn" fill="#25F4EE" transform="translate(-1.6 1.5)"/>     <use href="#ttn" fill="#FE2C55" transform="translate(1.6 -1.5)"/>     <use href="#ttn" fill="#fff"/>    </svg><span>tiktok</span></a>
+  <a class="rail-i" href="https://www.youtube.com/channel/UCYV_I3ySjhrtZ5H5hGZsPYw" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#FF0000"/>     <path d="M20.4 17.2 32.6 24l-12.2 6.8z" fill="#fff"/>    </svg><span>youtube</span></a>
+  <a class="rail-i" href="https://soundcloud.com/campthehills" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#FF5500"/>     <g fill="#fff">      <rect x="11.4" y="23.6" width="2.3" height="9.2" rx="1.15"/>      <rect x="15.8" y="20.4" width="2.3" height="12.4" rx="1.15"/>      <rect x="20.2" y="17.6" width="2.3" height="15.2" rx="1.15"/>      <rect x="24.6" y="15.2" width="2.3" height="17.6" rx="1.15"/>      <path d="M29.4 18.6h2.4c2.9 0 5.2 2.2 5.2 5.1s-2.3 5.1-5.2 5.1h-2.4z"/>     </g>    </svg><span>soundcloud</span></a>
+  <a class="rail-i" href="https://genius.com/artists/Campthehills" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#FFFF64"/>     <text x="24" y="24" text-anchor="middle" dominant-baseline="central" fill="#000"        font-family="Archivo, Helvetica, Arial, sans-serif" font-size="30"        font-weight="900" letter-spacing="-1.4">G</text>    </svg><span>genius</span></a>
+</nav>
+<aside class="outnow" id="outnow" aria-label="Out now">
+  <button class="on-x" id="onClose" type="button" aria-label="Hide">&times;</button>
+  <img src="assets/art-brayfool.jpg" alt="">
+  <div class="on-body">
+    <span class="on-kick">Out now</span>
+    <span class="on-t">bray fool</span>
+    <a class="on-l" href="index.html#listen">Listen &rarr;</a>
+  </div>
+</aside>
+<button class="on-tab" id="onTab" type="button" aria-expanded="false" aria-controls="outnow" aria-label="bray fool is out now">out now</button>
+<aside class="joinbox" id="joinbox">
+  <button class="jb-tab" id="jbTab" type="button" aria-expanded="false" aria-controls="jbPanel">
+    <span class="bd" aria-hidden="true"></span>
+    Get updates
+    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 7.5 6 4l3.5 3.5"/></svg>
+  </button>
+
+  <div class="jb-panel" id="jbPanel" role="region" aria-labelledby="jbTitle">
+    <button class="jb-close" id="jbClose" type="button" aria-label="Hide">&times;</button>
+    <p class="jb-title" id="jbTitle">get updates</p>
+    <div id="jbInner">
+      <p class="jb-copy">New music and show dates &mdash; by text or email, straight from campthehills.</p>
+      <a class="jb-go" href="https://laylo.com/campthehills/profile" target="_blank" rel="noopener">
+        Join the list
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h11M9.5 3.5 14 8l-4.5 4.5"/></svg>
+      </a>
+      <p class="jb-note">One tap, on Laylo. Leave whenever &mdash; reply STOP to the texts, unsubscribe from any email.</p>
+    </div>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer>
+  <div class="wrap">
+    <nav class="apps" aria-label="campthehills on other platforms">
+
+      <a class="app" href="https://open.spotify.com/artist/01Xh6d2xRTGEpxZw0Khyrs" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect width="48" height="48" rx="11" fill="#1ED760"/>
+          <g stroke="#fff" fill="none" stroke-linecap="round">
+            <path d="M13 18.4c6.6-2 14.6-1.3 21.2 2.3" stroke-width="4.2"/>
+            <path d="M14.7 24.9c5.4-1.6 12-1 17.4 1.9" stroke-width="3.4"/>
+            <path d="M16.2 31c4.3-1.2 9.4-.8 13.6 1.5" stroke-width="2.8"/>
+          </g>
+        </svg>
+        <span>Spotify</span>
+      </a>
+
+      <a class="app" href="https://music.apple.com/us/artist/campthehills/1798568405" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <defs><linearGradient id="amg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FB5C74"/><stop offset="1" stop-color="#FA233B"/></linearGradient></defs>
+          <rect width="48" height="48" rx="11" fill="url(#amg)"/>
+          <g fill="#fff">
+            <rect x="20.2" y="15.4" width="2.5" height="15.8" rx="1.25"/>
+            <rect x="30.4" y="13.4" width="2.5" height="15.8" rx="1.25"/>
+            <path d="M20.2 16.1 32.9 13.4v4.9L20.2 21z"/>
+            <ellipse cx="17.9" cy="31.2" rx="4.3" ry="3.5"/>
+            <ellipse cx="28.1" cy="29.2" rx="4.3" ry="3.5"/>
+          </g>
+        </svg>
+        <span>Apple Music</span>
+      </a>
+
+      <a class="app" href="https://www.instagram.com/campthehills/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <defs><radialGradient id="igg" cx="0.28" cy="1.02" r="1.15">
+            <stop offset="0" stop-color="#FFDD77"/><stop offset=".32" stop-color="#F4776B"/>
+            <stop offset=".66" stop-color="#C93597"/><stop offset="1" stop-color="#6A38D0"/></radialGradient></defs>
+          <rect width="48" height="48" rx="11" fill="url(#igg)"/>
+          <rect x="13.2" y="13.2" width="21.6" height="21.6" rx="6.8" fill="none" stroke="#fff" stroke-width="2.6"/>
+          <circle cx="24" cy="24" r="5.5" fill="none" stroke="#fff" stroke-width="2.6"/>
+          <circle cx="30.7" cy="17.4" r="1.75" fill="#fff"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
+
+      <a class="app" href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect width="48" height="48" rx="11" fill="#0A0A0A"/>
+          <rect x=".9" y=".9" width="46.2" height="46.2" rx="10.3" fill="none" stroke="#ffffff" stroke-opacity=".24" stroke-width="1.4"/>
+          <g><path id="ttn" d="M26.9 11.6h4.1c.4 3.3 2.3 5.4 5.4 5.7v4.2c-1.9-.1-3.7-.7-5.3-1.7v7.9c0 4.8-3.4 8.1-7.9 8.1-4.6 0-7.8-3.4-7.8-7.8 0-4.4 3.5-7.9 7.9-7.9.5 0 .9 0 1.4.1v4.2a3.85 3.85 0 1 0 2.2 3.5z"/></g>
+          <use href="#ttn" fill="#25F4EE" transform="translate(-1.6 1.5)"/>
+          <use href="#ttn" fill="#FE2C55" transform="translate(1.6 -1.5)"/>
+          <use href="#ttn" fill="#fff"/>
+        </svg>
+        <span>TikTok</span>
+      </a>
+
+      <a class="app" href="https://www.youtube.com/channel/UCYV_I3ySjhrtZ5H5hGZsPYw" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect width="48" height="48" rx="11" fill="#FF0000"/>
+          <path d="M20.4 17.2 32.6 24l-12.2 6.8z" fill="#fff"/>
+        </svg>
+        <span>YouTube</span>
+      </a>
+
+      <a class="app" href="https://soundcloud.com/campthehills" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect width="48" height="48" rx="11" fill="#FF5500"/>
+          <g fill="#fff">
+            <rect x="11.4" y="23.6" width="2.3" height="9.2" rx="1.15"/>
+            <rect x="15.8" y="20.4" width="2.3" height="12.4" rx="1.15"/>
+            <rect x="20.2" y="17.6" width="2.3" height="15.2" rx="1.15"/>
+            <rect x="24.6" y="15.2" width="2.3" height="17.6" rx="1.15"/>
+            <path d="M29.4 18.6h2.4c2.9 0 5.2 2.2 5.2 5.1s-2.3 5.1-5.2 5.1h-2.4z"/>
+          </g>
+        </svg>
+        <span>SoundCloud</span>
+      </a>
+
+      <a class="app" href="https://genius.com/artists/Campthehills" target="_blank" rel="noopener">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect width="48" height="48" rx="11" fill="#FFFF64"/>
+          <text x="24" y="24" text-anchor="middle" dominant-baseline="central" fill="#000"
+                font-family="Archivo, Helvetica, Arial, sans-serif" font-size="30"
+                font-weight="900" letter-spacing="-1.4">G</text>
+        </svg>
+        <span>Genius</span>
+      </a>
+
+    </nav>
+  </div>
+  <div class="wrap fwrap">
+    <p class="fmark" style="margin:0">campthehills</p>
+    <p class="fine" style="margin:0">
+      &copy; 2026 Campbell Rolston-Clemmer. Artwork by campthehills.
+      Video by <a href="https://youtu.be/s6Ya5daiqHo" target="_blank" rel="noopener">Jaxon Ray</a>. Photography by <a href="https://www.instagram.com/max.dur/" target="_blank" rel="noopener">Max Durante</a>.
+      Site designed and built by <a href="https://risscreativeco.com" target="_blank" rel="noopener">Riss Creative Co.</a>
+    </p>
+    <img class="fdraw" src="assets/icon-mark.png" width="244" height="340" alt=""
+         aria-hidden="true" decoding="async" loading="lazy">
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tb=document.getElementById('topbar'); if(tb) tb.classList.add('solid');
+  // the background film is the heaviest thing on the site: hold it back until the
+  // page is idle, and never start it at all when motion is turned down.
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bgvid=document.querySelector('#bgvid video');
+  if(bgvid && !reduce){
+    var startBg=function(){ bgvid.preload='auto'; bgvid.load(); var p=bgvid.play(); if(p&&p.catch) p.catch(function(){}); };
+    if('requestIdleCallback' in window) requestIdleCallback(startBg,{timeout:3000}); else setTimeout(startBg,1200);
+  }
+  var toast=document.getElementById('toast');
+  function say(m){ if(!toast) return; toast.textContent=m; toast.classList.add('show'); setTimeout(function(){toast.classList.remove('show');},2200); }
+  var sb=document.getElementById('shareBtn');
+  if(sb) sb.addEventListener('click',function(){
+    var c=document.querySelector('link[rel="canonical"]'), u=c?c.href:location.href;
+    if(navigator.share){ navigator.share({title:document.title,url:u}).catch(function(){}); }
+    else if(navigator.clipboard){ navigator.clipboard.writeText(u).then(function(){say('Link copied');}); }
+  });
+  // get updates: same reveal the landing page uses, so the tab exists on every page.
+  // it used to toggle a .mini class that no stylesheet defines, which left the box
+  // invisible here and the panel unopenable.
+  var jb=document.getElementById('joinbox'), tab=document.getElementById('jbTab'), close=document.getElementById('jbClose');
+  if(jb && tab){
+    var JBKEY='cth-updates-collapsed';
+    var jbGet=function(){ try{ return localStorage.getItem(JBKEY); }catch(e){ return null; } };
+    var jbSet=function(v){ try{ localStorage.setItem(JBKEY,v); }catch(e){} };
+    var jbClear=function(){ try{ localStorage.removeItem(JBKEY); }catch(e){} };
+    var jbShown=false;
+    var jbOpen=function(){ jb.classList.add('open'); tab.setAttribute('aria-expanded','true'); document.body.classList.add('jb-open'); jbClear(); };
+    var jbCollapse=function(){ jb.classList.remove('open'); tab.setAttribute('aria-expanded','false'); document.body.classList.remove('jb-open'); jbSet('1'); tab.focus(); };
+    var jbReveal=function(){ if(jbShown) return; jbShown=true; jb.classList.add('up'); if(!jbGet()) jbOpen(); };
+    var jbTimer=setTimeout(jbReveal,6500);
+    var jbScroll=function(){
+      if((window.pageYOffset||0) > (window.innerHeight||800)*0.5){
+        clearTimeout(jbTimer); jbReveal(); window.removeEventListener('scroll',jbScroll);
+      }
+    };
+    window.addEventListener('scroll',jbScroll,{passive:true});
+    tab.addEventListener('click',jbOpen);
+    if(close) close.addEventListener('click',jbCollapse);
+    document.addEventListener('keydown',function(ev){ if(ev.key==='Escape' && jb.classList.contains('open')) jbCollapse(); });
+    // step aside while the footer is on screen, so it never sits on the platform tiles
+    var jbFoot=document.querySelector('footer');
+    if(jbFoot && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(en){
+        en.forEach(function(x){
+          if(x.isIntersecting) jb.classList.remove('up');
+          else if(jbShown) jb.classList.add('up');
+        });
+      },{threshold:0.05}).observe(jbFoot);
+    }
+  }
+  // the lyric piece starts itself as it comes into view, and stops when it goes
+  (function(){
+    var boxes=document.querySelectorAll('.vauto video');
+    if(!boxes.length || !('IntersectionObserver' in window)) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(x){
+        var v=x.target;
+        if(x.isIntersecting){
+          v.preload='auto';
+          v.play().catch(function(){});
+          if(!v.dataset.nudged){ v.dataset.nudged='1';
+            var card=v.closest('.vcard'), sbtn=card&&card.querySelector('.sc-sound');
+            if(sbtn){ sbtn.classList.add('hint'); setTimeout(function(){ sbtn.classList.remove('hint'); },700); }
+          }
+        }
+        else { v.pause(); }
+      });
+    },{threshold:0.35});
+    boxes.forEach(function(v){ io.observe(v); });
+  })();
+
+
+  // out-now card + platform rail, shared with the landing page
+  (function(){
+    var card=document.getElementById('outnow'), x=document.getElementById('onClose'),
+        tab=document.getElementById('onTab');
+    if(card){
+      var collapsed=false;
+      try{ collapsed = localStorage.getItem('cth_outnow')==='mini'; }catch(e){}
+      var openIt=function(){
+        card.classList.add('up');
+        if(tab){ tab.classList.remove('show'); tab.setAttribute('aria-expanded','true'); }
+        try{ localStorage.removeItem('cth_outnow'); }catch(e){}
+      };
+      var shut=function(){
+        card.classList.remove('up');
+        if(tab){ tab.classList.add('show'); tab.setAttribute('aria-expanded','false'); }
+        try{ localStorage.setItem('cth_outnow','mini'); }catch(e){}
+      };
+      setTimeout(function(){ collapsed ? shut() : openIt(); }, window.cthChromeDelay(2200));
+      if(x) x.addEventListener('click', shut);
+      if(tab) tab.addEventListener('click', openIt);
+    }
+    // everything floating steps aside once the footer arrives
+    var foot=document.querySelector('footer');
+    if(foot && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(en){
+        document.body.classList.toggle('at-foot', en[0].isIntersecting);
+      },{threshold:0.05}).observe(foot);
+    }
+  })();
+
+  // click-to-play video cards: nothing downloads until you ask for it
+  document.querySelectorAll('.vcard').forEach(function(card){
+    card.addEventListener('click', function(){
+      if(!card.dataset.src || card.dataset.playing) return;
+      card.dataset.playing='1';
+      var v=document.createElement('video');
+      v.src=card.dataset.src; v.controls=true; v.autoplay=true; v.playsInline=true; v.loop=true;
+      v.setAttribute('playsinline',''); v.preload='auto';
+      card.innerHTML=''; card.appendChild(v); card.style.cursor='default';
+      v.play().catch(function(){});
+    });
+  });
+
+  // ---- lyric videos: optional sound, one at a time ----
+  var soundBtns = [].slice.call(document.querySelectorAll('.sc-sound[data-video]'));
+  soundBtns.forEach(function(btn){
+    var v = document.getElementById(btn.getAttribute('data-video'));
+    var label = btn.querySelector('span');
+    if (!v) return;
+    function setMuted(m){
+      v.muted = m;
+      btn.setAttribute('aria-pressed', String(!m));
+      if (label) label.textContent = m ? 'Sound on' : 'Sound off';
+    }
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var turningOn = v.muted;
+      if (turningOn) {
+        // only one video talks at a time
+        soundBtns.forEach(function(other){
+          if (other === btn) return;
+          var ov = document.getElementById(other.getAttribute('data-video'));
+          if (ov && !ov.muted) {
+            ov.muted = true;
+            other.setAttribute('aria-pressed','false');
+            var ol = other.querySelector('span');
+            if (ol) ol.textContent = 'Sound on';
+          }
+        });
+      }
+      setMuted(!turningOn);
+      if (turningOn) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); }
+    });
+    // if it scrolls away while audible, mute it rather than talk to an empty room
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (!en.isIntersecting && !v.muted) setMuted(true);
+        });
+      }, {threshold:0.25}).observe(v);
+    }
+  });
+
+  // Only run clip videos while the strip is on screen.
+  // The clips carry no autoplay and preload nothing: they only start once the
+  // ring scrolls into view, and stop again when it leaves.
+  var strip = document.querySelector('.clipring') || document.querySelector('.marquee');
+  if (strip) {
+    var startClips = function(on){
+      strip.querySelectorAll('video').forEach(function(v){
+        if (on) {
+          if (v.preload !== 'auto') v.preload = 'auto';
+          var p = v.play(); if (p && p.catch) p.catch(function(){});
+        } else { v.pause(); }
+      });
+    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ startClips(en.isIntersecting); });
+      }, {rootMargin:'200px'}).observe(strip);
+    } else {
+      startClips(true);   // no observer support: behave as before
+    }
+  }
+
+
+
+  // bubbles: iridescent, slow, and only while the cursor is inside the clips
+  // section. nostalgic rather than showy - they drift up and give out.
+  (function(){
+    var cv=document.getElementById('bubbles');
+    if(!cv) return;
+    var sec=document.documentElement;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ctx=cv.getContext('2d'), dpr=Math.min(2,window.devicePixelRatio||1);
+    var W=0,H=0,bubbles=[],inside=false,visible=false,raf=null,mx=-1,my=-1,last=0;
+
+    function size(){
+      W=window.innerWidth; H=window.innerHeight;
+      cv.width=W*dpr; cv.height=H*dpr;
+      cv.style.width=W+'px'; cv.style.height=H+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    size();
+    window.addEventListener('resize',size);
+
+    function spawn(x,y,seed){
+      var r=6+Math.random()*24;
+      bubbles.push({
+        x:x+(Math.random()-.5)*46, y:y+(Math.random()-.5)*24, r:r,
+        vy:-(0.22+Math.random()*0.55) * (26/r+.5),
+        vx:(Math.random()-.5)*0.34,
+        wob:Math.random()*Math.PI*2, ws:0.012+Math.random()*0.03,
+        life:0, max:230+Math.random()*260,
+        hue:Math.random()*360, a:0
+      });
+      if(bubbles.length>150) bubbles.splice(0,bubbles.length-150);
+    }
+
+    function draw(b){
+      var g=ctx.createRadialGradient(b.x-b.r*0.34,b.y-b.r*0.38,b.r*0.08,b.x,b.y,b.r);
+      g.addColorStop(0,'hsla('+b.hue+',90%,92%,'+(b.a*0.5)+')');
+      g.addColorStop(0.55,'hsla('+((b.hue+60)%360)+',80%,80%,'+(b.a*0.13)+')');
+      g.addColorStop(0.88,'hsla('+((b.hue+180)%360)+',95%,72%,'+(b.a*0.42)+')');
+      g.addColorStop(1,'hsla('+((b.hue+250)%360)+',95%,80%,0)');
+      ctx.fillStyle=g;
+      ctx.beginPath(); ctx.arc(b.x,b.y,b.r,0,6.2832); ctx.fill();
+      // the rim, and the little highlight that makes it read as a bubble
+      ctx.strokeStyle='hsla('+((b.hue+200)%360)+',95%,78%,'+(b.a*0.5)+')';
+      ctx.lineWidth=1; ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,'+(b.a*0.66)+')';
+      ctx.beginPath(); ctx.arc(b.x-b.r*0.34,b.y-b.r*0.38,Math.max(0.8,b.r*0.14),0,6.2832); ctx.fill();
+    }
+
+    function tick(t){
+      raf=null;
+      ctx.clearRect(0,0,W,H);
+      for(var i=bubbles.length-1;i>=0;i--){
+        var b=bubbles[i];
+        b.life++;
+        b.wob+=b.ws;
+        b.y+=b.vy; b.x+=b.vx+Math.sin(b.wob)*0.5;
+        var p=b.life/b.max;
+        b.a = p<0.14 ? p/0.14 : (p>0.72 ? Math.max(0,(1-p)/0.28) : 1);
+        b.a*=0.64;
+        if(b.life>b.max || b.y<-b.r*2){ bubbles.splice(i,1); continue; }
+        draw(b);
+      }
+      if(inside && visible && t-last>78 && Math.random()<0.85){ last=t; spawn(mx,my); }
+      if(bubbles.length || (inside&&visible)) raf=requestAnimationFrame(tick);
+    }
+    function kick(){ if(!raf) raf=requestAnimationFrame(tick); }
+
+    window.addEventListener('mousemove',function(e){
+      mx=e.clientX; my=e.clientY; inside=true;
+      if(Math.random()<0.4) spawn(mx,my);
+      kick();
+    },{passive:true});
+    document.addEventListener('mouseleave',function(){ inside=false; });
+    window.addEventListener('touchmove',function(e){
+      var t=e.touches[0]; if(!t) return;
+      mx=t.clientX; my=t.clientY; inside=true; spawn(mx,my); kick();
+    },{passive:true});
+    window.addEventListener('touchend',function(){ inside=false; });
+    document.addEventListener('visibilitychange',function(){ visible=!document.hidden; if(visible) kick(); });
+    visible=true;
+  })();
+
+
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); },{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('section .wrap > *').forEach(function(el){ el.classList.add('rv'); io.observe(el); });
+  }
+})();
+
+
+  // Music video at the centre of the ring. Nothing is fetched from YouTube
+  // until play is pressed; the ring then stops and steps back so the video
+  // is the only thing moving.
+  (function(){
+    var mv = document.getElementById('mvPlay');
+    var card = document.getElementById('mvCard');
+    var ring = document.querySelector('.clipring');
+    if (!mv || !card) return;
+    mv.addEventListener('click', function(){
+      var id = mv.getAttribute('data-yt');
+
+      /* YouTube refuses to embed into a page opened straight off the disk -
+         there is no origin to check, and the player returns error 153. So
+         when this is previewed as a file:// page, send the visitor to
+         YouTube instead of showing them a broken player. On the real site
+         the embed runs as normal. */
+      if (location.protocol === 'file:') {
+        window.open('https://www.youtube.com/watch?v=' + id, '_blank', 'noopener');
+        return;
+      }
+
+      var holder = document.createElement('div');
+      holder.className = 'mv-live';
+      var fr = document.createElement('iframe');
+      fr.src = 'https://www.youtube-nocookie.com/embed/' + id +
+               '?autoplay=1&rel=0&playsinline=1&modestbranding=1' +
+               '&origin=' + encodeURIComponent(location.origin);
+      fr.title = 'down with the snow \u2014 campthehills, dir. Jaxon Ray';
+      fr.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
+      fr.setAttribute('allowfullscreen','');
+      fr.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+      holder.appendChild(fr);
+      card.parentNode.replaceChild(holder, card);
+      if (ring) ring.classList.add('is-playing');
+      fr.focus();
+    });
+  })();
+
+</script>
+
+<script>
+/* ---- ambient footage behind the clips ring -----------------------------
+   Add more files here and it will cross-fade through them in order.
+   Each entry needs a .mp4 (H.264) and a matching .jpg poster.        */
+(function(){
+  var AMBIENT = ['assets/watch/ambient-1'];
+
+  var host = document.getElementById('ambient');
+  if(!host || !AMBIENT.length) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var save   = navigator.connection && navigator.connection.saveData;
+  var poster = document.getElementById('ambPoster');
+
+  /* no motion, or the visitor is saving data: leave the still frame up */
+  if(reduce || save){ if(poster) poster.classList.add('on'); return; }
+
+  var vids = [makeVideo(), makeVideo()];
+  vids.forEach(function(v){ host.appendChild(v); });
+  var slot = 0, idx = 0, started = false;
+
+  function makeVideo(){
+    var v = document.createElement('video');
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    v.setAttribute('muted',''); v.setAttribute('playsinline','');
+    v.preload = 'none';
+    v.addEventListener('ended', next);
+    return v;
+  }
+
+  function load(v, n){
+    v.src = AMBIENT[n % AMBIENT.length] + '.mp4';
+    v.loop = AMBIENT.length === 1;
+    v.load();
+  }
+
+  function play(v){
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ if(poster) poster.classList.add('on'); });
+  }
+
+  function next(){
+    if(AMBIENT.length < 2) return;
+    var cur = vids[slot], nxt = vids[slot = 1 - slot];
+    idx += 1;
+    load(nxt, idx);
+    play(nxt);
+    nxt.classList.add('on');
+    cur.classList.remove('on');
+    /* queue the one after, so the swap is never a cold start */
+    setTimeout(function(){ cur.removeAttribute('src'); cur.load(); }, 1200);
+  }
+
+  function start(){
+    if(started) return;
+    started = true;
+    load(vids[0], 0);
+    play(vids[0]);
+    vids[0].classList.add('on');
+    if(poster) poster.classList.remove('on');
+  }
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){
+      en.forEach(function(e){
+        if(e.isIntersecting){ start(); vids.forEach(function(v){ if(v.src) play(v); }); }
+        else { vids.forEach(function(v){ if(!v.paused) v.pause(); }); }
+      });
+    }, {rootMargin:'160px'});
+    io.observe(host);
+  } else {
+    start();
+  }
+
+  /* while the music video is playing, drop the background right back */
+  var ring = document.querySelector('.clipring');
+  if(ring && 'MutationObserver' in window){
+    new MutationObserver(function(){
+      host.style.opacity = ring.classList.contains('is-playing') ? '.32' : '';
+    }).observe(ring, {attributes:true, attributeFilter:['class']});
+  }
+})();
+</script>
+
+<script>
+/* hovering a clip lifts it clear of the ring and the centre video */
+(function(){
+  var ring = document.querySelector('.clipring');
+  if(!ring || !window.matchMedia || !window.matchMedia('(hover:hover)').matches) return;
+  var hot = null;
+  function set(item){
+    if(hot === item) return;
+    if(hot) hot.classList.remove('is-hot');
+    hot = item;
+    if(hot) hot.classList.add('is-hot');
+    ring.classList.toggle('is-focus', !!hot);
+  }
+  /* Delegated mouseover/mouseout only. The ring keeps turning under the
+     cursor, so focus is set when a card is entered and cleared only when
+     the cursor genuinely leaves that card - never on a stray event from
+     the gaps between them. */
+  function cardOf(el){ return el && el.closest ? el.closest('.clip') : null; }
+  ring.addEventListener('mouseover', function(e){
+    var c = cardOf(e.target);
+    if(c) set(c.closest('.ring-item'));
+  });
+  ring.addEventListener('mouseout', function(e){
+    var c = cardOf(e.target);
+    if(!c) return;
+    if(e.relatedTarget && c.contains(e.relatedTarget)) return;
+    if(hot === c.closest('.ring-item')) set(null);
+  });
+  ring.addEventListener('mouseleave', function(){ set(null); });
+
+  /* The centre video sits at Z=0 inside the ring, so cards on the near side
+     cover parts of it - which means :hover on the card is unreliable. Track
+     the pointer against the card's box instead, and stand down whenever the
+     pointer is actually over a clip so the two effects never fight. */
+  var core = ring.querySelector('.ring-core');
+  var card = ring.querySelector('.mv-card');
+  if(core && card){
+    ring.addEventListener('mousemove', function(e){
+      if(cardOf(e.target)){ core.classList.remove('core-up'); return; }
+      var b = card.getBoundingClientRect();
+      var inside = e.clientX >= b.left && e.clientX <= b.right &&
+                   e.clientY >= b.top  && e.clientY <= b.bottom;
+      core.classList.toggle('core-up', inside);
+    });
+    ring.addEventListener('mouseleave', function(){ core.classList.remove('core-up'); });
+  }
+
+  ring.addEventListener('focusin', function(e){
+    var c = cardOf(e.target);
+    if(c) set(c.closest('.ring-item'));
+  });
+  ring.addEventListener('focusout', function(){ set(null); });
+})();
+</script>
+
+
+<script>
+/* ---- Laylo -------------------------------------------------------------
+   Every link to laylo.com/campthehills/profile opens Laylo's own signup
+   popup instead of sending the visitor away. The SDK is NOT loaded on page
+   load: it is fetched the first time somebody actually presses one of those
+   links, so the site keeps making zero third-party requests for everyone who
+   never signs up. If the SDK fails or is slow, the click falls through to
+   the link exactly as it behaves today.
+   ------------------------------------------------------------------------ */
+(function(){
+  var SDK   = 'https://embed.laylo.com/laylo-sdk.js';
+  var DROP  = 'nK8jU';
+  var state = 0;              // 0 untouched, 1 loading, 2 ready, 3 failed
+  var queued = false;
+
+  function opts(){
+    return { id:DROP, minimal:true, customCTA:'', color:'000000',
+             theme:'light', background:'', fullWidth:false, secondsToWait:0 };
+  }
+  function open(){
+    try{
+      if(window.laylo && typeof window.laylo.openPopup === 'function'){
+        window.laylo.openPopup(opts());
+        return true;
+      }
+    }catch(e){}
+    return false;
+  }
+  function load(){
+    if(state) return;
+    state = 1;
+    var sc = document.createElement('script');
+    sc.src = SDK; sc.async = true;
+    sc.onload  = function(){ state = 2; if(queued){ queued = false; if(!open()) go(); } };
+    sc.onerror = function(){ state = 3; if(queued){ queued = false; go(); } };
+    document.head.appendChild(sc);
+    // if it has not answered in 3s, stop waiting and just use the link
+    setTimeout(function(){
+      if(state === 1 && queued){ queued = false; go(); }
+    }, 3000);
+  }
+  var pending = null;
+  function go(){ if(pending) window.open(pending, '_blank', 'noopener'); }
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="laylo.com"]');
+    if(!a) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;   // let people open it their own way
+    pending = a.href;
+    if(state === 3) return;                                        // SDK is out, use the link
+    e.preventDefault();
+    if(state === 2){ if(!open()) go(); return; }
+    queued = true;
+    load();
+  });
+
+  /* warm it up on hover so the first press is instant */
+  document.addEventListener('pointerover', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="laylo.com"]');
+    if(a) load();
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
