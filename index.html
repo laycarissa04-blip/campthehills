@@ -497,27 +497,36 @@ section > .wrap{position:relative;z-index:1}
 body.at-foot .rail{opacity:0;transform:translateY(-50%) translateX(100%);pointer-events:none}
 @media (max-width:900px){.rail{display:none}}
 
-/* the figure that pops up by the updates tab, waves, and ducks back */
-.peek{position:fixed;left:0;bottom:0;z-index:34;width:clamp(150px,17vw,214px);
+/* the figure that pops up by the updates tab, waves, and ducks back.
+   It is a transparent animated WebP now, not two videos: the source clips
+   were yuv420p with no alpha, so the white studio backdrop was baked in and
+   showed as a white box the moment it crossed the dark sections - and two
+   WebM decodes running alongside the music video is what made it stutter.
+   The matte is a border-connected white key, so the shirt and cuffs survive.
+   It stands beside the updates box and steps aside when the box expands,
+   the way it always did. The one thing that changed: the old rule parked it
+   at left:0, which put it underneath the box whenever the panel was
+   collapsed to its tab - so both positions are now measured off the box's
+   real right edge instead. Both figures just peek; the face no longer
+   climbs the back of the open panel. */
+.peek{position:fixed;left:196px;bottom:0;z-index:34;
+  width:clamp(92px,9.5vw,124px);
   transition:transform .62s cubic-bezier(.2,.7,.3,1),left .42s cubic-bezier(.2,.7,.3,1);
   pointer-events:none;transform:translateY(102%)}
-.peek.up{transform:translateY(12%)}
-/* panel open: step out from behind it so nothing is covered */
-body.jb-open .peek{left:clamp(150px,26vw,392px)}
-/* the waver stays in the corner and climbs the back of the open panel instead */
-body.jb-open .peek.is-b{left:0}
-body.jb-open .peek.up.is-b{transform:translateY(-100%)}
-/* footer on screen: they duck with the updates box and stay down */
+.peek.up{transform:translateY(46%)}
+.peek.up.is-b{transform:translateY(56%)}
+/* box expanded: step out past it, so nothing is covered */
+body.jb-open .peek{left:388px}
+
 body.at-foot .peek,body.at-foot .peek.up,body.at-foot .peek.up.is-b{transform:translateY(102%)}
-body.at-foot .outnow,body.at-foot .outnow.up{transform:translateX(104%)}
-body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s ease}
-.peek.up.is-b{transform:translateY(-34%)}
-.peek video{display:block;width:100%;height:auto}
+.peek img{display:block;width:100%;height:auto}
 .peek .pk{display:none}
 .peek .pk.on{display:block}
-.peek .pk-b{width:66%;margin-left:10%}
+.peek .pk-b{width:74%;margin-left:8%}
 @media (max-width:1000px){.peek{display:none}}
 @media (prefers-reduced-motion: reduce){.peek{display:none}}
+body.at-foot .outnow,body.at-foot .outnow.up{transform:translateX(104%)}
+body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s ease}
 
 .ytblock{position:relative;display:block;margin-top:clamp(24px,3.2vw,42px);border:1px solid var(--rule);overflow:hidden;text-decoration:none;color:inherit;background:#0a0a0a}
 .ytblock video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
@@ -1779,13 +1788,10 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   <a class="rail-i" href="https://soundcloud.com/campthehills" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#FF5500"/>     <g fill="#fff">      <rect x="11.4" y="23.6" width="2.3" height="9.2" rx="1.15"/>      <rect x="15.8" y="20.4" width="2.3" height="12.4" rx="1.15"/>      <rect x="20.2" y="17.6" width="2.3" height="15.2" rx="1.15"/>      <rect x="24.6" y="15.2" width="2.3" height="17.6" rx="1.15"/>      <path d="M29.4 18.6h2.4c2.9 0 5.2 2.2 5.2 5.1s-2.3 5.1-5.2 5.1h-2.4z"/>     </g>    </svg><span>soundcloud</span></a>
   <a class="rail-i" href="https://genius.com/artists/Campthehills" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true">     <rect width="48" height="48" rx="11" fill="#FFFF64"/>     <text x="24" y="24" text-anchor="middle" dominant-baseline="central" fill="#000"        font-family="Archivo, Helvetica, Arial, sans-serif" font-size="30"        font-weight="900" letter-spacing="-1.4">G</text>    </svg><span>genius</span></a>
 </nav>
+
 <div class="peek" id="peek" aria-hidden="true">
-  <video class="pk pk-a" muted loop playsinline preload="none">
-    <source src="assets/peek-a.webm" type="video/webm">
-  </video>
-  <video class="pk pk-b" muted loop playsinline preload="none">
-    <source src="assets/peek-b.webm" type="video/webm">
-  </video>
+  <img class="pk pk-a" src="assets/peek-a.webp" alt="" width="430" height="764" loading="lazy" decoding="async">
+  <img class="pk pk-b" src="assets/peek-b.webp" alt="" width="380" height="506" loading="lazy" decoding="async">
 </div>
 <aside class="outnow" id="outnow" aria-label="Out now">
   <button class="on-x" id="onClose" type="button" aria-label="Hide">&times;</button>
@@ -2048,27 +2054,24 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
     if(onX) onX.addEventListener('click', onCollapse);
     if(onTab) onTab.addEventListener('click', onOpen);
   }
-  // two figures take turns in the corner: one comes up, waves, ducks,
-  // then the other one does. neither is ever on screen at the same time.
+  // two figures take turns in the corner: one comes up, waves, ducks, then
+  // the other. Animated WebP, so nothing has to be loaded or played - the
+  // class toggle is the whole mechanism.
   (function(){
     var peek=document.getElementById('peek'); if(!peek) return;
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var vids=[].slice.call(peek.querySelectorAll('.pk'));
-    if(!vids.length) return;
-    var turn=0, loaded=[];
+    var imgs=[].slice.call(peek.querySelectorAll('.pk'));
+    if(!imgs.length) return;
+    var turn=0;
     function cycle(){
       if(document.hidden){ setTimeout(cycle, 4000); return; }
-      var v=vids[turn % vids.length];
-      vids.forEach(function(o){ if(o!==v){ o.classList.remove('on'); try{ o.pause(); }catch(e){} } });
-      v.classList.add('on');
-      peek.classList.toggle('is-b', v.classList.contains('pk-b'));
-      if(!loaded[turn % vids.length]){ loaded[turn % vids.length]=1; v.preload='auto'; v.load(); }
-      try{ v.currentTime=0; }catch(e){}
-      v.play().catch(function(){});
+      var el=imgs[turn % imgs.length];
+      imgs.forEach(function(o){ if(o!==el) o.classList.remove('on'); });
+      el.classList.add('on');
+      peek.classList.toggle('is-b', el.classList.contains('pk-b'));
       peek.classList.add('up');
       setTimeout(function(){
         peek.classList.remove('up');
-        setTimeout(function(){ try{ v.pause(); }catch(e){} }, 700);
         turn++;
         setTimeout(cycle, 5000 + Math.random()*3500);
       }, 3600);
