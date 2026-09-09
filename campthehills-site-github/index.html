@@ -1325,6 +1325,18 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   .work,.work .art img{transition:none}
   .work:hover{transform:none}
 }
+
+/* ---- phone: the sticky bar's left slot has to go ----------------
+   .tb-slot reserves only clamp(46px,13vw,190px) — about 51px on a 393pt
+   phone — but .tb-mark inside it is absolutely positioned, so the word
+   "campthehills" rendered at its natural ~100px and overflowed straight
+   under the nav: "campthehilllsic". There is no room for both at this
+   width, and the wordmark is already the biggest thing in the hero, so
+   the slot stands down and the nav takes the gutter. */
+@media (max-width:720px){
+  .tb-slot{display:none}
+  .tb-nav{margin-left:0}
+}
 </style>
 </head>
 <body class="photo-hero">
