@@ -299,8 +299,19 @@
   --ink:#000000;
   --rule:#d9d9d9;
   --dim:#6d6d6d;
-  --red:#e8322a;
+  --red:#d4261d;
   --yellow:#ffd200;
+  /* Motion has two jobs on this site and now two curves, named, instead of
+     72 transitions quietly falling back on the browser's default `ease`.
+     --e-state is the site's original curve and answers a person: hover,
+     focus, a panel opening. --e-arrive is the expo settle that everything
+     entering the page rides in on. Durations are a scale, not a scatter. */
+  --e-state:var(--e-state);
+  --e-arrive:var(--e-arrive);
+  --t-fast:.16s;
+  --t-base:.28s;
+  --t-slow:.48s;
+  --t-arrive:.78s;
   --gutter:clamp(18px,4.5vw,64px);
   --maxw:1320px;
 }
@@ -338,29 +349,29 @@ a,button{touch-action:manipulation}
 
 .sec-head{
   display:flex;align-items:baseline;gap:clamp(12px,2vw,26px);
-  margin:0 0 clamp(22px,3.4vw,42px);
+  margin:0 0 clamp(28px,4.2vw,56px);
 }
 .sec-head h2{
   margin:0;
-  font-size:clamp(30px,5.4vw,68px);
-  font-variation-settings:"wdth" 118,"wght" 900;
-  letter-spacing:-.022em;
+  font-size:clamp(40px,8.4vw,108px);
+  font-variation-settings:"wdth" 122,"wght" 900;
+  letter-spacing:-.035em;
   line-height:.9;
   text-transform:lowercase;
 }
 .sec-head .line{flex:1;height:0;border-top:1px solid var(--ink);transform:translateY(-.22em)}
 .sec-head .num{
-  font-size:12px;font-variation-settings:"wdth" 88,"wght" 700;
+  font-size:13px;font-variation-settings:"wdth" 88,"wght" 700;
   color:var(--dim);transform:translateY(-.9em);white-space:nowrap;
 }
 
 .lede{
-  font-size:clamp(17px,1.65vw,22px);
-  line-height:1.42;max-width:34ch;
-  font-variation-settings:"wdth" 100,"wght" 450;
+  font-size:clamp(19px,2.05vw,27px);
+  line-height:1.36;max-width:32ch;
+  font-variation-settings:"wdth" 102,"wght" 480;
 }
 
-section{padding:clamp(54px,7vw,104px) 0;position:relative;background:var(--paper);z-index:2;scroll-margin-top:76px}
+section{padding:clamp(66px,9.5vw,148px) 0;position:relative;background:var(--paper);z-index:2;scroll-margin-top:76px}
 
 /* credits */
 .credits{display:grid;gap:0;margin-top:clamp(26px,3.4vw,44px);border-top:1px solid var(--rule)}
@@ -391,8 +402,8 @@ section{padding:clamp(54px,7vw,104px) 0;position:relative;background:var(--paper
   display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(12px,2.4vw,32px);
   align-items:baseline;padding:clamp(14px,1.7vw,20px) 0;border-bottom:1px solid var(--rule);
 }
-.show .d{font-size:12px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;font-variation-settings:"wdth" 86,"wght" 700}
-.show .v{font-size:clamp(16px,1.9vw,21px);font-variation-settings:"wdth" 92,"wght" 600}
+.show .d{font-size:13px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;font-variation-settings:"wdth" 86,"wght" 700}
+.show .v{font-size:clamp(19px,2.6vw,32px);font-variation-settings:"wdth" 96,"wght" 680;letter-spacing:-.015em}
 @media (max-width:640px){.show{grid-template-columns:1fr;gap:3px}}
 
 /* press kit */
@@ -432,10 +443,10 @@ section > .wrap{position:relative;z-index:1}
   mask-image:linear-gradient(118deg,#000 0%,#000 30%,rgba(0,0,0,.5) 48%,transparent 70%,transparent 100%);
   -webkit-mask-size:280% 280%;mask-size:280% 280%;
   -webkit-mask-position:0% 0%;mask-position:0% 0%;
-  transition:-webkit-mask-position 1.5s cubic-bezier(.2,.7,.3,1),mask-position 1.5s cubic-bezier(.2,.7,.3,1)}
+  transition:-webkit-mask-position 1.5s var(--e-state),mask-position 1.5s var(--e-state)}
 #who.day .warmwash{-webkit-mask-position:100% 100%;mask-position:100% 100%}
 @media (prefers-reduced-motion: reduce){
-  .warmwash{transition:opacity .4s ease}
+  .warmwash{transition:opacity .4s var(--e-state)}
   #who.day .warmwash{opacity:0}
 }
 
@@ -448,7 +459,7 @@ section > .wrap{position:relative;z-index:1}
 .who-bio{margin:clamp(18px,2.5vw,32px) 0 0;color:rgba(255,255,255,.87);font-size:clamp(14px,1.28vw,17px);line-height:1.58;max-width:30ch}
 .who-btn{align-self:flex-start;margin-top:clamp(26px,3.4vw,42px);padding:14px 34px;
   background:#fff;color:var(--ink);text-decoration:none;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
-  font-variation-settings:"wdth" 92,"wght" 820;transition:background .16s ease,color .16s ease}
+  font-variation-settings:"wdth" 92,"wght" 820;transition:background .16s var(--e-state),color .16s var(--e-state)}
 .who-btn:hover,.who-btn:focus-visible{background:var(--red);color:#fff}
 #who.day .who-still::before{opacity:.5}
 .who-still img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:44% 48%;
@@ -458,15 +469,15 @@ section > .wrap{position:relative;z-index:1}
   mask-image:linear-gradient(118deg,#000 0%,#000 28%,rgba(0,0,0,.5) 47%,transparent 70%,transparent 100%);
   -webkit-mask-size:280% 280%;mask-size:280% 280%;
   -webkit-mask-position:100% 100%;mask-position:100% 100%;
-  transition:-webkit-mask-position 1.5s cubic-bezier(.2,.7,.3,1),mask-position 1.5s cubic-bezier(.2,.7,.3,1)}
+  transition:-webkit-mask-position 1.5s var(--e-state),mask-position 1.5s var(--e-state)}
 /* hovering the More button bleeds this corner from night into day */
 #who.day .who-day{-webkit-mask-position:0% 0%;mask-position:0% 0%}
 @media (prefers-reduced-motion: reduce){
-  .who-still .who-day{-webkit-mask-image:none;mask-image:none;opacity:0;transition:opacity .4s ease}
+  .who-still .who-day{-webkit-mask-image:none;mask-image:none;opacity:0;transition:opacity .4s var(--e-state)}
   #who.day .who-day{opacity:1}
 }
 /* the seam: a soft hand-off so the two halves read as one picture */
-.who-still::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;transition:opacity 1.4s ease;
+.who-still::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;transition:opacity 1.4s var(--e-state);
   background:linear-gradient(90deg, rgba(9,3,5,.62) 0%, rgba(9,3,5,.16) 16%, rgba(9,3,5,0) 34%),
              linear-gradient(0deg, rgba(158,26,20,.10), rgba(158,26,20,.10))}
 @media (max-width:900px){
@@ -483,16 +494,16 @@ section > .wrap{position:relative;z-index:1}
 /* platform rail - fixed to the right edge of the landing page */
 .rail{position:fixed;right:env(safe-area-inset-right);top:50%;transform:translateY(-50%);z-index:37;
   display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);border-right:0;
-  transition:opacity .3s ease,transform .3s ease}
+  transition:opacity .3s var(--e-state),transform .3s var(--e-state)}
 .rail-i{position:relative;display:flex;align-items:center;justify-content:center;
   width:clamp(38px,3.4vw,46px);height:clamp(38px,3.4vw,46px);background:var(--paper);text-decoration:none}
-.rail-i svg{width:60%;height:60%;display:block;transition:transform .16s ease}
+.rail-i svg{width:60%;height:60%;display:block;transition:transform .16s var(--e-state)}
 .rail-i:hover svg,.rail-i:focus-visible svg{transform:scale(1.12)}
 .rail-i span{
   position:absolute;right:100%;top:50%;transform:translateY(-50%) translateX(6px);
   background:var(--ink);color:#fff;white-space:nowrap;padding:6px 10px;margin-right:1px;
   font-size:11px;letter-spacing:.06em;font-variation-settings:"wdth" 88,"wght" 700;
-  opacity:0;pointer-events:none;transition:opacity .16s ease,transform .16s ease}
+  opacity:0;pointer-events:none;transition:opacity .16s var(--e-state),transform .16s var(--e-state)}
 .rail-i:hover span,.rail-i:focus-visible span{opacity:1;transform:translateY(-50%) translateX(0)}
 body.at-foot .rail{opacity:0;transform:translateY(-50%) translateX(100%);pointer-events:none}
 @media (max-width:900px){.rail{display:none}}
@@ -511,7 +522,7 @@ body.at-foot .rail{opacity:0;transform:translateY(-50%) translateX(100%);pointer
    climbs the back of the open panel. */
 .peek{position:fixed;left:196px;bottom:0;z-index:34;
   width:clamp(104px,11vw,146px);
-  transition:transform .62s cubic-bezier(.2,.7,.3,1),left .42s cubic-bezier(.2,.7,.3,1);
+  transition:transform .62s var(--e-state),left .42s var(--e-state);
   pointer-events:none;transform:translateY(102%)}
 .peek.up{transform:translateY(16%)}
 .peek.up.is-b{transform:translateY(26%)}
@@ -526,7 +537,7 @@ body.at-foot .peek,body.at-foot .peek.up,body.at-foot .peek.up.is-b{transform:tr
 @media (max-width:1000px){.peek{display:none}}
 @media (prefers-reduced-motion: reduce){.peek{display:none}}
 body.at-foot .outnow,body.at-foot .outnow.up{transform:translateX(104%)}
-body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s ease}
+body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s var(--e-state)}
 
 .ytblock{position:relative;display:block;margin-top:clamp(24px,3.2vw,42px);border:1px solid var(--rule);overflow:hidden;text-decoration:none;color:inherit;background:#0a0a0a}
 .ytblock video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
@@ -542,12 +553,12 @@ body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s ease}
 /* out-now card that slides in from the left, under the joinbox */
 .outnow{position:fixed;right:0;bottom:calc(clamp(72px,11vh,124px) + env(safe-area-inset-bottom));z-index:38;
   display:flex;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--ink);border-right:0;
-  transform:translateX(104%);transition:transform .5s cubic-bezier(.2,.7,.3,1);max-width:min(92vw,340px)}
+  transform:translateX(104%);transition:transform .5s var(--e-state);max-width:min(92vw,340px)}
 .outnow.up{transform:none}
 .outnow img{width:78px;height:78px;object-fit:cover;flex:none;border-right:1px solid var(--rule)}
 .outnow{position:fixed}
 .outnow .on-body{padding:10px 12px;display:flex;flex-direction:column;justify-content:center;min-width:0}
-.outnow .on-kick{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--red);font-variation-settings:"wdth" 86,"wght" 760}
+.outnow .on-kick{font-size:11px;letter-spacing:.115em;text-transform:uppercase;color:var(--red);font-variation-settings:"wdth" 86,"wght" 760}
 .outnow .on-t{font-size:17px;line-height:1.05;font-variation-settings:"wdth" 92,"wght" 800;margin-top:2px}
 .outnow .on-l{margin-top:5px;font-size:11px;color:#585858;text-decoration:none;border-bottom:1px solid var(--rule);align-self:flex-start;font-variation-settings:"wdth" 88,"wght" 620}
 .outnow .on-l:hover{color:var(--red);border-bottom-color:var(--red)}
@@ -581,7 +592,7 @@ body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s ease}
   padding:15px 26px;border:1px solid var(--ink);background:var(--ink);color:#fff;
   font:inherit;font-size:15px;font-variation-settings:"wdth" 96,"wght" 750;
   text-decoration:none;cursor:pointer;border-radius:0;
-  transition:background .16s ease,color .16s ease,border-color .16s ease;
+  transition:background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .btn:hover{background:var(--red);border-color:var(--red);color:#fff}
 .btn.ghost{background:transparent;color:var(--ink)}
@@ -617,8 +628,8 @@ button.btn{font:inherit;cursor:pointer}
   padding:clamp(15px,1.7vw,22px);
 }
 .everywhere h3{
-  margin:0;font-size:clamp(21px,2.3vw,30px);line-height:.9;
-  font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.03em;text-transform:lowercase;
+  margin:0;font-size:clamp(25px,3.1vw,42px);line-height:.88;
+  font-variation-settings:"wdth" 122,"wght" 900;letter-spacing:-.035em;text-transform:lowercase;
 }
 .everywhere p{margin:8px 0 0;font-size:12.5px;line-height:1.45;color:var(--dim)}
 .ew-links{margin:clamp(11px,1.4vw,15px) 0 0;padding:0;list-style:none;border-top:1px solid var(--rule);
@@ -637,13 +648,13 @@ button.btn{font:inherit;cursor:pointer}
 @media (min-width:1080px){.covers{grid-template-columns:repeat(4,1fr)}}
 .cover{position:relative;display:block;text-decoration:none;color:var(--ink)}
 .cover .frame{display:block;position:relative;overflow:hidden;border:1px solid var(--rule);background:#f2f2f2;aspect-ratio:1/1}
-.cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--e-state)}
 .cover:hover img,.cover:focus-visible img{transform:scale(1.045)}
 .cover .play{
   position:absolute;left:0;right:0;bottom:0;padding:12px 13px;
   display:flex;justify-content:space-between;align-items:center;gap:8px;
   background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,0));
-  color:#fff;opacity:0;transition:opacity .18s ease;
+  color:#fff;opacity:0;transition:opacity .16s var(--e-state);
   font-size:12px;font-variation-settings:"wdth" 90,"wght" 750;
 }
 .cover:hover .play,.cover:focus-visible .play{opacity:1}
@@ -702,7 +713,7 @@ button.btn{font:inherit;cursor:pointer}
 .links a{
   display:flex;align-items:baseline;gap:16px;text-decoration:none;
   padding:clamp(13px,1.7vw,20px) 4px;
-  transition:padding-left .2s cubic-bezier(.2,.7,.3,1),background .2s ease,color .2s ease;
+  transition:padding-left .2s var(--e-state),background .2s var(--e-state),color .2s var(--e-state);
 }
 .links a:hover,.links a:focus-visible{background:var(--ink);color:#fff;padding-left:18px}
 .links .plat{font-size:clamp(21px,3vw,38px);line-height:1;font-variation-settings:"wdth" 112,"wght" 800;letter-spacing:-.025em;text-transform:lowercase}
@@ -733,13 +744,13 @@ button.btn{font:inherit;cursor:pointer}
   padding-left:max(clamp(14px,4.5vw,64px),env(safe-area-inset-left));
   padding-right:max(clamp(14px,4.5vw,64px),env(safe-area-inset-right));
   background:var(--paper);border-bottom:1px solid var(--rule);
-  transition:background .28s ease,border-color .28s ease;
+  transition:background .28s var(--e-state),border-color .28s var(--e-state);
 }
 .topbar.solid{background:var(--paper);border-bottom-color:var(--rule)}
 .topbar.solid{box-shadow:0 1px 0 rgba(0,0,0,.04)}
 .tb-slot{position:relative;display:flex;align-items:center;min-width:clamp(46px,13vw,190px);height:clamp(40px,4.6vw,54px);flex:none}
 .tb-slot > *{position:absolute;left:0;top:50%;transform:translateY(-50%)}
-.tb-icon{display:block;line-height:0;opacity:1;transition:opacity .3s ease,transform .3s ease}
+.tb-icon{display:block;line-height:0;opacity:1;transition:opacity .3s var(--e-state),transform .3s var(--e-state)}
 .tb-icon img{display:block;width:auto;height:clamp(40px,4.6vw,54px);object-fit:contain}
 .topbar.solid .tb-icon{opacity:0;transform:translateY(-50%) scale(.9);pointer-events:none}
 .tb-mark{
@@ -747,38 +758,27 @@ button.btn{font:inherit;cursor:pointer}
   font-size:clamp(14px,1.5vw,19px);line-height:1;
   font-variation-settings:"wdth" 122,"wght" 900;letter-spacing:-.028em;text-transform:lowercase;
   opacity:0;transform:translateY(-50%) translateY(-5px);pointer-events:none;
-  transition:opacity .3s ease,transform .3s ease;
+  transition:opacity .3s var(--e-state),transform .3s var(--e-state);
 }
 .topbar.solid .tb-mark{opacity:1;transform:translateY(-50%);pointer-events:auto}
 .tb-mark:hover{color:var(--red)}
-.tb-nav{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);margin-left:clamp(14px,2.6vw,38px);min-width:0}
-.tb-nav a{
-  font-size:clamp(13px,1.15vw,15px);letter-spacing:.005em;text-decoration:none;color:var(--ink);
-  font-variation-settings:"wdth" 92,"wght" 720;white-space:nowrap;text-transform:lowercase;
-  padding:3px 0 3px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
-}
-.tb-nav a:hover,.tb-nav a:focus-visible{color:var(--red);border-bottom-color:var(--red)}
-.tb-nav a[aria-current="page"]{border-bottom-color:var(--ink)}
-.tb-nav a[aria-current="page"]:hover{border-bottom-color:var(--red)}
+
+
+
+
+
 @media (max-width:900px){
   .tb-share-label{display:none}
-  .tb-nav{gap:14px;margin-left:14px;overflow-x:auto;scrollbar-width:none}
-  .tb-nav::-webkit-scrollbar{display:none}
-  .tb-nav a{font-size:13px}
+
+
+
   /* seven items never fit a phone, so the row scrolls - fade the right edge
      so it reads as more nav rather than a label chopped in half */
-  .tb-nav{
-    -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);
-    mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);
-  }
-}
-@media (max-width:620px){
-  .tb-nav{gap:13px;margin-left:10px}
-  .tb-nav a{font-size:12.5px}
+
 }
 @media (max-width:620px){
   /* contact used to be hidden here; the nav already scrolls, so let it scroll */
-  .tb-nav{padding-right:2px}
+
 }
 .tb-actions{display:flex;align-items:center;gap:9px;margin-left:auto}
 .tb-btn{
@@ -786,7 +786,7 @@ button.btn{font:inherit;cursor:pointer}
   background:var(--paper);color:var(--ink);border:1px solid var(--ink);
   padding:9px 16px;text-decoration:none;cursor:pointer;border-radius:0;
   font:inherit;font-size:13px;font-variation-settings:"wdth" 94,"wght" 800;letter-spacing:.01em;
-  transition:background .16s ease,color .16s ease,border-color .16s ease;
+  transition:background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .tb-btn:hover,.tb-btn:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
 .tb-btn svg{width:14px;height:14px;flex:none}
@@ -805,13 +805,13 @@ button.btn{font:inherit;cursor:pointer}
   transform:translateX(-50%) translateY(10px);
   background:var(--ink);color:#fff;padding:11px 18px;
   font-size:13px;font-variation-settings:"wdth" 92,"wght" 650;
-  opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;
+  opacity:0;pointer-events:none;transition:opacity .2s var(--e-state),transform .2s var(--e-state);
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ---------- scroll reveal ---------- */
 .rv{opacity:0;transform:translateY(18px);
-  transition:opacity .65s cubic-bezier(.2,.7,.3,1),transform .65s cubic-bezier(.2,.7,.3,1)}
+  transition:opacity .65s var(--e-state),transform .65s var(--e-state)}
 .rv.in{opacity:1;transform:none}
 
 /* ---------- contact ---------- */
@@ -866,17 +866,17 @@ button.btn{font:inherit;cursor:pointer}
   display:flex;flex-direction:column;align-items:center;gap:9px;
   text-decoration:none;color:rgba(255,255,255,.6);
   font-size:11.5px;font-variation-settings:"wdth" 88,"wght" 650;letter-spacing:.01em;
-  transition:color .18s ease;
+  transition:color .16s var(--e-state);
 }
 .app svg{
   width:clamp(46px,6vw,56px);height:auto;display:block;
-  transition:transform .2s cubic-bezier(.2,.7,.3,1);
+  transition:transform .2s var(--e-state);
 }
 .app:hover,.app:focus-visible{color:#fff}
 .app:hover svg,.app:focus-visible svg{transform:translateY(-4px) scale(1.05)}
 @media (max-width:560px){
   .apps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 8px;justify-items:center}
-  .app{font-size:10.5px;gap:7px;text-align:center}
+  .app{font-size:11.5px;gap:7px;text-align:center}
   .app svg{width:clamp(42px,12.5vw,52px)}
 }
 
@@ -885,7 +885,7 @@ button.btn{font:inherit;cursor:pointer}
 .joinbox{
   position:fixed;left:max(clamp(14px,3vw,32px),env(safe-area-inset-left));bottom:calc(clamp(14px,3vw,30px) + env(safe-area-inset-bottom));z-index:55;
   opacity:0;transform:translateY(14px);pointer-events:none;
-  transition:opacity .3s ease,transform .3s cubic-bezier(.2,.7,.3,1);
+  transition:opacity .3s var(--e-state),transform .3s var(--e-state);
 }
 .joinbox.up{opacity:1;transform:none;pointer-events:auto}
 
@@ -895,7 +895,7 @@ button.btn{font:inherit;cursor:pointer}
   padding:13px 18px;font:inherit;font-size:13.5px;
   font-variation-settings:"wdth" 92,"wght" 800;letter-spacing:.01em;
   box-shadow:0 10px 30px rgba(0,0,0,.26);
-  transition:background .16s ease;
+  transition:background .16s var(--e-state);
 }
 .jb-tab:hover,.jb-tab:focus-visible{background:var(--red)}
 .jb-tab svg{width:11px;height:11px;flex:none}
@@ -931,10 +931,10 @@ button.btn{font:inherit;cursor:pointer}
   border:0;border-left:1px solid rgba(255,255,255,.4);background:#fff;color:var(--ink);
   font:inherit;font-size:13.5px;padding:11px 16px;cursor:pointer;
   font-variation-settings:"wdth" 94,"wght" 800;
-  transition:background .16s ease,color .16s ease;
+  transition:background .16s var(--e-state),color .16s var(--e-state);
 }
 .jb-field button:hover,.jb-field button:focus-visible{background:var(--red);color:#fff}
-.jb-note{margin:11px 0 0;font-size:10.5px;line-height:1.45;color:rgba(255,255,255,.44)}
+.jb-note{margin:11px 0 0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.72)}
 .jb-note[data-state="error"]{color:#ff8d86}
 .jb-done{margin:0;font-size:14px;line-height:1.45;color:rgba(255,255,255,.86)}
 /* iOS zooms the page when it focuses an input smaller than 16px */
@@ -991,7 +991,7 @@ footer a{color:#fff}
   border:1px solid var(--ink);background:var(--paper);
   padding:7px 13px 7px 11px;
   opacity:0;transform:translateY(-6px);pointer-events:none;
-  transition:opacity .34s ease,transform .34s ease,background .16s ease,color .16s ease,border-color .16s ease;
+  transition:opacity .3s var(--e-state),transform .3s var(--e-state),background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .topbar.solid .tb-show{opacity:1;transform:none;pointer-events:auto}
 .tb-show:hover,.tb-show:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
@@ -999,7 +999,7 @@ footer a{color:#fff}
 .tb-show:hover .tbs-dot,.tb-show:focus-visible .tbs-dot{background:#fff}
 @keyframes tbs-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
 .tbs-lab{
-  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
   font-variation-settings:"wdth" 88,"wght" 800;color:var(--dim);
 }
 .tb-show:hover .tbs-lab,.tb-show:focus-visible .tbs-lab{color:rgba(255,255,255,.78)}
@@ -1060,6 +1060,24 @@ footer a{color:#fff}
   font-variation-settings:"wdth" 100,"wght" 800;
 }
 .f-sent p{margin:0;font-size:14.5px;line-height:1.55;color:var(--dim);max-width:46ch}
+.f-sent .f-lead{color:var(--ink);font-size:15.5px;max-width:44ch}
+.f-star{width:clamp(30px,3.4vw,42px);height:auto;fill:var(--red);display:block;
+  animation:f-star-in .62s var(--e-arrive) both}
+@keyframes f-star-in{from{opacity:0;transform:scale(.5) rotate(-28deg)}to{opacity:1;transform:none}}
+.f-recap{
+  display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:11px 0;margin:4px 0 2px;width:100%;max-width:none;
+  font-size:15px;color:var(--ink);font-variation-settings:"wdth" 92,"wght" 700;
+}
+.f-recap-l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  font-variation-settings:"wdth" 88,"wght" 700;flex:none}
+.f-sent .f-alt{font-size:13.5px}
+.f-sent .f-alt a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);
+  padding-bottom:1px;transition:color .16s,border-color .16s}
+.f-sent .f-alt a:hover,.f-sent .f-alt a:focus-visible{color:var(--red);border-bottom-color:var(--red)}
+.f-sent:focus{outline:none}
+@media (prefers-reduced-motion:reduce){.f-star{animation:none}}
 .f-sent .tick{
   width:26px;height:26px;background:var(--ink);color:#fff;display:grid;place-items:center;
   font-size:14px;line-height:1;margin-bottom:2px;
@@ -1072,7 +1090,7 @@ footer a{color:#fff}
   background:#fff;color:var(--ink);text-decoration:none;
   font-size:14px;font-variation-settings:"wdth" 94,"wght" 800;letter-spacing:.01em;
   border:1px solid #fff;
-  transition:background .16s ease,color .16s ease,border-color .16s ease;
+  transition:background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .jb-go:hover,.jb-go:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
 .jb-go svg{width:15px;height:15px;flex:none}
@@ -1091,7 +1109,7 @@ footer a{color:#fff}
   text-decoration:none;color:var(--ink);font-size:14px;
   font-variation-settings:"wdth" 92,"wght" 700;
   border-bottom:1px solid var(--ink);padding-bottom:3px;
-  transition:color .16s ease,border-color .16s ease;
+  transition:color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .direct .pk-dl span{color:var(--dim);font-size:12px;font-variation-settings:"wdth" 90,"wght" 500}
 .direct .pk-dl:hover,.direct .pk-dl:focus-visible{color:var(--red);border-color:var(--red)}
@@ -1110,7 +1128,7 @@ footer a{color:#fff}
 @view-transition{navigation:auto}
 ::view-transition-old(root),::view-transition-new(root){
   animation-duration:.22s;
-  animation-timing-function:cubic-bezier(.2,.7,.3,1);
+  animation-timing-function:var(--e-state);
 }
 /* the fixed chrome should not slide with the page underneath it */
 .topbar,.rail,.joinbox,.outnow,.on-tab,.peek{view-transition-name:none}
@@ -1129,7 +1147,7 @@ body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transitio
   color:var(--ink);text-decoration:none;
   border-bottom:1px solid var(--rule);
   font-variation-settings:"wdth" 94,"wght" 700;
-  transition:color .16s ease,border-color .16s ease;
+  transition:color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .direct .alt-reach a:hover,.direct .alt-reach a:focus-visible{color:var(--red);border-color:var(--red)}
 @media (prefers-reduced-motion:reduce){.direct .alt-reach a{transition:none}}
@@ -1170,7 +1188,7 @@ body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transitio
   animation:tbs-pulse 1.9s ease-in-out infinite;
 }
 .hero-kick .hk-sep{opacity:.42;padding:0 .1em}
-.hero-kick .hk-go{opacity:.72;transition:opacity .16s ease,transform .16s ease}
+.hero-kick .hk-go{opacity:.72;transition:opacity .16s var(--e-state),transform .16s var(--e-state)}
 .hero-kick:hover .hk-go,.hero-kick:focus-visible .hk-go{opacity:1;transform:translateX(3px)}
 .hero-kick:hover,.hero-kick:focus-visible{color:var(--yellow)}
 @media (prefers-reduced-motion:reduce){.hero-kick .hk-dot{animation:none}}
@@ -1183,19 +1201,13 @@ body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transitio
   text-shadow:0 2px 3px rgba(0,0,0,.34), 0 6px 40px rgba(0,0,0,.55);
 }
 
-/* ---- the top bar rides over the photograph until you scroll ----
-   These have to restate the hover colours: they outrank the base
-   .tb-nav a:hover rule further up the sheet. */
+/* ---- the top bar rides over the photograph until you scroll ---- */
 body.photo-hero .topbar{background:transparent;border-bottom-color:transparent;box-shadow:none}
 body.photo-hero .topbar:not(.solid) .tb-icon{opacity:0;pointer-events:none}
-/* with the mark hidden the empty slot left a 190px hole before the nav */
+/* with the mark hidden the empty slot left a 190px hole before the buttons */
 body.photo-hero .topbar:not(.solid) .tb-slot{min-width:0;width:0;flex:none}
-body.photo-hero .topbar:not(.solid) .tb-nav{margin-left:0}
-body.photo-hero .topbar:not(.solid) .tb-nav a,
+
 body.photo-hero .topbar:not(.solid) .tb-mark{color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.55)}
-body.photo-hero .topbar:not(.solid) .tb-nav a:hover,
-body.photo-hero .topbar:not(.solid) .tb-nav a:focus-visible{color:var(--yellow);border-bottom-color:var(--yellow)}
-body.photo-hero .topbar:not(.solid) .tb-nav a.on{border-bottom-color:#fff}
 body.photo-hero .topbar:not(.solid) .tb-btn{
   background:transparent;color:#fff;border-color:rgba(255,255,255,.66);
   text-shadow:0 1px 10px rgba(0,0,0,.5);
@@ -1206,8 +1218,8 @@ body.photo-hero .topbar:not(.solid) .tb-btn:focus-visible{
 }
 body.photo-hero .topbar.solid{background:var(--paper);border-bottom-color:var(--rule)}
 /* the active section, marked on the sticky nav as you scroll */
-.tb-nav a.on{border-bottom-color:var(--ink)}
-.tb-nav a.on:hover{border-bottom-color:var(--red)}
+
+
 
 /* ---- section anchors clear the sticky bar ---- */
 section{scroll-margin-top:clamp(74px,9vw,98px)}
@@ -1223,7 +1235,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
 .vstage .ytover{z-index:3}
 /* until the cutout opens the block is a sheet of white paper, so the play
    overlay would be invisible against it */
-.vstage .ytover{opacity:0;transition:opacity .45s ease}
+.vstage .ytover{opacity:0;transition:opacity .45s var(--e-state)}
 .vstage.open .ytover{opacity:1}
 @media (prefers-reduced-motion:reduce){
   .vstage .ytover{opacity:1}
@@ -1244,7 +1256,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
    slide-and-invert the platform list uses */
 .showlist.past .show{
   text-decoration:none;color:inherit;
-  transition:padding-left .2s cubic-bezier(.2,.7,.3,1),background .2s ease,color .2s ease;
+  transition:padding-left .2s var(--e-state),background .2s var(--e-state),color .2s var(--e-state);
 }
 .showlist.past .show:hover,.showlist.past .show:focus-visible{
   background:var(--ink);color:#fff;padding-left:14px;
@@ -1299,7 +1311,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   border:1px solid var(--rule);padding:clamp(10px,1.2vw,14px);
   background:var(--paper);
   text-decoration:none;color:inherit;cursor:pointer;
-  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background .18s ease;
+  transition:border-color .16s var(--e-state),box-shadow .16s var(--e-state),transform .16s var(--e-state),background .16s var(--e-state);
 }
 .work:hover,.work:focus-visible{
   border-color:var(--ink);background:#fff;
@@ -1307,26 +1319,26 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   box-shadow:0 10px 26px rgba(0,0,0,.10);
 }
 .work .art{position:relative;line-height:0;background:#efefef;aspect-ratio:1/1;overflow:hidden}
-.work .art img{width:100%;height:100%;object-fit:cover;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.work .art img{width:100%;height:100%;object-fit:cover;transition:transform .35s var(--e-state)}
 .work:hover .art img,.work:focus-visible .art img{transform:scale(1.05)}
 .work .meta{min-width:0;position:relative}
 .work .t{
-  display:block;font-size:clamp(16px,1.7vw,20px);line-height:1.14;
-  font-variation-settings:"wdth" 96,"wght" 720;letter-spacing:-.012em;
+  display:block;font-size:clamp(18px,2.2vw,27px);line-height:1.08;
+  font-variation-settings:"wdth" 102,"wght" 780;letter-spacing:-.022em;
 }
 .work:hover .t,.work:focus-visible .t{color:var(--red)}
 .work .a{display:block;margin-top:5px;font-size:13px;color:var(--dim);
   font-variation-settings:"wdth" 90,"wght" 520;line-height:1.35}
 .work .a b{color:var(--ink);font-variation-settings:"wdth" 90,"wght" 700}
 .work .r{
-  display:inline-block;margin-top:9px;font-size:10.5px;letter-spacing:.11em;
+  display:inline-block;margin-top:9px;font-size:11.5px;letter-spacing:.095em;
   text-transform:uppercase;color:var(--dim);font-variation-settings:"wdth" 86,"wght" 620;
 }
 .work:hover .r,.work:focus-visible .r{color:var(--ink)}
 /* the little out-arrow that says this leaves the site */
 .work .r::after{
   content:"\2197 Genius";margin-left:.7em;color:var(--dim);
-  opacity:0;transition:opacity .18s ease;letter-spacing:.06em;
+  opacity:0;transition:opacity .16s var(--e-state);letter-spacing:.06em;
 }
 .work:hover .r::after,.work:focus-visible .r::after{opacity:1;color:var(--red)}
 @media (max-width:480px){.work{grid-template-columns:72px minmax(0,1fr)}}
@@ -1344,11 +1356,432 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
    the slot stands down and the nav takes the gutter. */
 @media (max-width:720px){
   .tb-slot{display:none}
-  .tb-nav{margin-left:0}
+
+}
+
+/* ---------- browser surfaces ----------
+   Selection, caret, scrollbar, underline offset and tabular figures ship
+   with browser defaults that belong to no design system. Themed from the
+   palette so the parts we did not draw still read as this site. */
+::selection{background:var(--red);color:#fff}
+::-moz-selection{background:var(--red);color:#fff}
+input,textarea,select{caret-color:var(--red)}
+html{scrollbar-color:#c2c2c2 transparent}
+a{text-underline-offset:.16em;text-decoration-thickness:1px}
+.show .d,.dl-next .d,.credit .r,.work .r{font-variant-numeric:tabular-nums}
+
+/* ---------- the mark that flickers ----------
+   Two hand-cut stars out of his own vocabulary - the thin spiked burst
+   from under the donkey and the chunky painted star off the covers -
+   one swapped for the other while the pointer is on a heading. Nothing
+   moves at rest, so it costs nothing until somebody looks.
+   The glyphs are SIBLINGS of the h2, never children: an svg inside a
+   heading whose fill is background-clip:text kills the fill outright,
+   which is the same trap the letter-splitter already has to dodge. */
+.gl{
+  position:relative;display:inline-block;flex:none;
+  width:.42em;height:.42em;align-self:center;
+  color:var(--red);
+}
+.gl svg{position:absolute;inset:0;width:100%;height:100%;fill:currentColor;display:block}
+.gl .gl-b{opacity:0}
+.sec-head:hover .gl .gl-a,.sec-head:focus-within .gl .gl-a,
+.np-link:hover .gl .gl-a,.np-link:focus-visible .gl .gl-a{animation:gl-flick .34s steps(1,end) infinite}
+.sec-head:hover .gl .gl-b,.sec-head:focus-within .gl .gl-b,
+.np-link:hover .gl .gl-b,.np-link:focus-visible .gl .gl-b{animation:gl-flick .34s steps(1,end) infinite reverse}
+@keyframes gl-flick{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+.sec-head .gl{margin-right:.06em}
+.sec-head .gl.gl-end{margin:0 0 0 .12em}
+@media (prefers-reduced-motion:reduce){
+  /* the swap still happens, it just does not strobe */
+  .sec-head:hover .gl .gl-a,.sec-head:focus-within .gl .gl-a,
+  .np-link:hover .gl .gl-a,.np-link:focus-visible .gl .gl-a{animation:none;opacity:0;transition:opacity .2s var(--e-state)}
+  .sec-head:hover .gl .gl-b,.sec-head:focus-within .gl .gl-b,
+  .np-link:hover .gl .gl-b,.np-link:focus-visible .gl .gl-b{animation:none;opacity:1;transition:opacity .2s var(--e-state)}
+}
+
+/* ---------- Menu, and the panel behind it ----------
+   Seven items never fitted a phone - the row scrolled behind a mask
+   fade, which was a compromise, not a design. One button now, in the
+   same place at every width, opening the nav at the size it deserves. */
+.tb-menu .tbm-i{width:15px;height:15px;flex:none;display:block}
+.tb-menu .tbm-i line{stroke:currentColor;stroke-width:1.7;stroke-linecap:round;
+  transition:transform .3s var(--e-arrive)}
+.tb-menu[aria-expanded="true"] .tbm-i .l1{transform:translateY(3px)}
+.tb-menu[aria-expanded="true"] .tbm-i .l2{transform:translateY(-3px)}
+
+.navpanel{
+  position:fixed;inset:0;z-index:60;background:var(--red);color:#fff;
+  display:flex;flex-direction:column;
+  padding:clamp(11px,1.6vw,16px) clamp(14px,4.5vw,64px) clamp(22px,3vw,40px);
+  padding-top:max(clamp(11px,1.6vw,16px),env(safe-area-inset-top));
+  padding-bottom:max(clamp(22px,3vw,40px),env(safe-area-inset-bottom));
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .42s var(--e-arrive);
+  overflow-y:auto;overscroll-behavior:contain;
+}
+.navpanel.open{clip-path:inset(0 0 0 0)}
+.navpanel:not(.open){transition-duration:.26s}
+.np-top{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  height:clamp(40px,4.6vw,54px);flex:none}
+.np-mark{text-decoration:none;color:#fff;font-size:clamp(14px,1.5vw,19px);line-height:1;
+  font-variation-settings:"wdth" 122,"wght" 900;letter-spacing:-.028em;text-transform:lowercase}
+.np-close{
+  display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;
+  border:1px solid rgba(255,255,255,.66);padding:9px 16px;cursor:pointer;border-radius:0;
+  font:inherit;font-size:13px;font-variation-settings:"wdth" 94,"wght" 800;
+  transition:background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state);
+}
+.np-close:hover,.np-close:focus-visible{background:#fff;color:var(--red);border-color:#fff}
+.np-art{
+  position:absolute;right:clamp(14px,5vw,90px);bottom:clamp(96px,13vh,150px);
+  height:clamp(180px,30vh,340px);width:auto;max-width:38vw;
+  transform:rotate(4deg);pointer-events:none;
+  filter:drop-shadow(0 18px 40px rgba(0,0,0,.28));
+  opacity:0;transition:opacity .3s var(--e-state) .2s,transform .5s var(--e-arrive) .2s;
+}
+.navpanel.open .np-art{opacity:1;transform:rotate(4deg) translateY(0)}
+.navpanel:not(.open) .np-art{transform:rotate(4deg) translateY(12px);transition-delay:0s}
+@media (max-width:900px){.np-art{display:none}}
+@media (prefers-reduced-motion:reduce){.np-art{opacity:1;transform:rotate(4deg);transition:none}}
+.np-list{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  gap:clamp(2px,.5vw,8px);margin:clamp(24px,5vh,64px) 0;padding:0;list-style:none;
+}
+.np-list li{display:block}
+.np-link{
+  display:inline-flex;align-items:center;gap:.26em;
+  text-decoration:none;color:#fff;
+  font-size:clamp(46px,12.5vw,88px);line-height:1.02;
+  font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.03em;text-transform:lowercase;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .3s var(--e-state),transform .44s var(--e-arrive),color .16s var(--e-state);
+  transition-delay:calc(var(--i) * 30ms + 80ms);
+}
+.navpanel.open .np-link{opacity:1;transform:none}
+.navpanel:not(.open) .np-link{transition-delay:0s;transition-duration:.16s}
+.np-link .gl{color:#fff;width:.3em;height:.3em;opacity:0;transition:opacity .16s var(--e-state)}
+.np-link:hover .gl,.np-link:focus-visible .gl{opacity:1}
+.np-link:hover,.np-link:focus-visible{color:#ffe9e7}
+.np-link.on{color:#fff}
+.np-link.on::after{
+  content:"";width:.16em;height:.16em;border-radius:50%;background:#fff;
+  margin-left:.06em;align-self:center;flex:none;
+}
+.np-foot{
+  flex:none;display:flex;flex-wrap:wrap;align-items:baseline;
+  justify-content:space-between;gap:14px clamp(16px,3vw,36px);
+  border-top:1px solid rgba(255,255,255,.38);padding-top:clamp(13px,1.8vw,20px);
+  opacity:0;transition:opacity .3s var(--e-state) .28s;
+}
+.navpanel.open .np-foot{opacity:1}
+.np-next{font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  font-variation-settings:"wdth" 88,"wght" 780;color:#fff;
+  text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.np-next:hover,.np-next:focus-visible{opacity:.82}
+.np-next b{font-variation-settings:"wdth" 88,"wght" 900}
+.np-plat{display:flex;flex-wrap:wrap;gap:6px clamp(13px,1.9vw,26px);margin:0;padding:0;list-style:none}
+.np-plat a{font-size:12.5px;color:#fff;text-decoration:none;
+  font-variation-settings:"wdth" 90,"wght" 620;
+  border-bottom:1px solid rgba(255,255,255,.42);padding-bottom:2px;transition:border-color .16s}
+.np-plat a:hover,.np-plat a:focus-visible{border-bottom-color:#fff}
+.navpanel :focus-visible{outline:2px solid #fff;outline-offset:3px}
+body.np-open{overflow:hidden}
+@media (max-width:520px){
+  .np-list{margin:clamp(18px,4vh,40px) 0}
+  .np-foot{flex-direction:column;align-items:flex-start;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  .navpanel{transition:none}
+  .np-link{opacity:1;transform:none;transition-delay:0s}
+  .np-foot{opacity:1;transition:none}
+  .tb-menu .tbm-i line{transition:none}
+}
+
+/* ---------- the way in ----------
+   Black, his name wiping on left to right, and then the black lifts off
+   the photograph the same way the white sheet lifts off the donkey. It
+   is a threshold, not a second loud moment: no colour, no artwork, and
+   it is gone the moment the hero image and the font are actually ready.
+   Once per session, never for reduced motion or Save-Data, hard-capped
+   so it can never become a toll booth. */
+.loader{position:fixed;inset:0;z-index:90;pointer-events:none;color-scheme:light}
+/* two curtains rather than one sheet: they part on the photograph
+   instead of sliding off it, which is the cinematic version of the
+   same gesture the veil makes over the donkey */
+.ld-curtain{
+  position:absolute;left:0;right:0;height:50.2%;background:var(--paper);
+  transition:transform .76s cubic-bezier(.76,0,.24,1) .06s;
+}
+.ld-curtain.t{top:0}
+.ld-curtain.b{bottom:0}
+.loader.out .ld-curtain.t{transform:translateY(-100%)}
+.loader.out .ld-curtain.b{transform:translateY(100%)}
+.ld-inner{
+  position:absolute;inset:0;display:grid;place-items:center;
+  padding:0 clamp(14px,6vw,80px);
+  transition:opacity .3s var(--e-state);
+}
+.loader.out .ld-inner{opacity:0;transition-duration:.22s}
+/* ---- the mouth ----
+   His own toothed mouth, off the watch my mouth artwork: red lips, hand-cut
+   teeth, biting down on his name twice before the curtains part. The teeth
+   are drawn here rather than loaded - a shape this simple has no business
+   being a raster, and it stays crisp at any size. */
+.ld-stage{
+  position:relative;width:min(100%,960px);aspect-ratio:490/253;
+  display:grid;place-items:center;
+}
+.ld-mark{
+  position:absolute;inset:0;display:grid;place-items:center;
+  color:var(--ink);white-space:nowrap;
+  font-size:clamp(20px,6.8vw,92px);line-height:.9;
+  font-variation-settings:"wdth" 125,"wght" 900;
+  letter-spacing:-.05em;text-transform:lowercase;
+  opacity:0;transition:opacity .3s var(--e-state);
+}
+.loader.go .ld-mark{opacity:1}
+/* His own drawn mouth, cut in two. The upper and lower jaws are separate
+   connected components in the artwork - the teeth interlock but never touch -
+   so these are the real halves, not a straight cut through the middle. Their
+   percentages are the positions they occupy in the original, so closed is
+   simply the drawing as he made it. */
+.ld-mouth{position:absolute;inset:0;overflow:visible}
+.ld-mouth .jaw{position:absolute;display:block;height:auto;backface-visibility:hidden}
+.ld-mouth .ju{left:1.633%;top:0;width:97.551%}
+.ld-mouth .jl{left:0;top:39.13%;width:100%}
+.jaw{transform:translateY(0)}
+.ju{transform:translateY(-118%)}
+.jl{transform:translateY(118%)}
+.loader.go .ju{animation:chomp-u .82s .64s forwards}
+.loader.go .jl{animation:chomp-l .82s .64s forwards}
+.ld-mark .ld-word{display:flex;align-items:flex-end;justify-content:center;gap:.03em}
+/* his own clay alphabet, cut out of the sheet Carissa supplied. Each letter
+   keeps its real proportion - S is taller than C because it is, in the clay -
+   so the word sits the way it was made rather than on a forced baseline. */
+.ld-mark .lc img{display:block;height:calc(var(--r) * 1em);width:auto}
+.loader.go .ld-mark .ld-word{animation:chomp-bite .82s .64s forwards}
+/* each letter takes the bite itself: a jolt on the way down and a harder
+   one on the second pass, springing back. It rides on the <img> so the
+   landing transform on .lc is left alone. */
+.loader.go .ld-mark .lc img{animation:chew .82s .64s both}
+@keyframes chew{
+  0%,33%{transform:none}
+  39%{transform:translateY(var(--jy)) rotate(var(--jr)) scaleY(.9)}
+  46%{transform:translateY(calc(var(--jy) * -.35)) rotate(calc(var(--jr) * -.4))}
+  54%{transform:none}
+  62%{transform:none}
+  69%{transform:translateY(calc(var(--jy) * -1.5)) rotate(calc(var(--jr) * -1.4)) scaleY(.84)}
+  78%{transform:translateY(calc(var(--jy) * .5)) rotate(calc(var(--jr) * .5))}
+  88%,100%{transform:none}
+}
+/* two bites: the first a warning, the second all the way through */
+@keyframes chomp-u{
+  0%  {transform:translateY(-118%);animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  20% {transform:translateY(-72%); animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  37% {transform:translateY(-2%);  animation-timing-function:var(--e-state)}
+  52% {transform:translateY(-52%); animation-timing-function:cubic-bezier(.6,0,.9,.3)}
+  66% {transform:translateY(2%);   animation-timing-function:var(--e-state)}
+  82% {transform:translateY(-62%); animation-timing-function:cubic-bezier(.4,0,.2,1)}
+  100%{transform:translateY(-130%)}
+}
+@keyframes chomp-l{
+  0%  {transform:translateY(118%); animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  20% {transform:translateY(72%);  animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  37% {transform:translateY(2%);   animation-timing-function:var(--e-state)}
+  52% {transform:translateY(52%);  animation-timing-function:cubic-bezier(.6,0,.9,.3)}
+  66% {transform:translateY(-2%);  animation-timing-function:var(--e-state)}
+  82% {transform:translateY(62%);  animation-timing-function:cubic-bezier(.4,0,.2,1)}
+  100%{transform:translateY(130%)}
+}
+/* the name takes the hit */
+@keyframes chomp-bite{
+  0%,33%{transform:none}
+  39%{transform:scaleY(.93) scaleX(1.012)}
+  47%{transform:none}
+  62%{transform:none}
+  69%{transform:scaleY(.88) scaleX(1.02)}
+  80%,100%{transform:none}
+}
+/* the clay letters off the same artwork. Rainbow lives inside his work and
+   the chrome stays quiet - the loader IS the artwork here, so it earns it.
+   Every one of these clears 5.9:1 on black at display size. */
+/* the letters fly in from wherever and land level, so the word builds
+   itself while the page does - the mouth bites the moment it is whole */
+.ld-mark .lc{
+  display:block;flex:none;
+  opacity:0;
+  transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(var(--sc,.7));
+  transition:transform .28s var(--e-arrive),opacity .16s var(--e-state);
+}
+.ld-mark .lc.on{opacity:1;transform:none}
+@media (max-width:620px){ .ld-inner{padding:0 clamp(10px,3.5vw,22px)} }
+/* a real progress line: it steps when the font resolves and again when
+   the photograph decodes. It is not a timer dressed up as work. */
+.ld-line{
+  position:absolute;left:clamp(14px,6vw,80px);right:clamp(14px,6vw,80px);
+  bottom:clamp(26px,6vh,64px);height:1px;background:rgba(0,0,0,.14);
+}
+.ld-line i{
+  display:block;height:100%;width:100%;background:var(--ink);
+  transform:scaleX(var(--p,.08));transform-origin:0 50%;
+  transition:transform .5s var(--e-arrive);
+}
+html.loading,html.loading body{overflow:hidden;overflow:clip}
+@media (prefers-reduced-motion:reduce){
+  .ld-curtain,.ld-mark span,.ld-line i,.ld-mark .lc img,.jaw{transition:none;animation:none;transform:none}
+}
+
+/* ================= movement =================================
+   One idea, carried everywhere: things rise out of a mask. The
+   loader's curtains part on it, the wordmark comes up through it,
+   every section heading arrives on it letter by letter. That is
+   the thesis - not a fade-and-rise stuck on each section in turn.
+   ============================================================ */
+
+/* Lenis needs these three; the iframe rule from its stock sheet is
+   deliberately NOT here, because it would kill the YouTube player. */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:clip}
+
+/* --- text rising out of a mask ---
+   .wd is the mask and must not clip descenders, so it is padded and
+   the padding pulled back off the layout. .ch is what actually moves. */
+.wd{
+  display:inline-block;overflow:hidden;vertical-align:bottom;
+  padding-bottom:.14em;margin-bottom:-.14em;
+}
+.ch{
+  display:inline-block;
+  transform:translateY(108%);
+  transition:transform .78s var(--e-arrive);
+  transition-delay:calc(var(--c) * 26ms);
+}
+.rv.in .ch,.split-in .ch{transform:none}
+/* a split heading must not also fade as a block, or the mask is pointless */
+.sec-head.rv{opacity:1;transform:none}
+
+/* the wordmark comes up the same way once the curtains have parted */
+#hero .mark .mk-line{
+  display:inline-block;
+  transform:translateY(106%);
+  transition:transform .9s var(--e-arrive) .06s;
+}
+#hero .mark{clip-path:inset(-.65em 0 -.07em 0)}
+body.mark-up #hero .mark .mk-line{transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .ch{transform:none;transition:none}
+  #hero .mark .mk-line{transform:none;transition:none}
+  .wd{overflow:visible}
+}
+
+/* ---- the handoff, and the scroll ----
+   The curtains parting and the hero settling are one move, not two: the
+   photograph is already easing down out of a slight push-in while the black
+   is still leaving, so nothing waits for anything. */
+#hero .hero-photo{
+  will-change:transform;
+  transform:translate3d(0,var(--par,0px),0) scale(var(--hz,1.06));
+  transition:transform 1.16s var(--e-arrive);
+}
+body.mark-up #hero .hero-photo{--hz:1}
+#hero .hero-kick{
+  opacity:0;transform:translateY(12px);
+  transition:opacity .5s var(--e-state) .16s,transform .7s var(--e-arrive) .16s;
+}
+body.mark-up #hero .hero-kick{opacity:1;transform:none}
+.topbar{opacity:0;transition:background .28s var(--e-state),border-color .28s var(--e-state),opacity .5s var(--e-state) .3s}
+body.mark-up .topbar,body.seen .topbar{opacity:1}
+/* once the photograph is settled the transition has to come off, or every
+   parallax frame animates over 1.15s and the hero swims behind the scroll */
+body.settled #hero .hero-photo{transition:none}
+
+/* the rule beside a heading draws out of it as the letters land */
+.sec-head .line{transform:translateY(-.22em) scaleX(0);transform-origin:0 50%;
+  transition:transform .78s var(--e-arrive) .16s}
+.rv.in .sec-head .line,.sec-head.in .line,.sec-head.split-in .line{transform:translateY(-.22em) scaleX(1)}
+
+/* every framed image settles out of a slight push-in as it arrives. `scale`
+   is its own property, so the hover `transform` on the covers still works
+   on top of it instead of overwriting it. */
+.cover .frame img,.release .art img,.flyer img,.work .art img,.vcard video{
+  scale:1.085;transition:scale .95s var(--e-arrive);
+}
+.rv.in .cover .frame img,.rv.in .release .art img,.rv.in .flyer img,
+.rv.in .work .art img,.rv.in .vcard video,
+.in .cover .frame img,.in .release .art img,.in .flyer img,.in .work .art img{scale:1}
+
+@media (prefers-reduced-motion:reduce){
+  #hero .hero-photo,#hero .hero-kick,.topbar,.sec-head .line,
+  .cover .frame img,.release .art img,.flyer img,.work .art img,.vcard video{
+    transition:none;transform:none;opacity:1;scale:1;
+  }
+  .sec-head .line{transform:translateY(-.22em)}
+  #hero .hero-photo{transform:none}
+}
+
+/* ---------- section titling ----------
+   Three real defects, not taste calls:
+   1. The stars were sized in `em` on .sec-head, which has no font-size of its
+      own - so they resolved against the 15px body and rendered as 6px specks
+      beside a 108px heading. They are sized to the heading now.
+   2. The right-hand label was 13px of --dim floating at the end of the rule,
+      reading as a caption somebody forgot. It is the section's own kicker, so
+      it is set in the accent the stars already use.
+   3. The head arrived all at once. It assembles now - letters, then the rule
+      drawing out of them, then the label landing on the end of it. */
+.sec-head .gl{width:clamp(13px,2.5vw,32px);height:clamp(13px,2.5vw,32px);
+  align-self:center;margin-bottom:.12em}
+.sec-head .num{
+  font-size:clamp(12px,1.05vw,15px);letter-spacing:.16em;
+  font-variation-settings:"wdth" 88,"wght" 850;
+  color:var(--red);transform:translateY(-.9em);
+  opacity:0;transition:opacity var(--t-base) var(--e-state) .5s,
+                       transform var(--t-arrive) var(--e-arrive) .5s;
+}
+.rv.in .sec-head .num,.sec-head.in .num,.sec-head.split-in .num{
+  opacity:1;transform:translateY(-.9em) translateX(0);
+}
+.sec-head .num{transform:translateY(-.9em) translateX(14px)}
+
+/* ---------- the platform rows answer back ----------
+   They had a colour change and nothing else. The `↗` hint is the device the
+   credits cards already use for "this leaves the site"; the rows borrow it
+   rather than inventing a second vocabulary. */
+.ew-links a{transition:color var(--t-fast) var(--e-state),
+                       border-color var(--t-fast) var(--e-state)}
+.ew-links a span{transition:color var(--t-fast) var(--e-state),
+                            transform var(--t-base) var(--e-state)}
+.ew-links a span::after{
+  content:"\2197";margin-left:.5em;opacity:0;
+  transition:opacity var(--t-fast) var(--e-state);
+}
+.ew-links a:hover,.ew-links a:focus-visible{border-bottom-color:var(--red)}
+.ew-links a:hover span,.ew-links a:focus-visible span{transform:translateX(-3px)}
+.ew-links a:hover span::after,.ew-links a:focus-visible span::after{opacity:1}
+@media (prefers-reduced-motion:reduce){
+  .sec-head .num{opacity:1;transform:translateY(-.9em);transition:none}
+  .ew-links a span{transition:none;transform:none}
 }
 </style>
 </head>
 <body class="photo-hero">
+<div class="loader" id="loader" hidden aria-hidden="true">
+  <div class="ld-curtain t"></div>
+  <div class="ld-curtain b"></div>
+  <div class="ld-inner">
+    <div class="ld-stage">
+      <div class="ld-mark"><span class="ld-word"><span class="lc" style="--r:0.8381"><img src="assets/clay/clay-c.webp" alt="" width="154" height="176" fetchpriority="high"></span><span class="lc" style="--r:0.9524"><img src="assets/clay/clay-a.webp" alt="" width="161" height="200" fetchpriority="high"></span><span class="lc" style="--r:0.9286"><img src="assets/clay/clay-m.webp" alt="" width="210" height="195" fetchpriority="high"></span><span class="lc" style="--r:0.9429"><img src="assets/clay/clay-p.webp" alt="" width="142" height="198" fetchpriority="high"></span><span class="lc" style="--r:0.9429"><img src="assets/clay/clay-t.webp" alt="" width="156" height="198" decoding="async"></span><span class="lc" style="--r:0.9762"><img src="assets/clay/clay-h.webp" alt="" width="137" height="205" decoding="async"></span><span class="lc" style="--r:0.8952"><img src="assets/clay/clay-e.webp" alt="" width="132" height="188" decoding="async"></span><span class="lc" style="--r:0.9762"><img src="assets/clay/clay-h.webp" alt="" width="137" height="205" decoding="async"></span><span class="lc" style="--r:0.8714"><img src="assets/clay/clay-i.webp" alt="" width="49" height="183" decoding="async"></span><span class="lc" style="--r:0.9429"><img src="assets/clay/clay-l.webp" alt="" width="154" height="198" decoding="async"></span><span class="lc" style="--r:0.9429"><img src="assets/clay/clay-l.webp" alt="" width="154" height="198" decoding="async"></span><span class="lc" style="--r:1.0"><img src="assets/clay/clay-s.webp" alt="" width="144" height="210" decoding="async"></span></span></div>
+      <div class="ld-mouth" aria-hidden="true">
+        <img class="jaw ju" src="assets/mouth/jaw-upper.webp" alt="" width="1171" height="387" fetchpriority="high">
+        <img class="jaw jl" src="assets/mouth/jaw-lower.webp" alt="" width="1200" height="377" fetchpriority="high">
+      </div>
+    </div>
+    <div class="ld-line"><i id="ldBar"></i></div>
+  </div>
+</div>
 <script>
 /* ---- moving between pages ----------------------------------------
    1. Mark the session once the chrome has introduced itself, so the
@@ -1394,15 +1827,6 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
     <a class="tb-icon" href="index.html" aria-label="campthehills home"><img src="assets/icon-mark.png" alt="" width="244" height="340"></a>
     <a class="tb-mark" href="index.html">campthehills</a>
   </div>
-  <nav class="tb-nav" aria-label="Main">
-    <a href="#listen" data-sec="listen">music</a>
-    <a href="#video" data-sec="video">video</a>
-    <a href="watch.html">clips</a>
-    <a href="#who" data-sec="who">about</a>
-    <a href="#shows" data-sec="shows">shows</a>
-    <a href="#credits" data-sec="credits">credits</a>
-    <a href="#contact" data-sec="contact">contact</a>
-  </nav>
   <a class="tb-show" href="#shows" aria-label="Next show: Dec 1 2026, New York, NY">
     <span class="tbs-dot" aria-hidden="true"></span>
     <span class="tbs-lab">next show</span>
@@ -1416,6 +1840,45 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
       <span class="tb-share-label">Share</span>
     </button>
     <a class="tb-btn" href="index.html#contact"><span class="bd" aria-hidden="true"></span>Contact</a>
+    <button class="tb-btn tb-menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="navpanel">
+      <svg class="tbm-i" viewBox="0 0 15 15" aria-hidden="true"><line class="l1" x1="1" y1="5" x2="14" y2="5"/><line class="l2" x1="1" y1="10" x2="14" y2="10"/></svg>
+      <span>Menu</span>
+    </button>
+  </div>
+</div>
+
+<!-- The nav, at the size it deserves. The seven links live here now; the
+     bar carries one button. Scroll-spy still marks the current section,
+     so opening the menu also tells you where you are. -->
+<div class="navpanel" id="navpanel" hidden data-lenis-prevent role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="np-top">
+    <a class="np-mark" href="index.html">campthehills</a>
+    <button class="np-close" id="npClose" type="button">Close</button>
+  </div>
+  <img class="np-art" src="assets/icon-mark.png" alt="" width="244" height="340" loading="lazy" decoding="async" aria-hidden="true">
+  <ul class="np-list">
+      <li><a class="np-link" href="#listen" data-sec="listen" style="--i:0"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>music</span></a></li>
+      <li><a class="np-link" href="#video" data-sec="video" style="--i:1"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>video</span></a></li>
+      <li><a class="np-link" href="watch.html" style="--i:2"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>clips</span></a></li>
+      <li><a class="np-link" href="#who" data-sec="who" style="--i:3"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>about</span></a></li>
+      <li><a class="np-link" href="#shows" data-sec="shows" style="--i:4"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>shows</span></a></li>
+      <li><a class="np-link" href="#credits" data-sec="credits" style="--i:5"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>credits</span></a></li>
+      <li><a class="np-link" href="#contact" data-sec="contact" style="--i:6"><span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><span>contact</span></a></li>
+  </ul>
+  <div class="np-foot">
+    <a class="np-next" href="#shows">
+      <span class="tbs-dot" aria-hidden="true" style="background:#fff"></span>
+      next show <b>Dec 1</b> / New York, NY
+    </a>
+    <ul class="np-plat">
+      <li><a href="https://open.spotify.com/artist/01Xh6d2xRTGEpxZw0Khyrs" target="_blank" rel="noopener">Spotify</a></li>
+      <li><a href="https://music.apple.com/us/artist/campthehills/1798568405" target="_blank" rel="noopener">Apple Music</a></li>
+      <li><a href="https://www.instagram.com/campthehills/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@campthehills" target="_blank" rel="noopener">TikTok</a></li>
+      <li><a href="https://www.youtube.com/channel/UCYV_I3ySjhrtZ5H5hGZsPYw" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://soundcloud.com/campthehills" target="_blank" rel="noopener">SoundCloud</a></li>
+      <li><a href="https://genius.com/artists/Campthehills" target="_blank" rel="noopener">Genius</a></li>
+    </ul>
   </div>
 </div>
 
@@ -1424,13 +1887,19 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
      moment instead of the first thing every visitor waits through. -->
 <header id="hero">
   <div class="hero-photo">
-    <picture>
-      <source media="(max-width:700px)" srcset="assets/hero-bleachers-800.jpg">
-      <source media="(max-width:1400px)" srcset="assets/hero-bleachers-1400.jpg">
-      <img src="assets/hero-bleachers.jpg" width="2400" height="1600"
-           alt="campthehills sitting alone on empty aluminium bleachers in hard afternoon sunlight."
-           fetchpriority="high" decoding="async">
-    </picture>
+    <!-- Re-cut from Carissa's 5184x3456 original, with a 3200 tier added:
+         the old set topped out at 2400, which is soft on any 2x display -
+         a 393px phone at 3x wants 1179 and was being served 800. Plain
+         srcset with w-descriptors lets the browser pick by viewport AND
+         pixel ratio, which media queries alone cannot do. -->
+    <img src="assets/hero-bleachers-1400.jpg"
+         srcset="assets/hero-bleachers-800.jpg 800w,
+                 assets/hero-bleachers-1400.jpg 1400w,
+                 assets/hero-bleachers.jpg 2400w,
+                 assets/hero-bleachers-3200.jpg 3200w"
+         sizes="100vw" width="2400" height="1600"
+         alt="campthehills sitting alone on empty aluminium bleachers in hard afternoon sunlight."
+         fetchpriority="high" decoding="async">
   </div>
 
   <div class="wrap hero-bot">
@@ -1452,7 +1921,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   <section id="listen">
     <div class="wrap">
       <div class="sec-head">
-        <h2>music</h2>
+        <span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><h2>music</h2><span class="gl gl-end" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span>
         <span class="line"></span>
         <span class="num">out now</span>
       </div>
@@ -1522,7 +1991,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   <section id="video">
     <div class="wrap">
       <div class="sec-head">
-        <h2>down with the snow</h2>
+        <span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><h2>down with the snow</h2><span class="gl gl-end" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span>
         <span class="line"></span>
         <span class="num">official music video</span>
       </div>
@@ -1600,7 +2069,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   <section id="shows">
     <div class="wrap">
       <div class="sec-head">
-        <h2>shows</h2>
+        <span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><h2>shows</h2><span class="gl gl-end" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span>
         <span class="line"></span>
         <span class="num">live</span>
       </div>
@@ -1652,7 +2121,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   <section id="credits">
     <div class="wrap">
       <div class="sec-head">
-        <h2>credits</h2>
+        <span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><h2>credits</h2><span class="gl gl-end" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span>
         <span class="line"></span>
         <span class="num">production</span>
       </div>
@@ -1710,7 +2179,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   <section id="contact">
     <div class="wrap">
       <div class="sec-head">
-        <h2>contact</h2>
+        <span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><h2>contact</h2><span class="gl gl-end" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span>
         <span class="line"></span>
         <span class="num">inquiries</span>
       </div>
@@ -1984,10 +2453,25 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
     });
   }
 
+  /* the photograph drifts at a fraction of the scroll: the hero reads as
+     depth rather than a static plate sliding away. Only while the hero is
+     actually on screen - past it the maths is a no-op and the write is
+     skipped entirely. */
+  var heroPhoto = hero && hero.querySelector('.hero-photo');
+  var parked = false;
   function onScroll(){
     var y = window.pageYOffset || document.documentElement.scrollTop;
     var h = hero ? hero.offsetHeight : (window.innerHeight || 800);
     if (topbar) topbar.classList.toggle('solid', y > h - 90);
+    if (heroPhoto && !reduce) {
+      if (y < h) {
+        heroPhoto.style.setProperty('--par', (y * 0.24).toFixed(1) + 'px');
+        parked = false;
+      } else if (!parked) {
+        heroPhoto.style.setProperty('--par', (h * 0.24).toFixed(1) + 'px');
+        parked = true;
+      }
+    }
     spy();
     ticking = false;
   }
@@ -2244,8 +2728,10 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
      Leave BOOK_ENDPOINT empty and the form behaves as it did before,
      opening the visitor's email client with everything filled in.
      ============================================================ */
-  var BOOK_ENDPOINT = '';
-  var BOOK_ACCESS_KEY = '';          // Web3Forms only; leave empty otherwise
+  var BOOK_ENDPOINT = 'https://api.web3forms.com/submit';
+  var BOOK_ACCESS_KEY = '';          // <-- PASTE THE WEB3FORMS ACCESS KEY HERE
+                                     //     Until it is filled in, the form still
+                                     //     works: it falls back to the mail client.
   var BOOK_TO = 'contact@campthehills.net';
 
   var bookForm = document.getElementById('bookForm');
@@ -2282,18 +2768,58 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
         + '&body=' + encodeURIComponent(lines.join('\n'));
     }
 
+    /* The panel the form turns into. It answers the three things
+       somebody who just pressed send actually wants to know: that it
+       arrived, roughly when they will hear back, and what to do if this
+       was urgent. Their own subject line is echoed so they can see the
+       site read them correctly. */
     function bkSent(d){
+      var first = (d.name.split(' ')[0] || '').trim();
       var box = document.createElement('div');
       box.className = 'f-sent';
       box.setAttribute('role','status');
-      var tick = document.createElement('span');
-      tick.className = 'tick'; tick.setAttribute('aria-hidden','true'); tick.textContent = '\u2713';
-      var h = document.createElement('h3'); h.textContent = 'Inquiry sent';
-      var p = document.createElement('p');
-      p.textContent = 'Thanks ' + d.name.split(' ')[0] + ' \u2014 this went to ' + BOOK_TO +
-                      '. You will get a reply at ' + d.email + '.';
-      box.appendChild(tick); box.appendChild(h); box.appendChild(p);
+      box.setAttribute('tabindex','-1');
+
+      var star = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      star.setAttribute('class','f-star');
+      star.setAttribute('viewBox','-6 -6 112 112');
+      star.setAttribute('aria-hidden','true');
+      var path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d','M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z');
+      star.appendChild(path);
+
+      var h = document.createElement('h3');
+      h.textContent = first ? ('thank you, ' + first) : 'thank you';
+
+      var p1 = document.createElement('p');
+      p1.className = 'f-lead';
+      p1.textContent = 'Your message reached campthehills. The reply will come to '
+                     + d.email + '.';
+
+      var recap = document.createElement('p');
+      recap.className = 'f-recap';
+      var rl = document.createElement('span'); rl.className='f-recap-l'; rl.textContent='You sent';
+      var rv = document.createElement('span'); rv.textContent = d.subject;
+      recap.appendChild(rl); recap.appendChild(rv);
+
+      var p2 = document.createElement('p');
+      p2.className = 'f-alt';
+      p2.appendChild(document.createTextNode('If it is time-sensitive, write straight to '));
+      var a = document.createElement('a');
+      a.href = 'mailto:' + BOOK_TO; a.textContent = BOOK_TO;
+      p2.appendChild(a);
+      p2.appendChild(document.createTextNode(' or DM on '));
+      var ig = document.createElement('a');
+      ig.href = 'https://www.instagram.com/campthehills/';
+      ig.target = '_blank'; ig.rel = 'noopener'; ig.textContent = 'Instagram';
+      p2.appendChild(ig); p2.appendChild(document.createTextNode('.'));
+
+      box.appendChild(star); box.appendChild(h); box.appendChild(p1);
+      box.appendChild(recap); box.appendChild(p2);
       bookForm.replaceWith(box);
+      // move the reading position onto the answer, for screen readers and
+      // for anyone who pressed send from the keyboard
+      box.focus({preventScroll:true});
     }
 
     bookForm.addEventListener('submit', function(ev){
@@ -2313,7 +2839,7 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
         return bkFail('Please enter a valid email address.', 'bk-email');
 
       // No endpoint configured yet: fall back to the visitor's email client.
-      if (!BOOK_ENDPOINT) {
+      if (!BOOK_ENDPOINT || !BOOK_ACCESS_KEY) {
         bkSay('Opening your email client with this inquiry addressed to ' + BOOK_TO +
               ' \u2014 send it from there to complete the request.', 'done');
         window.location.href = bkMailto(d);
@@ -2405,6 +2931,280 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
     var a = e.target.closest && e.target.closest('a[href*="laylo.com"]');
     if(a) load();
   }, {passive:true});
+})();
+</script>
+
+<script>
+/* ---- the menu ------------------------------------------------------
+   Escape closes, focus is trapped while it is open and handed back to
+   the button on the way out, and the page underneath cannot scroll.
+   The panel is `hidden` until it is asked for, so nothing about it
+   reaches the accessibility tree - or a search engine - at rest. */
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var panel = document.getElementById('navpanel');
+  var closeBtn = document.getElementById('npClose');
+  if(!btn || !panel) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var lastFocus = null, shutTimer = null;
+
+  function focusables(){
+    return [].slice.call(panel.querySelectorAll('a[href],button:not([disabled])'))
+             .filter(function(el){ return el.offsetParent !== null; });
+  }
+  function open(){
+    clearTimeout(shutTimer);
+    lastFocus = document.activeElement;
+    panel.hidden = false;
+    document.body.classList.add('np-open');
+    if (window.cthScrollLock) window.cthScrollLock(true);
+    btn.setAttribute('aria-expanded','true');
+    // one frame with the panel laid out but still clipped, so the
+    // transition has a start value to run from
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      panel.classList.add('open');
+    });});
+    (closeBtn || focusables()[0] || panel).focus();
+  }
+  function shut(){
+    panel.classList.remove('open');
+    document.body.classList.remove('np-open');
+    if (window.cthScrollLock) window.cthScrollLock(false);
+    btn.setAttribute('aria-expanded','false');
+    shutTimer = setTimeout(function(){ panel.hidden = true; }, reduce ? 0 : 280);
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function isOpen(){ return btn.getAttribute('aria-expanded') === 'true'; }
+
+  btn.addEventListener('click', function(){ isOpen() ? shut() : open(); });
+  if(closeBtn) closeBtn.addEventListener('click', shut);
+  // any destination closes it - same-page anchors would otherwise jump
+  // behind a panel that is still covering the thing they jumped to
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]');
+    if(a && a.target !== '_blank') shut();
+  });
+  document.addEventListener('keydown', function(e){
+    if(!isOpen()) return;
+    if(e.key === 'Escape'){ e.preventDefault(); shut(); return; }
+    if(e.key !== 'Tab') return;
+    var f = focusables(); if(!f.length) return;
+    var first = f[0], last = f[f.length-1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+})();
+</script>
+
+<script>
+/* ---- the way in ----
+   Held only until the two things the first frame actually needs have
+   resolved - the hero photograph and the font the wordmark is set in.
+   The line under the name steps on each of those, so it is reporting
+   real events rather than counting to a number. Floor so it cannot
+   flash, ceiling so it cannot stall, once per session, and never for
+   reduced motion or Save-Data. */
+(function(){
+  var el = document.getElementById('loader');
+  if(!el) return;
+  function drop(){ if(el && el.parentNode) el.parentNode.removeChild(el); }
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var thrifty = navigator.connection && navigator.connection.saveData;
+  var seen = false;
+  try{ seen = sessionStorage.getItem('cth.loaded') === '1'; }catch(e){}
+  if(seen || reduce || thrifty){ drop();
+    document.body.classList.add('mark-up');
+    document.body.classList.add('settled'); return; }
+
+  el.hidden = false;
+  document.documentElement.classList.add('loading');
+  if (window.cthScrollLock) window.cthScrollLock(true);
+
+  var START = Date.now(), FLOOR = 260, CEIL = 2800, done = false, p = 0.08;
+  var bar = document.getElementById('ldBar');
+  function step(by){ p = Math.min(1, p + by); if(bar) bar.style.setProperty('--p', p); }
+
+  function finish(){
+    if(done) return; done = true;
+    step(1);
+    setTimeout(function(){
+      el.classList.add('out');
+      document.documentElement.classList.remove('loading');
+      if (window.cthScrollLock) window.cthScrollLock(false);
+      // the wordmark comes up through its mask as the curtains part
+      document.body.classList.add('mark-up');
+      setTimeout(function(){ document.body.classList.add('settled'); }, 1250);
+      try{ sessionStorage.setItem('cth.loaded','1'); }catch(e){}
+      setTimeout(drop, 900);
+    }, Math.max(0, FLOOR - (Date.now() - START)));
+  }
+  setTimeout(finish, CEIL);
+  setTimeout(function(){ if(!done){ finish(); } drop(); }, 6000);   // last resort
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) finish();
+  });
+
+  /* Nothing starts until the face the name is set in has resolved: a mouth
+     closing on a fallback that then reflows into Archivo is worse than a
+     beat of black. Capped, so a slow font cannot hold the screen. */
+  var CHOMP = 1460;   // .64s waiting for the word + .82s of biting
+
+  /* every letter starts thrown somewhere off its mark and lands level, in a
+     shuffled order, so the word assembles itself while the page loads */
+  var LAND = 24, TRAVEL = 260;
+  var letters = [].slice.call(el.querySelectorAll('.ld-word .lc'));
+  letters.forEach(function(sp){
+    sp.style.setProperty('--dx', (Math.random() * 170 - 85).toFixed(0) + 'px');
+    sp.style.setProperty('--dy', (Math.random() * 155 - 78).toFixed(0) + 'px');
+    sp.style.setProperty('--rot', (Math.random() * 52 - 26).toFixed(0) + 'deg');
+    sp.style.setProperty('--sc', (0.5 + Math.random() * 0.4).toFixed(2));
+    sp.style.setProperty('--jy', (Math.random() * 16 - 8).toFixed(1) + 'px');
+    sp.style.setProperty('--jr', (Math.random() * 18 - 9).toFixed(1) + 'deg');
+  });
+
+  function land(){
+    var order = letters.map(function(_, i){ return i; });
+    for (var i = order.length - 1; i > 0; i--){            // Fisher-Yates
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = order[i]; order[i] = order[j]; order[j] = t;
+    }
+    order.forEach(function(idx, n){
+      setTimeout(function(){ letters[idx].classList.add('on'); }, n * LAND);
+    });
+    return (order.length - 1) * LAND + TRAVEL;
+  }
+
+  /* hold until the clay has actually decoded, or the letters land blank */
+  var clayReady = Promise.all([].slice.call(el.querySelectorAll('.ld-word img, .ld-mouth img')).map(function(img){
+    if (!img || img.complete) return Promise.resolve();
+    return new Promise(function(r){ img.addEventListener('load', r); img.addEventListener('error', r); });
+  }));
+  var chompDone = Promise.race([
+    clayReady,
+    new Promise(function(r){ setTimeout(r, 520); })
+  ]).then(function(){
+    el.classList.add('go');
+    var wordAt = land();
+    return new Promise(function(r){ setTimeout(r, Math.max(wordAt, CHOMP) - 60); });
+  });
+
+  function watch(){
+    var waits = [chompDone];
+    if (document.fonts && document.fonts.ready)
+      waits.push(document.fonts.ready.then(function(){ step(0.44); }));
+    var hero = document.querySelector('#hero .hero-photo img');
+    if (hero){
+      var img = hero.decode ? hero.decode().catch(function(){})
+        : hero.complete ? Promise.resolve()
+        : new Promise(function(r){ hero.addEventListener('load', r); hero.addEventListener('error', r); });
+      waits.push(img.then(function(){ step(0.44); }));
+    }
+    (waits.length ? Promise.all(waits) : Promise.resolve()).then(finish, finish);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch);
+  else watch();
+})();
+</script>
+<script src="assets/lenis.min.js" defer></script>
+
+<script>
+/* ---- how it moves -------------------------------------------------
+   1. Lenis eases the wheel on desktop. Phones are left alone entirely:
+      iOS momentum is already the thing worth copying, and every
+      smooth-scroll library on a touch screen is a downgrade of it.
+      Lenis drives the real scrollTop, so the veil, the scroll-spy, the
+      sticky bar and every IntersectionObserver on this page keep
+      working off the same numbers they always did.
+   2. Headings are split per character into masks and rise on entry.
+      Headings whose fill is background-clip:text are skipped - putting
+      spans inside one makes the text vanish outright.
+   ------------------------------------------------------------------ */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---------- 1. the wheel ---------- */
+  function startLenis(){
+    var coarse = window.matchMedia('(hover:none),(pointer:coarse)').matches;
+    if (reduce || coarse || !window.Lenis) return;
+    var lenis = new Lenis({
+      duration: 1.05,
+      easing: function(t){ return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
+      smoothWheel: true,
+      syncTouch: false,
+      autoRaf: true
+    });
+    window.cthLenis = lenis;
+    if (document.documentElement.classList.contains('loading')) lenis.stop();
+
+    // anchors travel on the same easing as the wheel, and clear the bar
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || a.target === '_blank') return;
+      var id = a.getAttribute('href');
+      if (!id || id === '#' || id === '#ttn') return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      var pad = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+      lenis.scrollTo(el, { offset: -pad, duration: 1.1 });
+      try { history.pushState(null, '', id); } catch(err){}
+    });
+  }
+  if (window.Lenis) startLenis();
+  else window.addEventListener('DOMContentLoaded', startLenis);
+
+  /* the panel and the loader both lock the page; Lenis has to be told,
+     or it keeps easing toward a target behind the lock */
+  window.cthScrollLock = function(on){
+    if (!window.cthLenis) return;
+    on ? window.cthLenis.stop() : window.cthLenis.start();
+  };
+
+  /* ---------- 2. the headings ---------- */
+  function split(h){
+    if (!h || h.dataset.split) return;
+    // background-clip:text does not survive child elements
+    var cs = getComputedStyle(h);
+    if (cs.webkitTextFillColor === 'rgba(0, 0, 0, 0)') return;
+    var text = h.textContent;
+    if (!text.trim()) return;
+    h.dataset.split = '1';
+    h.textContent = '';
+    var i = 0;
+    text.split(/(\s+)/).forEach(function(part){
+      if (!part) return;
+      if (/^\s+$/.test(part)) { h.appendChild(document.createTextNode(part)); return; }
+      var wd = document.createElement('span');
+      wd.className = 'wd';
+      part.split('').forEach(function(c){
+        var ch = document.createElement('span');
+        ch.className = 'ch';
+        ch.style.setProperty('--c', i++);
+        ch.textContent = c;
+        wd.appendChild(ch);
+      });
+      h.appendChild(wd);
+    });
+  }
+
+  function run(){
+    var heads = document.querySelectorAll('.sec-head h2');
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var obs = new IntersectionObserver(function(en, o){
+      en.forEach(function(e){
+        if (!e.isIntersecting) return;
+        e.target.classList.add('split-in');
+        o.unobserve(e.target);
+      });
+    }, { rootMargin:'0px 0px -10% 0px', threshold:0.15 });
+    heads.forEach(function(h){
+      split(h);
+      if (h.dataset.split) obs.observe(h.parentElement);
+    });
+  }
+  // wait for the real font: splitting against a fallback face measures wrong
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run).catch(run);
+  else window.addEventListener('load', run);
 })();
 </script>
 </body>
