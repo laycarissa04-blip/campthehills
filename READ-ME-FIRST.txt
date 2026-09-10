@@ -1,0 +1,44 @@
+Everything below is fixed in index.html. Three asset files are also still
+missing from the live server — they are in this zip too.
+
+WHAT WAS BROKEN ON THE LIVE SITE
+--------------------------------
+1. THE HERO PHOTO WAS BLANK
+   assets/hero-bleachers-3200.jpg was never uploaded. On a Retina screen
+   the browser picks that tier out of the srcset, gets a 404 — and a
+   browser that fails one srcset candidate does NOT try the next, it fails
+   the whole <img>. Fixed two ways: the file is here, AND the image now
+   falls back to the 2400px version if any tier fails, so a missing file
+   can never blank it again.
+
+2. HIS NAME WAS MISSING FROM THE TOP BAR ON PHONES
+   .tb-slot was display:none under 720px, left over from when the bar had
+   seven nav items the wordmark used to collide with. That nav is one Menu
+   button now. His name is back — clear of the buttons by 78px on a 393pt
+   phone, 14px on a 320pt SE.
+
+3. THE POPUPS COVERED HIS NAME AND THE SHOW DATE
+   Both sat at the foot of the hero, which is where the get-updates tab and
+   the out-now tab live. The name and the show line have moved to the top
+   of the frame together; the whole lower frame is photograph now, and the
+   fixed chrome has it to itself. Verified clear at 320, 390, 428, 1280,
+   1440 and 1728.
+
+4. THE GET-UPDATES PANEL IS PARED BACK
+   Now "get updates from camp" and the Join the list button. The grey
+   description and the grey footnote are gone.
+   NOTE: the footnote that mentioned "reply STOP" went with it. That is
+   fine — the button opens Laylo's own popup, which carries the real
+   consent language, and this site collects nothing itself. Flagging it so
+   you know it changed.
+
+ALSO STILL MISSING FROM THE SERVER
+----------------------------------
+   assets/lenis.min.js                the smooth scroll — silently dead
+                                      on desktop without it
+   assets/campthehills-press-kit.zip  the Download link in Contact 404s
+
+WHAT TO DO
+----------
+Copy these into the repo keeping the folder structure, commit, push.
+Everything else in your folder is already current.
