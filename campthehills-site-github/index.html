@@ -577,7 +577,7 @@ body.at-foot .on-tab{opacity:0;pointer-events:none;transition:opacity .3s var(--
 #hero{
   position:relative;z-index:1;background:#0a0a0a;border:0;
   min-height:100vh;min-height:100svh;padding:0;
-  display:flex;flex-direction:column;justify-content:flex-end;
+  display:flex;flex-direction:column;justify-content:flex-start;
   color:#fff;overflow:hidden;
 }
 #hero .wrap{width:100%}
@@ -916,9 +916,8 @@ button.btn{font:inherit;cursor:pointer}
   font:inherit;font-size:19px;line-height:1;cursor:pointer;padding:0;
 }
 .jb-close:hover,.jb-close:focus-visible{color:#fff}
-.jb-title{margin:0 0 8px;font-size:26px;line-height:.92;
+.jb-title{margin:0 0 15px;font-size:26px;line-height:.94;max-width:11ch;
   font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.03em;text-transform:lowercase}
-.jb-copy{margin:0 0 14px;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.76)}
 .jb-field{display:flex;border:1px solid rgba(255,255,255,.4)}
 .jb-second{border-top:0}
 .jb-field input{
@@ -934,8 +933,6 @@ button.btn{font:inherit;cursor:pointer}
   transition:background .16s var(--e-state),color .16s var(--e-state);
 }
 .jb-field button:hover,.jb-field button:focus-visible{background:var(--red);color:#fff}
-.jb-note{margin:11px 0 0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.72)}
-.jb-note[data-state="error"]{color:#ff8d86}
 .jb-done{margin:0;font-size:14px;line-height:1.45;color:rgba(255,255,255,.86)}
 /* iOS zooms the page when it focuses an input smaller than 16px */
 @media (max-width:900px){.jb-field input{font-size:16px}}
@@ -1347,17 +1344,24 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
   .work:hover{transform:none}
 }
 
-/* ---- phone: the sticky bar's left slot has to go ----------------
-   .tb-slot reserves only clamp(46px,13vw,190px) — about 51px on a 393pt
-   phone — but .tb-mark inside it is absolutely positioned, so the word
-   "campthehills" rendered at its natural ~100px and overflowed straight
-   under the nav: "campthehilllsic". There is no room for both at this
-   width, and the wordmark is already the biggest thing in the hero, so
-   the slot stands down and the nav takes the gutter. */
+/* ---- phone: the sticky bar keeps his name ----------------------
+   This slot used to be display:none under 720px, because .tb-mark is
+   absolutely positioned inside a ~51px slot and the word "campthehills"
+   rendered at its natural ~95px straight under the seven-item nav:
+   "campthehilllsic". That nav no longer exists — the bar carries one
+   Menu button now, pushed right by margin-left:auto — so the collision
+   is gone and there is room for the name. The slot is given a real
+   width instead of the placeholder 51px, and the name steps down one
+   size on the narrowest phones. Measured: it clears the buttons by 78px
+   on a 393pt phone and still by 14px on a 320pt SE. */
 @media (max-width:720px){
-  .tb-slot{display:none}
-
+  .tb-slot{display:flex;min-width:100px}
 }
+@media (max-width:400px){
+  .tb-slot{min-width:92px}
+  .tb-mark{font-size:12.5px}
+}
+
 
 /* ---------- browser surfaces ----------
    Selection, caret, scrollbar, underline offset and tabular figures ship
@@ -1765,6 +1769,36 @@ body.settled #hero .hero-photo{transition:none}
   .sec-head .num{opacity:1;transform:translateY(-.9em);transition:none}
   .ew-links a span{transition:none;transform:none}
 }
+
+/* ---- the name sits at the head of the frame ----
+   It used to be anchored to the foot, where the get-updates tab and the
+   out-now tab both live — on a phone the tab ran straight across it and
+   his name read "…thehills". Measured: the tab spanned x12–378 against a
+   wordmark at x18–322. Moving the name to the top clears every piece of
+   fixed corner chrome, which all lives at the bottom, and leaves the foot
+   to the fixed chrome entirely. The show line came up with it: left at the
+   foot it was simply the next thing the get-updates panel covered. Name and
+   date now travel together and the whole lower frame is photograph. */
+.hero-head{
+  position:relative;z-index:3;flex:none;
+  padding-top:calc(clamp(74px,8vw,104px) + env(safe-area-inset-top));
+}
+#hero .mark.mark-set{padding-bottom:.09em}
+
+/* the show line runs the full width of a phone, and .15em of tracking was
+   enough to push its arrow onto a line of its own. Tighter tracking and a
+   smaller gap keep it as one line without shrinking the type. */
+@media (max-width:560px){
+  #hero .hero-kick{letter-spacing:.105em;gap:7px}
+  #hero .hero-kick .hk-go{width:12px;height:12px}
+}
+@media (max-width:360px){
+  /* a 320pt SE still wrapped. The arrow is decorative here — the whole
+     line is the link and you tap it, you do not follow a chevron — so it
+     stands down rather than pushing the date onto a second line. */
+  #hero .hero-kick{letter-spacing:.06em;font-size:10.5px;gap:6px}
+  #hero .hero-kick .hk-go{display:none}
+}
 </style>
 </head>
 <body class="photo-hero">
@@ -1887,7 +1921,14 @@ body.settled #hero .hero-photo{transition:none}
      moment instead of the first thing every visitor waits through. -->
 <header id="hero">
   <div class="hero-photo">
-    <!-- Re-cut from Carissa's 5184x3456 original, with a 3200 tier added:
+    <!-- A browser that picks a srcset candidate and gets a 404 does NOT try
+         the next one - it fails the whole <img> and you get a broken hero.
+         That is exactly what happened live on 10 Sep when hero-bleachers-3200
+         had not been uploaded: on a retina display the browser chose 3200 and
+         the photograph vanished. The onerror below drops srcset entirely and
+         falls back to the 2400, so a missing tier can never blank it again.
+
+         Re-cut from Carissa's 5184x3456 original, with a 3200 tier added:
          the old set topped out at 2400, which is soft on any 2x display -
          a 393px phone at 3x wants 1179 and was being served 800. Plain
          srcset with w-descriptors lets the browser pick by viewport AND
@@ -1899,10 +1940,11 @@ body.settled #hero .hero-photo{transition:none}
                  assets/hero-bleachers-3200.jpg 3200w"
          sizes="100vw" width="2400" height="1600"
          alt="campthehills sitting alone on empty aluminium bleachers in hard afternoon sunlight."
-         fetchpriority="high" decoding="async">
+         fetchpriority="high" decoding="async"
+         onerror="this.onerror=null;this.removeAttribute('srcset');this.removeAttribute('sizes');this.src='assets/hero-bleachers.jpg'">
   </div>
 
-  <div class="wrap hero-bot">
+  <div class="wrap hero-head">
     <a class="hero-kick" href="#shows">
       <span class="hk-dot" aria-hidden="true"></span>
       Next show<span class="hk-sep">/</span>Dec 1, 2026<span class="hk-sep">/</span>New York, NY
@@ -2281,14 +2323,12 @@ body.settled #hero .hero-photo{transition:none}
 
   <div class="jb-panel" id="jbPanel" role="region" aria-labelledby="jbTitle">
     <button class="jb-close" id="jbClose" type="button" aria-label="Hide">&times;</button>
-    <p class="jb-title" id="jbTitle">get updates</p>
+    <p class="jb-title" id="jbTitle">get updates from camp</p>
     <div id="jbInner">
-      <p class="jb-copy">New music and show dates &mdash; by text or email, straight from campthehills.</p>
       <a class="jb-go" href="https://laylo.com/campthehills/profile" target="_blank" rel="noopener">
         Join the list
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h11M9.5 3.5 14 8l-4.5 4.5"/></svg>
       </a>
-      <p class="jb-note">One tap, on Laylo. Leave whenever &mdash; reply STOP to the texts, unsubscribe from any email.</p>
     </div>
   </div>
 </aside>
