@@ -313,8 +313,14 @@
      --e-state is the site's original curve and answers a person: hover,
      focus, a panel opening. --e-arrive is the expo settle that everything
      entering the page rides in on. Durations are a scale, not a scatter. */
-  --e-state:var(--e-state);
-  --e-arrive:var(--e-arrive);
+  /* These two were defined as var(--e-state) and var(--e-arrive) - each
+     naming itself. A self-referential custom property is invalid at
+     computed-value time, so every one of the 200-odd uses below was
+     silently falling back to plain `ease`, including the mouth's bite.
+     The values are the ones this project documented: --e-state is the
+     site's original curve, --e-arrive the expo settle. */
+  --e-state:cubic-bezier(.2,.7,.3,1);
+  --e-arrive:cubic-bezier(.16,1,.3,1);
   --t-fast:.16s;
   --t-base:.28s;
   --t-slow:.48s;
@@ -1566,55 +1572,63 @@ body.np-open{overflow:hidden}
 .jaw{transform:translateY(0)}
 .ju{transform:translateY(-118%)}
 .jl{transform:translateY(118%)}
-.loader.go .ju{animation:chomp-u .82s .64s forwards}
-.loader.go .jl{animation:chomp-l .82s .64s forwards}
+.loader.go .ju{animation:chomp-u 1.5s .7s forwards}
+.loader.go .jl{animation:chomp-l 1.5s .7s forwards}
 .ld-mark .ld-word{display:flex;align-items:flex-end;justify-content:center;gap:.03em}
 /* his own clay alphabet, cut out of the sheet Carissa supplied. Each letter
    keeps its real proportion - S is taller than C because it is, in the clay -
    so the word sits the way it was made rather than on a forced baseline. */
 .ld-mark .lc img{display:block;height:calc(var(--r) * 1em);width:auto}
-.loader.go .ld-mark .ld-word{animation:chomp-bite .82s .64s forwards}
+.loader.go .ld-mark .ld-word{animation:chomp-bite 1.5s .7s forwards}
 /* each letter takes the bite itself: a jolt on the way down and a harder
    one on the second pass, springing back. It rides on the <img> so the
    landing transform on .lc is left alone. */
-.loader.go .ld-mark .lc img{animation:chew .82s .64s both}
+.loader.go .ld-mark .lc img{animation:chew 1.5s .7s both}
 @keyframes chew{
-  0%,33%{transform:none}
-  39%{transform:translateY(var(--jy)) rotate(var(--jr)) scaleY(.9)}
-  46%{transform:translateY(calc(var(--jy) * -.35)) rotate(calc(var(--jr) * -.4))}
-  54%{transform:none}
-  62%{transform:none}
-  69%{transform:translateY(calc(var(--jy) * -1.5)) rotate(calc(var(--jr) * -1.4)) scaleY(.84)}
-  78%{transform:translateY(calc(var(--jy) * .5)) rotate(calc(var(--jr) * .5))}
-  88%,100%{transform:none}
+  0%,31%{transform:none}
+  34%,40%{transform:translateY(var(--jy)) rotate(var(--jr)) scaleY(.9)}
+  48%{transform:translateY(calc(var(--jy) * -.35)) rotate(calc(var(--jr) * -.4))}
+  56%{transform:none}
+  64%{transform:none}
+  68%,76%{transform:translateY(calc(var(--jy) * -1.5)) rotate(calc(var(--jr) * -1.4)) scaleY(.84)}
+  84%{transform:translateY(calc(var(--jy) * .5)) rotate(calc(var(--jr) * .5))}
+  92%,100%{transform:none}
 }
 /* two bites: the first a warning, the second all the way through */
+/* 1.5s, not .82s: at the old speed each bite closed in 139ms, which reads
+   as a flicker rather than a mouth. The shape is unchanged - what is new is
+   that the jaws now HOLD shut for a beat at 33-40% and 68-76%, which is what
+   actually makes a chomp land. */
 @keyframes chomp-u{
   0%  {transform:translateY(-118%);animation-timing-function:cubic-bezier(.55,0,.85,.35)}
-  20% {transform:translateY(-72%); animation-timing-function:cubic-bezier(.55,0,.85,.35)}
-  37% {transform:translateY(-2%);  animation-timing-function:var(--e-state)}
-  52% {transform:translateY(-52%); animation-timing-function:cubic-bezier(.6,0,.9,.3)}
-  66% {transform:translateY(2%);   animation-timing-function:var(--e-state)}
-  82% {transform:translateY(-62%); animation-timing-function:cubic-bezier(.4,0,.2,1)}
+  18% {transform:translateY(-72%); animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  33% {transform:translateY(-2%);  animation-timing-function:linear}
+  40% {transform:translateY(-2%);  animation-timing-function:var(--e-state)}
+  54% {transform:translateY(-52%); animation-timing-function:cubic-bezier(.6,0,.9,.3)}
+  68% {transform:translateY(2%);   animation-timing-function:linear}
+  76% {transform:translateY(2%);   animation-timing-function:var(--e-state)}
+  88% {transform:translateY(-62%); animation-timing-function:cubic-bezier(.4,0,.2,1)}
   100%{transform:translateY(-130%)}
 }
 @keyframes chomp-l{
   0%  {transform:translateY(118%); animation-timing-function:cubic-bezier(.55,0,.85,.35)}
-  20% {transform:translateY(72%);  animation-timing-function:cubic-bezier(.55,0,.85,.35)}
-  37% {transform:translateY(2%);   animation-timing-function:var(--e-state)}
-  52% {transform:translateY(52%);  animation-timing-function:cubic-bezier(.6,0,.9,.3)}
-  66% {transform:translateY(-2%);  animation-timing-function:var(--e-state)}
-  82% {transform:translateY(62%);  animation-timing-function:cubic-bezier(.4,0,.2,1)}
+  18% {transform:translateY(72%);  animation-timing-function:cubic-bezier(.55,0,.85,.35)}
+  33% {transform:translateY(2%);   animation-timing-function:linear}
+  40% {transform:translateY(2%);   animation-timing-function:var(--e-state)}
+  54% {transform:translateY(52%);  animation-timing-function:cubic-bezier(.6,0,.9,.3)}
+  68% {transform:translateY(-2%);  animation-timing-function:linear}
+  76% {transform:translateY(-2%);  animation-timing-function:var(--e-state)}
+  88% {transform:translateY(62%);  animation-timing-function:cubic-bezier(.4,0,.2,1)}
   100%{transform:translateY(130%)}
 }
 /* the name takes the hit */
 @keyframes chomp-bite{
-  0%,33%{transform:none}
-  39%{transform:scaleY(.93) scaleX(1.012)}
-  47%{transform:none}
-  62%{transform:none}
-  69%{transform:scaleY(.88) scaleX(1.02)}
-  80%,100%{transform:none}
+  0%,31%{transform:none}
+  34%,40%{transform:scaleY(.93) scaleX(1.012)}
+  50%{transform:none}
+  64%{transform:none}
+  68%,76%{transform:scaleY(.88) scaleX(1.02)}
+  86%,100%{transform:none}
 }
 /* the clay letters off the same artwork. Rainbow lives inside his work and
    the chrome stays quiet - the loader IS the artwork here, so it earns it.
@@ -2454,17 +2468,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
      centre is what keeps the overlap the same depth at every width: the
      wordmark is 154px tall on a desktop and 45px on a phone, so centring it
      buried the word on the narrow crop and only grazed him on the wide one. */
-  var HEAD_TOP = 0.271, HEAD_BOT = 0.395, PHOTO_AR = 1.5002;
-  /* How deep the overlap goes has to shrink with the viewport. `cover` on a
-     narrow frame crops hard to the middle, so he fills far more of it: the
-     same 0.42 that puts his hair across two letters on a desktop buries four
-     on a phone. Below 520px the wordmark only just touches the top of his
-     hair. */
-  function headDip(w){
-    if (w >= 900) return 0.42;
-    if (w <= 520) return 0.24;
-    return 0.24 + (w - 520) / 380 * 0.18;
-  }
+  var HEAD_TOP = 0.271, HEAD_BOT = 0.395, HEAD_DIP = 0.42, PHOTO_AR = 1.5002;
   function placeMark(){
     if (!mark || !hero) return;
     mark.style.marginTop = '0px';
@@ -2472,7 +2476,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
     if (!fw || !fh) return;
     var dispW = Math.max(fw, fh * PHOTO_AR), dispH = dispW / PHOTO_AR;
     var oy = -(dispH - fh) * 0.38;
-    var dip = (HEAD_TOP + (HEAD_BOT - HEAD_TOP) * headDip(fw)) * dispH + oy;
+    var dip = (HEAD_TOP + (HEAD_BOT - HEAD_TOP) * HEAD_DIP) * dispH + oy;
     var r = mark.getBoundingClientRect();
     var top = r.top - hero.getBoundingClientRect().top;
     var want = dip - r.height;
@@ -2482,15 +2486,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
   function layMark(){ fitMark(); placeMark(); }
   layMark();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(layMark);
-  var rt;
-  function relay(){ clearTimeout(rt); rt = setTimeout(layMark, 120); }
-  window.addEventListener('resize', relay);
-  /* iOS changes the hero's height whenever the URL bar collapses or returns,
-     and that moves where his head lands in the crop. window.resize is not
-     reliable for it; visualViewport is. */
-  window.addEventListener('orientationchange', function(){ setTimeout(layMark, 260); });
-  if (window.visualViewport) window.visualViewport.addEventListener('resize', relay);
-  window.addEventListener('load', layMark);
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(layMark, 120); });
 
   // ---- scroll behaviour: the bar solidifies, the nav marks its place ----
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2949,7 +2945,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
   document.documentElement.classList.add('loading');
   if (window.cthScrollLock) window.cthScrollLock(true);
 
-  var START = Date.now(), FLOOR = 260, CEIL = 2800, done = false, p = 0.08;
+  var START = Date.now(), FLOOR = 260, CEIL = 3600, done = false, p = 0.08;
   var bar = document.getElementById('ldBar');
   function step(by){ p = Math.min(1, p + by); if(bar) bar.style.setProperty('--p', p); }
 
@@ -2968,7 +2964,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
     }, Math.max(0, FLOOR - (Date.now() - START)));
   }
   setTimeout(finish, CEIL);
-  setTimeout(function(){ if(!done){ finish(); } drop(); }, 6000);   // last resort
+  setTimeout(function(){ if(!done){ finish(); } drop(); }, 7200);   // last resort
   document.addEventListener('visibilitychange', function(){
     if (document.hidden) finish();
   });
@@ -2976,11 +2972,11 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
   /* Nothing starts until the face the name is set in has resolved: a mouth
      closing before the face has settled is worse than a
      beat of black. Capped, so a slow font cannot hold the screen. */
-  var CHOMP = 1460;   // .64s waiting for the word + .82s of biting
+  var CHOMP = 2200;   // .7s waiting for the word + 1.5s of biting
 
   /* every letter starts thrown somewhere off its mark and lands level, in a
      shuffled order, so the word assembles itself while the page loads */
-  var LAND = 24, TRAVEL = 260;
+  var LAND = 34, TRAVEL = 320;
   var letters = [].slice.call(el.querySelectorAll('.ld-word .lc'));
   letters.forEach(function(sp){
     sp.style.setProperty('--dx', (Math.random() * 170 - 85).toFixed(0) + 'px');
