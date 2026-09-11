@@ -1122,37 +1122,39 @@ body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transitio
 }
 
 /* ---- the wordmark passes behind him ----
-   A second copy of the photograph sits above the type and is clipped to his
-   silhouette by a mask cut from the frame itself. It carries the same scrim
-   as the original, and the mask clips the photograph and the scrim together
-   - which is the whole trick: cut the scrim out of the layer and he would
-   brighten wherever he overlaps the name. `mask-size:cover` with the same
-   `57% 38%` the photograph uses keeps the mask registered to the pixels at
-   every crop, so nothing has to be re-tuned per breakpoint. */
+   A cut-out of him sits above the type, so the name runs behind his head.
+
+   This was a CSS mask over a second copy of the photograph, which is the
+   tidier construction and which Chromium renders correctly - but it did not
+   survive Carissa's browser, and a mask that fails to load takes the whole
+   layer with it silently. So it is now just an image with an alpha channel,
+   positioned with the same `cover` / `57% 38%` the photograph uses, which
+   every engine has agreed on for a decade.
+
+   The photograph's scrim (.hero-photo::after) is baked into these pixels at
+   a flat 8.5%, because his head lands at frame-fraction .25-.40 at every
+   aspect ratio - `object-position:38%` is what holds that steady - and the
+   gradient is .07-.10 black across that whole band. The cut-out then fades
+   out through his chest, where the gradient starts climbing and the flat
+   value would stop matching. The wordmark never reaches that far down. */
 .hero-cut{
   position:absolute;inset:0;z-index:4;pointer-events:none;
   will-change:transform;
   transform:translate3d(0,var(--par,0px),0) scale(var(--hz,1.06));
   transition:transform 1.16s var(--e-arrive);
-  -webkit-mask-image:url(assets/hero-cut.png);mask-image:url(assets/hero-cut.png);
-  -webkit-mask-size:cover;mask-size:cover;
-  -webkit-mask-position:57% 38%;mask-position:57% 38%;
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
 }
 .hero-cut img{width:100%;height:100%;object-fit:cover;object-position:57% 38%}
-.hero-cut::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to bottom,
-    rgba(0,0,0,.46) 0%, rgba(0,0,0,.10) 24%,
-    rgba(0,0,0,.06) 46%, rgba(0,0,0,.44) 76%, rgba(0,0,0,.80) 100%);
-}
 #hero .wrap{position:relative;z-index:2}
 #hero .hero-bot{padding-bottom:calc(clamp(30px,4.6vw,62px) + env(safe-area-inset-bottom))}
 
 /* ---- the line above the wordmark ---- */
 .hero-kick{
   display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
-  margin:0 0 clamp(14px,1.8vw,22px);
+  /* the text is 11-13px, which made the link a ~15px-tall target and easy to
+     miss. The padding grows the hit area to ~40px; the matching negative
+     margins mean nothing moves on the page. */
+  padding:13px 16px;
+  margin:-13px 0 calc(clamp(14px,1.8vw,22px) - 13px) -16px;
   text-decoration:none;color:#fff;
   font-size:clamp(11px,1.05vw,13px);letter-spacing:normal;text-transform:lowercase;
   font-weight:400;
@@ -1978,17 +1980,11 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
     </h1>
   </div>
 
-  <!-- The same photograph again, clipped to his silhouette, painted above the
-       wordmark - so the name runs behind his head. The mask is alpha only
-       (49 KB) and the jpg itself is already in cache from .hero-photo. -->
+  <!-- He is cut out of the frame and laid back over the wordmark, so the
+       name runs behind his head. 36 KB, and the scrim is baked in. -->
   <div class="hero-cut" aria-hidden="true">
-    <img src="assets/hero-bleachers-1400.jpg"
-         srcset="assets/hero-bleachers-800.jpg 800w,
-                 assets/hero-bleachers-1400.jpg 1400w,
-                 assets/hero-bleachers.jpg 2400w,
-                 assets/hero-bleachers-3200.jpg 3200w"
-         sizes="100vw" width="2400" height="1600" alt="" decoding="async"
-         onerror="this.onerror=null;this.removeAttribute('srcset');this.removeAttribute('sizes');this.src='assets/hero-bleachers.jpg'">
+    <img src="assets/hero-cut.webp" alt="" width="2000" height="1333"
+         decoding="async" fetchpriority="high">
   </div>
 </header>
 
