@@ -821,38 +821,28 @@ button.btn{font:inherit;cursor:pointer}
   gap:clamp(28px,5vw,90px);align-items:start;
 }
 
-.f-row{margin-bottom:clamp(18px,2.4vw,26px)}
-.f-row label{
-  display:block;margin-bottom:6px;
-  font-size:12px;font-variation-settings:"wdth" 88,"wght" 750;letter-spacing:.05em;color:var(--dim);
+/* the address is the whole ask now: no form, just the one thing to do */
+.reach h3{margin:0 0 clamp(10px,1.4vw,16px);font-size:12px;
+  font-variation-settings:"wdth" 88,"wght" 750;letter-spacing:.05em;color:var(--dim)}
+.reach-mail{
+  display:inline-block;max-width:100%;
+  font-size:clamp(23px,3.8vw,48px);line-height:1.03;letter-spacing:-.032em;
+  font-variation-settings:"wdth" 106,"wght" 820;
+  color:var(--ink);text-decoration:none;
+  border-bottom:3px solid var(--ink);padding-bottom:.06em;
+  overflow-wrap:anywhere;
+  transition:color var(--t-fast) var(--e-state),border-color var(--t-fast) var(--e-state);
 }
-.f-row input,.f-row select,.f-row textarea{
-  width:100%;font:inherit;font-size:16px;color:var(--ink);
-  background:transparent;border:0;border-bottom:1px solid var(--ink);
-  padding:9px 2px;border-radius:0;
-}
-.f-row textarea{resize:vertical;min-height:96px;line-height:1.45}
-.f-row select{appearance:none;-webkit-appearance:none;cursor:pointer;
-  background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);
-  background-position:calc(100% - 12px) 55%,calc(100% - 7px) 55%;
-  background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:26px}
-.f-row input:focus,.f-row select:focus,.f-row textarea:focus{outline:none;border-bottom-color:var(--red);background:#fafafa}
-.f-row input:invalid:not(:placeholder-shown){border-bottom-color:var(--red)}
-.f-two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px)}
-.f-send{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:clamp(6px,1.4vw,12px)}
-.f-note{margin:14px 0 0;font-size:13px;color:var(--dim);max-width:44ch;line-height:1.5}
-.f-note[data-state="done"]{color:var(--ink);font-variation-settings:"wdth" 92,"wght" 700}
-.f-note[data-state="error"]{color:var(--red);font-variation-settings:"wdth" 92,"wght" 700}
+.reach-mail:hover,.reach-mail:focus-visible{color:var(--red);border-bottom-color:var(--red)}
+.reach-alt{margin:clamp(16px,2vw,24px) 0 0;font-size:14.5px;color:var(--dim);line-height:1.5}
+.reach-alt a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);
+  padding-bottom:1px;transition:color var(--t-fast) var(--e-state),border-color var(--t-fast) var(--e-state)}
+.reach-alt a:hover,.reach-alt a:focus-visible{color:var(--red);border-color:var(--red)}
+@media (prefers-reduced-motion:reduce){.reach-mail,.reach-alt a{transition:none}}
 
 .direct h3{margin:0 0 8px;font-size:12px;font-variation-settings:"wdth" 88,"wght" 750;letter-spacing:.05em;color:var(--dim)}
 .direct .blk{padding-bottom:clamp(16px,2.2vw,22px);margin-bottom:clamp(16px,2.2vw,22px);border-bottom:1px solid var(--rule)}
 .direct .blk:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
-.direct a.big{
-  font-size:clamp(15px,1.5vw,19px);font-variation-settings:"wdth" 100,"wght" 700;
-  letter-spacing:-.015em;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:2px;
-  word-break:break-word;
-}
-.direct a.big:hover{color:var(--red);border-color:var(--red)}
 .direct .where{margin:10px 0 0;font-size:13.5px;color:var(--dim);line-height:1.5}
 
 /* ---------- platform tiles ---------- */
@@ -968,6 +958,9 @@ footer a{color:#fff}
 @media (max-width:900px){
   .release,.signup{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
+  /* stacked, the address needs the same rule the blocks below it have,
+     or it floats loose against "Based in" */
+  .reach{padding-bottom:clamp(18px,3vw,26px);border-bottom:1px solid var(--rule)}
   .covers{grid-template-columns:repeat(2,1fr)}
   .release figure{max-width:420px}
 }
@@ -977,8 +970,6 @@ footer a{color:#fff}
 }
 @media (max-width:560px){
   .sec-head .num{display:none}
-  .f-two{grid-template-columns:1fr}
-  .f-send{flex-direction:column;align-items:flex-start;gap:12px}
 }
 
 /* ---------- next-show alert (topbar) ---------- */
@@ -1045,40 +1036,6 @@ footer a{color:#fff}
 
 
 
-/* booking form: spam trap and send states */
-.f-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.btn[aria-busy="true"]{opacity:.62;cursor:progress}
-.f-sent{
-  border:1px solid var(--ink);padding:clamp(18px,2.4vw,26px);
-  display:flex;flex-direction:column;gap:8px;align-items:flex-start;
-}
-.f-sent h3{
-  margin:0;font-size:clamp(19px,2.2vw,26px);line-height:1.05;letter-spacing:-.02em;
-  font-variation-settings:"wdth" 100,"wght" 800;
-}
-.f-sent p{margin:0;font-size:14.5px;line-height:1.55;color:var(--dim);max-width:46ch}
-.f-sent .f-lead{color:var(--ink);font-size:15.5px;max-width:44ch}
-.f-star{width:clamp(30px,3.4vw,42px);height:auto;fill:var(--red);display:block;
-  animation:f-star-in .62s var(--e-arrive) both}
-@keyframes f-star-in{from{opacity:0;transform:scale(.5) rotate(-28deg)}to{opacity:1;transform:none}}
-.f-recap{
-  display:flex;align-items:baseline;gap:11px;flex-wrap:wrap;
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  padding:11px 0;margin:4px 0 2px;width:100%;max-width:none;
-  font-size:15px;color:var(--ink);font-variation-settings:"wdth" 92,"wght" 700;
-}
-.f-recap-l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
-  font-variation-settings:"wdth" 88,"wght" 700;flex:none}
-.f-sent .f-alt{font-size:13.5px}
-.f-sent .f-alt a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule);
-  padding-bottom:1px;transition:color .16s,border-color .16s}
-.f-sent .f-alt a:hover,.f-sent .f-alt a:focus-visible{color:var(--red);border-bottom-color:var(--red)}
-.f-sent:focus{outline:none}
-@media (prefers-reduced-motion:reduce){.f-star{animation:none}}
-.f-sent .tick{
-  width:26px;height:26px;background:var(--ink);color:#fff;display:grid;place-items:center;
-  font-size:14px;line-height:1;margin-bottom:2px;
-}
 
 /* get updates: goes to the real list on Laylo */
 .jb-go{
@@ -1134,20 +1091,6 @@ footer a{color:#fff}
 }
 /* second visit in a session: the chrome is already there, no entrance */
 body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transition:none!important}
-
-/* Instagram as a second way in, kept as one line under the address rather
-   than a button - a social button would make the whole column read casual. */
-.direct .alt-reach{
-  margin:11px 0 0;font-size:13px;line-height:1.5;color:var(--dim);
-}
-.direct .alt-reach a{
-  color:var(--ink);text-decoration:none;
-  border-bottom:1px solid var(--rule);
-  font-variation-settings:"wdth" 94,"wght" 700;
-  transition:color .16s var(--e-state),border-color .16s var(--e-state);
-}
-.direct .alt-reach a:hover,.direct .alt-reach a:focus-visible{color:var(--red);border-color:var(--red)}
-@media (prefers-reduced-motion:reduce){.direct .alt-reach a{transition:none}}
 
 /* ==================================================================
    THE LANDING, REBUILT — 8 Sep 2026
@@ -2225,52 +2168,16 @@ body.settled #hero .hero-photo{transition:none}
         <span class="line"></span>
         <span class="num">inquiries</span>
       </div>
-      <p class="page-lede">Show offers, press, sync licensing and production inquiries. Complete the form below, or write directly to <a href="mailto:contact@campthehills.net?subject=Booking%20inquiry">contact@campthehills.net</a>.</p>
+      <p class="page-lede">Show offers, press, sync licensing and production inquiries &mdash; write directly to the address below.</p>
 
       <div class="contact-grid">
-        <div>
-          <form id="bookForm" novalidate>
-            <div class="f-row">
-              <label for="bk-about">Subject</label>
-              <input id="bk-about" name="subject" type="text" placeholder=" " required>
-            </div>
-
-            <div class="f-two">
-              <div class="f-row">
-                <label for="bk-name">Full name</label>
-                <input id="bk-name" name="name" type="text" autocomplete="name" placeholder=" " required>
-              </div>
-              <div class="f-row">
-                <label for="bk-email">Email address</label>
-                <input id="bk-email" name="email" type="email" autocomplete="email" placeholder=" " required>
-              </div>
-            </div>
-
-            <div class="f-row">
-              <label for="bk-more">Message</label>
-              <textarea id="bk-more" name="message" rows="4" placeholder=" "></textarea>
-            </div>
-
-            <!-- spam trap: real people never see this, bots fill it in -->
-            <div class="f-hp" aria-hidden="true">
-              <label for="bk-company">Company</label>
-              <input id="bk-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
-            </div>
-
-            <div class="f-send">
-              <button class="btn" type="submit">Send message</button>
-              <span style="font-size:13px;color:var(--dim)">Or write to <a href="mailto:contact@campthehills.net?subject=Booking%20inquiry" style="color:var(--ink)">contact@campthehills.net</a></span>
-            </div>
-            <p class="f-note" id="bookNote" role="status" aria-live="polite"></p>
-          </form>
+        <div class="reach">
+          <h3>Booking, press &amp; sync</h3>
+          <a class="reach-mail" href="mailto:contact@campthehills.net?subject=Inquiry%20via%20campthehills.net">contact@campthehills.net</a>
+          <p class="reach-alt">Or DM <a href="https://www.instagram.com/campthehills/" target="_blank" rel="noopener">on Instagram</a>.</p>
         </div>
 
         <div class="direct">
-          <div class="blk">
-            <h3>Booking &amp; live</h3>
-            <a class="big" href="mailto:contact@campthehills.net?subject=Booking%20inquiry">contact@campthehills.net</a>
-            <p class="alt-reach">or DM <a href="https://www.instagram.com/campthehills/" target="_blank" rel="noopener">on Instagram</a></p>
-          </div>
           <div class="blk">
             <h3>Based in</h3>
             <p class="where">Los Angeles, California.</p>
@@ -2752,158 +2659,6 @@ body.settled #hero .hero-photo{transition:none}
   }, {rootMargin:'200px'});
     lazy.forEach(function(v){ io.observe(v); });
   })();
-
-  /* ============================================================
-     BOOKING FORM
-
-     Paste the endpoint your form service gives you between the
-     quotes below and the form posts for real — the visitor stays
-     on the page and Camp gets an email. Two minutes to set up:
-
-       Formspree   formspree.io  ->  https://formspree.io/f/xxxxxxxx
-       Basin       usebasin.com  ->  https://usebasin.com/f/xxxxxxxxxx
-       Web3Forms   web3forms.com ->  https://api.web3forms.com/submit
-                                     (also paste the access key below)
-
-     Leave BOOK_ENDPOINT empty and the form behaves as it did before,
-     opening the visitor's email client with everything filled in.
-     ============================================================ */
-  var BOOK_ENDPOINT = 'https://api.web3forms.com/submit';
-  var BOOK_ACCESS_KEY = 'c27fd7e6-6afc-4fe6-a535-30a2bb66e31d';
-                                     //     Until it is filled in, the form still
-                                     //     works: it falls back to the mail client.
-  var BOOK_TO = 'contact@campthehills.net';
-
-  var bookForm = document.getElementById('bookForm');
-  var bookNote = document.getElementById('bookNote');
-
-  if (bookForm) {
-    var bookBtn = bookForm.querySelector('button[type=submit]');
-
-    function bkVal(id){ var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
-    function bkSay(msg, state){
-      bookNote.textContent = msg;
-      if (state) bookNote.setAttribute('data-state', state);
-      else bookNote.removeAttribute('data-state');
-    }
-    function bkFail(msg, focusId){
-      bkSay(msg, 'error');
-      var el = document.getElementById(focusId);
-      if (el) el.focus();
-      return false;
-    }
-
-    function bkMailto(d){
-      var lines = [
-        'Subject: ' + d.subject,
-        'Name: ' + d.name,
-        'Email: ' + d.email,
-        '',
-        d.message || '(no message added)',
-        '',
-        'Sent from campthehills.net'
-      ];
-      return 'mailto:' + BOOK_TO
-        + '?subject=' + encodeURIComponent(d.subject + ' \u2014 ' + d.name)
-        + '&body=' + encodeURIComponent(lines.join('\n'));
-    }
-
-    /* The panel the form turns into. It answers the three things
-       somebody who just pressed send actually wants to know: that it
-       arrived, roughly when they will hear back, and what to do if this
-       was urgent. Their own subject line is echoed so they can see the
-       site read them correctly. */
-    function bkSent(d){
-      var first = (d.name.split(' ')[0] || '').trim();
-      var box = document.createElement('div');
-      box.className = 'f-sent';
-      box.setAttribute('role','status');
-      box.setAttribute('tabindex','-1');
-
-      var star = document.createElementNS('http://www.w3.org/2000/svg','svg');
-      star.setAttribute('class','f-star');
-      star.setAttribute('viewBox','-6 -6 112 112');
-      star.setAttribute('aria-hidden','true');
-      var path = document.createElementNS('http://www.w3.org/2000/svg','path');
-      path.setAttribute('d','M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z');
-      star.appendChild(path);
-
-      var h = document.createElement('h3');
-      h.textContent = first ? ('thank you, ' + first) : 'thank you';
-
-      var p1 = document.createElement('p');
-      p1.className = 'f-lead';
-      p1.textContent = 'Your message reached campthehills. The reply will come to '
-                     + d.email + '.';
-
-      var recap = document.createElement('p');
-      recap.className = 'f-recap';
-      var rl = document.createElement('span'); rl.className='f-recap-l'; rl.textContent='You sent';
-      var rv = document.createElement('span'); rv.textContent = d.subject;
-      recap.appendChild(rl); recap.appendChild(rv);
-
-      var p2 = document.createElement('p');
-      p2.className = 'f-alt';
-      p2.appendChild(document.createTextNode('If it is time-sensitive, write straight to '));
-      var a = document.createElement('a');
-      a.href = 'mailto:' + BOOK_TO; a.textContent = BOOK_TO;
-      p2.appendChild(a);
-      p2.appendChild(document.createTextNode(' or DM on '));
-      var ig = document.createElement('a');
-      ig.href = 'https://www.instagram.com/campthehills/';
-      ig.target = '_blank'; ig.rel = 'noopener'; ig.textContent = 'Instagram';
-      p2.appendChild(ig); p2.appendChild(document.createTextNode('.'));
-
-      box.appendChild(star); box.appendChild(h); box.appendChild(p1);
-      box.appendChild(recap); box.appendChild(p2);
-      bookForm.replaceWith(box);
-      // move the reading position onto the answer, for screen readers and
-      // for anyone who pressed send from the keyboard
-      box.focus({preventScroll:true});
-    }
-
-    bookForm.addEventListener('submit', function(ev){
-      ev.preventDefault();
-
-      var d = {
-        subject: bkVal('bk-about'),
-        name:    bkVal('bk-name'),
-        email:   bkVal('bk-email'),
-        message: bkVal('bk-more')
-      };
-
-      if (bkVal('bk-company')) return;                       // bot filled the trap
-      if (!d.subject) return bkFail('Please add a subject.', 'bk-about');
-      if (!d.name)    return bkFail('Please enter your name.', 'bk-name');
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email))
-        return bkFail('Please enter a valid email address.', 'bk-email');
-
-      // No endpoint configured yet: fall back to the visitor's email client.
-      if (!BOOK_ENDPOINT || !BOOK_ACCESS_KEY) {
-        bkSay('Opening your email client with this inquiry addressed to ' + BOOK_TO +
-              ' \u2014 send it from there to complete the request.', 'done');
-        window.location.href = bkMailto(d);
-        return;
-      }
-
-      var body = new FormData();
-      Object.keys(d).forEach(function(k){ body.append(k, d[k]); });
-      body.append('_subject', 'campthehills.net \u2014 ' + d.subject + ' \u2014 ' + d.name);
-      body.append('_replyto', d.email);
-      if (BOOK_ACCESS_KEY) body.append('access_key', BOOK_ACCESS_KEY);
-
-      if (bookBtn) { bookBtn.setAttribute('aria-busy','true'); bookBtn.disabled = true; bookBtn.textContent = 'Sending\u2026'; }
-      bkSay('Sending\u2026');
-
-      fetch(BOOK_ENDPOINT, { method:'POST', body: body, headers:{ 'Accept':'application/json' } })
-        .then(function(r){ if (!r.ok) throw new Error(r.status); return r; })
-        .then(function(){ bkSent(d); })
-        .catch(function(){
-          if (bookBtn) { bookBtn.removeAttribute('aria-busy'); bookBtn.disabled = false; bookBtn.textContent = 'Send message'; }
-          bkSay('That did not send. Nothing was lost \u2014 try again, or write straight to ' + BOOK_TO + '.', 'error');
-        });
-    });
-  }
 
 })();
 
