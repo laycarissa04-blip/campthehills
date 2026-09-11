@@ -85,8 +85,14 @@
      --e-state is the site's original curve and answers a person: hover,
      focus, a panel opening. --e-arrive is the expo settle that everything
      entering the page rides in on. Durations are a scale, not a scatter. */
-  --e-state:var(--e-state);
-  --e-arrive:var(--e-arrive);
+  /* These two were defined as var(--e-state) and var(--e-arrive) - each
+     naming itself. A self-referential custom property is invalid at
+     computed-value time, so every one of the 200-odd uses below was
+     silently falling back to plain `ease`, including the mouth's bite.
+     The values are the ones this project documented: --e-state is the
+     site's original curve, --e-arrive the expo settle. */
+  --e-state:cubic-bezier(.2,.7,.3,1);
+  --e-arrive:cubic-bezier(.16,1,.3,1);
   --t-fast:.16s;
   --t-base:.28s;
   --t-slow:.48s;
