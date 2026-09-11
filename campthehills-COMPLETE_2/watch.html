@@ -579,9 +579,8 @@ section + section{border-top:1px solid var(--rule)}
   font:inherit;font-size:19px;line-height:1;cursor:pointer;padding:0;
 }
 .jb-close:hover,.jb-close:focus-visible{color:#fff}
-.jb-title{margin:0 0 8px;font-size:26px;line-height:.92;
+.jb-title{margin:0 0 15px;font-size:26px;line-height:.94;max-width:11ch;
   font-variation-settings:"wdth" 118,"wght" 900;letter-spacing:-.03em;text-transform:lowercase}
-.jb-copy{margin:0 0 14px;font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.76)}
 .jb-field{display:flex;border:1px solid rgba(255,255,255,.4)}
 .jb-field input{
   flex:1;min-width:0;background:transparent;border:0;color:#fff;
@@ -596,8 +595,6 @@ section + section{border-top:1px solid var(--rule)}
   transition:background .16s var(--e-state),color .16s var(--e-state);
 }
 .jb-field button:hover,.jb-field button:focus-visible{background:var(--red);color:#fff}
-.jb-note{margin:11px 0 0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.72)}
-.jb-note[data-state="error"]{color:#ff8d86}
 .jb-done{margin:0;font-size:14px;line-height:1.45;color:rgba(255,255,255,.86)}
 @media (max-width:520px){
   .joinbox{left:12px;right:12px;bottom:12px}
@@ -664,6 +661,11 @@ footer a{color:#fff}
   opacity:0;pointer-events:none;transition:opacity .16s var(--e-state),transform .16s var(--e-state)}
 .rail-i:hover span,.rail-i:focus-visible span{opacity:1;transform:translateY(-50%) translateX(0)}
 body.at-foot .rail{opacity:0;transform:translateY(-50%) translateX(100%);pointer-events:none}
+/* index.html has always hidden the rail below 900px; watch.html never did,
+   so on every phone this floating column sat over the right edge of the
+   page - including the right-hand column of the clips grid. The same seven
+   links are in the footer, so nothing is lost by hiding it. */
+@media (max-width:900px){.rail{display:none}}
 
 /* out-now card that slides in from the left, under the joinbox */
 .outnow{position:fixed;right:0;bottom:clamp(72px,11vh,124px);z-index:38;
@@ -1002,22 +1004,6 @@ footer{position:relative;z-index:1}
 .ring-item:nth-child(11) .ring-face{animation-delay:-38.33s}
 .ring-item:nth-child(12) .ring-face{animation-delay:-42.17s}
 
-/* small screens and reduced motion: unroll the ring into a scrolling strip */
-@media (max-width:680px), (prefers-reduced-motion:reduce){
-  .clipring{height:auto;perspective:none;overflow-x:auto;scrollbar-width:none;padding-bottom:6px}
-  .clipring::-webkit-scrollbar{display:none}
-  .clipring::after{display:none}
-  .ring-tilt{position:static;transform:none;display:flex;flex-direction:column;gap:clamp(14px,3vw,22px)}
-  .ring-core{order:-1;position:static;transform:none;width:100%}
-  .mv-card:hover{transform:none}
-  .mv-yt{opacity:1;transform:none}
-  .ring-inner{
-    position:static;width:auto;height:auto;transform:none;animation:none;
-    display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;
-  }
-  .ring-item{position:static;transform:none;margin:0;width:clamp(150px,42vw,210px);flex:none}
-  .ring-face{animation:none;transform:none}
-}
 @media (prefers-reduced-motion:reduce){
   #sheen,#glitter::before,#glitter::after,.glitz::after{animation:none}
   #glitter{opacity:.5}
@@ -1266,10 +1252,20 @@ footer{position:relative;z-index:1}
 }
 
 /* ================================================================
-   phones + reduced motion: unroll the ring into a scrolling strip
-   with the music video stacked above it. These have to sit at the
-   foot of the sheet - the desktop .clipring / .ring-core rules are
-   the same weight and appear later, so an earlier copy loses.
+   phones + reduced motion: no ring, and no sideways scroll either.
+
+   The ring needs each of the six clips twice to read as full. Unrolled
+   into a strip that meant twelve cards with four fifths of them parked
+   off-screen behind a swipe nobody was told about, the duplicates turning
+   up again halfway along, and .ring-core sized to 100% of a max-content
+   row - which is what opened that hole between the first two cards.
+
+   On a phone the honest shape is a grid: six clips, all of them visible,
+   the music video full width above them. display:contents dissolves
+   .ring-tilt and .ring-inner so the cards and the video become direct
+   children of one grid. The #clips prefix is load-bearing, not tidiness -
+   the ring positions each card with .ring-item:nth-child(n), and a plain
+   .ring-item here loses to it on specificity no matter the media query.
    ================================================================ */
 /* the fixed topbar wraps to two rows on a phone; the first section
    needs to start below it */
@@ -1277,23 +1273,34 @@ footer{position:relative;z-index:1}
   #clips{padding-top:clamp(116px,30vw,132px)}
 }
 @media (max-width:680px), (prefers-reduced-motion:reduce){
-  .clipring{
+  #clips .clipring{
     height:auto;perspective:none;overflow:visible;
-    display:flex;flex-direction:column;gap:clamp(14px,3vw,22px);
+    margin-top:clamp(16px,3.4vw,26px);
+    padding:0 var(--gutter);
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:clamp(9px,2.4vw,14px);
   }
-  .ring-core{order:-1;position:static;transform:none;width:100%}
+  #clips .clipring::after{display:none}
+  #clips .ring-tilt,#clips .ring-inner{display:contents}
+
+  #clips .clipring .ring-item{
+    position:static;transform:none;margin:0;width:auto;height:auto;
+  }
+  /* the second six are the ring's duplicates - a grid does not need them */
+  #clips .clipring .ring-item[aria-hidden="true"]{display:none}
+  #clips .clipring .ring-face{animation:none;transform:none}
+  #clips .clipring .clip{width:100%}
+  /* a tap target does not need a hover lift, and it fights the grid */
+  #clips .clipring .clip:hover,#clips .clipring .clip:focus-visible{transform:none}
+
+  #clips .clipring .ring-core{
+    grid-column:1 / -1;order:-1;
+    position:static;transform:none;width:100%;
+    margin-bottom:clamp(4px,1.6vw,10px);
+  }
   .mv-card:hover,.mv-card:focus-within{transform:none}
-  .ring-tilt{
-    order:1;position:static;transform:none;display:block;
-    overflow-x:auto;scrollbar-width:none;padding-bottom:6px;
-  }
-  .ring-tilt::-webkit-scrollbar{display:none}
-  .ring-inner{
-    position:static;height:auto;transform:none;animation:none;
-    display:flex;gap:clamp(10px,1.4vw,18px);width:max-content;
-  }
-  .ring-item{position:static;transform:none;margin:0;width:clamp(150px,42vw,210px);flex:none}
-  .ring-face{animation:none;transform:none}
+  .mv-yt{opacity:1;transform:none}
+
   .ambient{-webkit-mask-image:radial-gradient(150% 70% at 50% 62%,#000 22%,rgba(0,0,0,.55) 56%,transparent 92%);
                    mask-image:radial-gradient(150% 70% at 50% 62%,#000 22%,rgba(0,0,0,.55) 56%,transparent 92%)}
 }
@@ -1893,14 +1900,12 @@ body.mark-up #hero .mark .mk-line{transform:none}
 
   <div class="jb-panel" id="jbPanel" role="region" aria-labelledby="jbTitle">
     <button class="jb-close" id="jbClose" type="button" aria-label="Hide">&times;</button>
-    <p class="jb-title" id="jbTitle">get updates</p>
+    <p class="jb-title" id="jbTitle">get updates from camp</p>
     <div id="jbInner">
-      <p class="jb-copy">New music and show dates &mdash; by text or email, straight from campthehills.</p>
       <a class="jb-go" href="https://laylo.com/campthehills/profile" target="_blank" rel="noopener">
         Join the list
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h11M9.5 3.5 14 8l-4.5 4.5"/></svg>
       </a>
-      <p class="jb-note">One tap, on Laylo. Leave whenever &mdash; reply STOP to the texts, unsubscribe from any email.</p>
     </div>
   </div>
 </aside>
@@ -2172,7 +2177,13 @@ body.mark-up #hero .mark .mk-line{transform:none}
   // The clips carry no autoplay and preload nothing: they only start once the
   // ring scrolls into view, and stop again when it leaves.
   var strip = document.querySelector('.clipring') || document.querySelector('.marquee');
-  if (strip) {
+  /* Phones get the posters, not twelve simultaneous decodes. iOS starts a
+     handful of muted videos and stalls the rest on a black frame, and the
+     ones that do play spend battery on a thumbnail nobody watches - on
+     touch the poster IS the thumbnail and the tap goes to TikTok. */
+  var clipsCoarse = !!(window.matchMedia &&
+    window.matchMedia('(hover:none),(pointer:coarse),(max-width:680px)').matches);
+  if (strip && !clipsCoarse) {
     var startClips = function(on){
       strip.querySelectorAll('video').forEach(function(v){
         if (on) {
