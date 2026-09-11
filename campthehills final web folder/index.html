@@ -1114,6 +1114,32 @@ body.seen .joinbox,body.seen .outnow,body.seen .on-tab,body.seen .peek{transitio
     rgba(0,0,0,.46) 0%, rgba(0,0,0,.10) 24%,
     rgba(0,0,0,.06) 46%, rgba(0,0,0,.44) 76%, rgba(0,0,0,.80) 100%);
 }
+
+/* ---- the wordmark passes behind him ----
+   A second copy of the photograph sits above the type and is clipped to his
+   silhouette by a mask cut from the frame itself. It carries the same scrim
+   as the original, and the mask clips the photograph and the scrim together
+   - which is the whole trick: cut the scrim out of the layer and he would
+   brighten wherever he overlaps the name. `mask-size:cover` with the same
+   `57% 38%` the photograph uses keeps the mask registered to the pixels at
+   every crop, so nothing has to be re-tuned per breakpoint. */
+.hero-cut{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  will-change:transform;
+  transform:translate3d(0,var(--par,0px),0) scale(var(--hz,1.06));
+  transition:transform 1.16s var(--e-arrive);
+  -webkit-mask-image:url(assets/hero-cut.png);mask-image:url(assets/hero-cut.png);
+  -webkit-mask-size:cover;mask-size:cover;
+  -webkit-mask-position:57% 38%;mask-position:57% 38%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+}
+.hero-cut img{width:100%;height:100%;object-fit:cover;object-position:57% 38%}
+.hero-cut::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(0,0,0,.46) 0%, rgba(0,0,0,.10) 24%,
+    rgba(0,0,0,.06) 46%, rgba(0,0,0,.44) 76%, rgba(0,0,0,.80) 100%);
+}
 #hero .wrap{position:relative;z-index:2}
 #hero .hero-bot{padding-bottom:calc(clamp(30px,4.6vw,62px) + env(safe-area-inset-bottom))}
 
@@ -1673,7 +1699,7 @@ body.mark-up #hero .mark .mk-line{transform:none}
   transform:translate3d(0,var(--par,0px),0) scale(var(--hz,1.06));
   transition:transform 1.16s var(--e-arrive);
 }
-body.mark-up #hero .hero-photo{--hz:1}
+body.mark-up #hero .hero-photo,body.mark-up #hero .hero-cut{--hz:1}
 #hero .hero-kick{
   opacity:0;transform:translateY(12px);
   transition:opacity .5s var(--e-state) .16s,transform .7s var(--e-arrive) .16s;
@@ -1683,7 +1709,7 @@ body.mark-up #hero .hero-kick{opacity:1;transform:none}
 body.mark-up .topbar,body.seen .topbar{opacity:1}
 /* once the photograph is settled the transition has to come off, or every
    parallax frame animates over 1.15s and the hero swims behind the scroll */
-body.settled #hero .hero-photo{transition:none}
+body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
 
 /* the rule beside a heading draws out of it as the letters land */
 .sec-head .line{transform:translateY(-.22em) scaleX(0);transform-origin:0 50%;
@@ -1706,7 +1732,7 @@ body.settled #hero .hero-photo{transition:none}
     transition:none;transform:none;opacity:1;scale:1;
   }
   .sec-head .line{transform:translateY(-.22em)}
-  #hero .hero-photo{transform:none}
+  #hero .hero-photo,#hero .hero-cut{transform:none}
 }
 
 /* ---------- section titling ----------
@@ -1936,6 +1962,19 @@ body.settled #hero .hero-photo{transition:none}
     <h1 class="mark mark-set" data-fit="0.86">
       <span class="mk-line">campthehills</span>
     </h1>
+  </div>
+
+  <!-- The same photograph again, clipped to his silhouette, painted above the
+       wordmark - so the name runs behind his head. The mask is alpha only
+       (49 KB) and the jpg itself is already in cache from .hero-photo. -->
+  <div class="hero-cut" aria-hidden="true">
+    <img src="assets/hero-bleachers-1400.jpg"
+         srcset="assets/hero-bleachers-800.jpg 800w,
+                 assets/hero-bleachers-1400.jpg 1400w,
+                 assets/hero-bleachers.jpg 2400w,
+                 assets/hero-bleachers-3200.jpg 3200w"
+         sizes="100vw" width="2400" height="1600" alt="" decoding="async"
+         onerror="this.onerror=null;this.removeAttribute('srcset');this.removeAttribute('sizes');this.src='assets/hero-bleachers.jpg'">
   </div>
 </header>
 
@@ -2400,9 +2439,58 @@ body.settled #hero .hero-photo{transition:none}
     var size = 200 * ((avail * fit) / natural);
     mark.style.fontSize = Math.max(30, Math.min(400, size)) + 'px';
   }
-  fitMark();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitMark);
-  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(fitMark, 120); });
+
+  /* ---- and drop it onto his head ----
+     The name only reads as being behind him if it actually crosses his face,
+     and where his face lands in the frame changes with every crop - the
+     photograph is `cover` at `57% 38%`, so a fixed margin would be right at
+     one width and wrong at the next. HEAD is measured off the matte in
+     assets/hero-cut.png as a fraction of the photograph; this repeats the
+     browser's own cover maths to find where that lands, and centres the
+     wordmark on it. Never upward (the top of the frame is the show line's),
+     and never so low that the mark runs past the middle of the hero. */
+  /* HEAD_DIP is how far down his head the BOTTOM of the wordmark is allowed
+     to reach, as a fraction of his head. Anchoring the bottom rather than the
+     centre is what keeps the overlap the same depth at every width: the
+     wordmark is 154px tall on a desktop and 45px on a phone, so centring it
+     buried the word on the narrow crop and only grazed him on the wide one. */
+  var HEAD_TOP = 0.271, HEAD_BOT = 0.395, PHOTO_AR = 1.5002;
+  /* How deep the overlap goes has to shrink with the viewport. `cover` on a
+     narrow frame crops hard to the middle, so he fills far more of it: the
+     same 0.42 that puts his hair across two letters on a desktop buries four
+     on a phone. Below 520px the wordmark only just touches the top of his
+     hair. */
+  function headDip(w){
+    if (w >= 900) return 0.42;
+    if (w <= 520) return 0.24;
+    return 0.24 + (w - 520) / 380 * 0.18;
+  }
+  function placeMark(){
+    if (!mark || !hero) return;
+    mark.style.marginTop = '0px';
+    var fw = hero.clientWidth, fh = hero.clientHeight;
+    if (!fw || !fh) return;
+    var dispW = Math.max(fw, fh * PHOTO_AR), dispH = dispW / PHOTO_AR;
+    var oy = -(dispH - fh) * 0.38;
+    var dip = (HEAD_TOP + (HEAD_BOT - HEAD_TOP) * headDip(fw)) * dispH + oy;
+    var r = mark.getBoundingClientRect();
+    var top = r.top - hero.getBoundingClientRect().top;
+    var want = dip - r.height;
+    var shift = Math.max(0, Math.min(want - top, fh * 0.56 - r.height - top));
+    mark.style.marginTop = shift.toFixed(1) + 'px';
+  }
+  function layMark(){ fitMark(); placeMark(); }
+  layMark();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layMark);
+  var rt;
+  function relay(){ clearTimeout(rt); rt = setTimeout(layMark, 120); }
+  window.addEventListener('resize', relay);
+  /* iOS changes the hero's height whenever the URL bar collapses or returns,
+     and that moves where his head lands in the crop. window.resize is not
+     reliable for it; visualViewport is. */
+  window.addEventListener('orientationchange', function(){ setTimeout(layMark, 260); });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', relay);
+  window.addEventListener('load', layMark);
 
   // ---- scroll behaviour: the bar solidifies, the nav marks its place ----
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2444,6 +2532,13 @@ body.settled #hero .hero-photo{transition:none}
      actually on screen - past it the maths is a no-op and the write is
      skipped entirely. */
   var heroPhoto = hero && hero.querySelector('.hero-photo');
+  /* the cut-out of him rides the identical transform, or he slides off his
+     own outline the moment the page scrolls */
+  var heroCut = hero && hero.querySelector('.hero-cut');
+  function par(v){
+    if (heroPhoto) heroPhoto.style.setProperty('--par', v);
+    if (heroCut)   heroCut.style.setProperty('--par', v);
+  }
   var parked = false;
   function onScroll(){
     var y = window.pageYOffset || document.documentElement.scrollTop;
@@ -2451,10 +2546,10 @@ body.settled #hero .hero-photo{transition:none}
     if (topbar) topbar.classList.toggle('solid', y > h - 90);
     if (heroPhoto && !reduce) {
       if (y < h) {
-        heroPhoto.style.setProperty('--par', (y * 0.24).toFixed(1) + 'px');
+        par((y * 0.24).toFixed(1) + 'px');
         parked = false;
       } else if (!parked) {
-        heroPhoto.style.setProperty('--par', (h * 0.24).toFixed(1) + 'px');
+        par((h * 0.24).toFixed(1) + 'px');
         parked = true;
       }
     }
