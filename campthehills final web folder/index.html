@@ -1250,6 +1250,9 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
 @media (prefers-reduced-motion:reduce){.showlist.past .show{transition:none}}
 
 /* upcoming rows with a ticket link */
+#shows a.show-link{grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center}
+#shows a.show-link .show-thumb img{object-fit:cover;object-position:top}
+@media (max-width:640px){#shows a.show-link{grid-template-columns:1fr auto;gap:8px 14px}#shows a.show-link .d,#shows a.show-link .v{grid-column:1/-1}#shows a.show-link .show-thumb{margin-top:0}#shows a.show-link .chip-tix{justify-self:start;align-self:center}}
 #shows a.show-link{text-decoration:none;color:inherit;transition:padding-left .2s var(--e-state),background .2s var(--e-state),color .2s var(--e-state)}
 #shows a.show-link:hover,#shows a.show-link:focus-visible{background:var(--ink);color:#fff;padding-left:14px}
 #shows a.show-link:hover .v i,#shows a.show-link:focus-visible .v i{color:rgba(255,255,255,.5)}
@@ -2179,6 +2182,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
           <span class="d">Dec 2, 2026</span>
           <span class="v"><span class="c">Los Angeles</span><i>&mdash;</i>The Echo, w/ Babe Dylan</span>
           <span class="chip chip-tix">Tickets</span>
+          <span class="show-thumb"><img src="assets/flyers/theecho.jpg" alt="Flyer for campthehills and Babe Dylan at The Echo, Dec 2." loading="lazy" decoding="async"></span>
         </a>
       </div>
 
