@@ -10,12 +10,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <title>shows — campthehills live dates</title>
-<meta name="description" content="Every campthehills live date — upcoming shows at The Echo and in New York, and past sets in Los Angeles, West Hollywood and New York. Venue and ticket links go up here first.">
+<meta name="description" content="Every campthehills live date — upcoming shows at The Echo, and past sets in Los Angeles and West Hollywood. Venue and ticket links go up here first.">
 <link rel="canonical" href="https://campthehills.net/shows">
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="campthehills — shows">
-<meta property="og:description" content="Live dates for campthehills. Next: Dec 1, 2026, New York, NY, then Dec 2 at The Echo, Los Angeles.">
+<meta property="og:description" content="Live dates for campthehills. Next: Dec 2, 2026 at The Echo, Los Angeles.">
 <meta property="og:url" content="https://campthehills.net/shows">
 <meta property="og:image" content="https://campthehills.net/assets/art-brayfool.jpg">
 <meta property="og:image:width" content="1200">
@@ -45,20 +45,6 @@
         { "@type": "ListItem", "position": 1, "name": "campthehills", "item": "https://campthehills.net/" },
         { "@type": "ListItem", "position": 2, "name": "shows" }
       ]
-    },
-    {
-      "@type": "Event",
-      "name": "campthehills in New York, NY",
-      "startDate": "2026-12-01",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "performer": { "@id": "https://campthehills.net/#campbell" },
-      "url": "https://campthehills.net/shows",
-      "location": {
-        "@type": "Place",
-        "name": "New York, NY",
-        "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" }
-      }
     },
     {
       "@type": "Event",
@@ -1109,6 +1095,20 @@ body.dark-page footer{border-top:1px solid var(--n1)}
   font-size:clamp(72px,19.5vw,290px);line-height:.8;font-weight:400;letter-spacing:-.052em;
 }
 .sh-mark span{color:var(--n);text-shadow:0 0 .16em var(--n);flex:none}
+/* the title is his clay alphabet - the same letters the loading screen
+   builds his name from. Each keeps its real proportion (--r) and glows in
+   its own clay colour, so it still reads as neon on the black. */
+.sh-clay{align-items:flex-end;gap:.035em;font-size:clamp(64px,15vw,230px);line-height:1;letter-spacing:0;margin-top:.12em}
+.sh-clay .cl{display:block;flex:none;animation:cl-land .7s var(--e-arrive) both;animation-delay:calc(var(--i) * 70ms + 120ms)}
+.sh-clay img{display:block;height:calc(var(--r) * 1em);width:auto;max-width:none;
+  filter:drop-shadow(0 0 .07em var(--g)) drop-shadow(0 .03em .05em rgba(0,0,0,.6));
+  transition:transform .22s var(--e-state)}
+.sh-clay .cl:nth-child(odd) img{transform:rotate(-2deg)}
+.sh-clay .cl:nth-child(even) img{transform:rotate(2.5deg)}
+.sh-clay .cl:hover img{transform:translateY(-.06em) rotate(-5deg) scale(1.04)}
+@keyframes cl-land{0%{opacity:0;transform:translateY(-.35em) rotate(-10deg)}100%{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sh-clay .cl{animation:none}.sh-clay img{transition:none}}
+.sh-white{color:#fff;text-shadow:none}
 .sh-lede{
   margin:clamp(18px,2.4vw,32px) 0 0;max-width:52ch;
   font-size:clamp(15px,1.5vw,18px);line-height:1.6;color:rgba(255,255,255,.62)}
@@ -1201,6 +1201,7 @@ a.srow:hover .sthumb,a.srow:focus-visible .sthumb{opacity:1;transform:scale(1.05
 }
 @media (max-width:520px){
   .sh-mark{font-size:clamp(62px,20vw,120px)}
+  .sh-clay{font-size:clamp(52px,21vw,120px)}
   .srow .chip{padding:7px 11px;font-size:11px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -1258,10 +1259,10 @@ a.srow:hover .sthumb,a.srow:focus-visible .sthumb{opacity:1;transform:scale(1.05
     <a class="tb-icon" href="index.html" aria-label="campthehills home"><img src="assets/icon-mark.png" alt="" width="244" height="340"></a>
     <a class="tb-mark" href="index.html">campthehills</a>
   </div>
-  <a class="tb-show" href="#upcoming" aria-label="Next shows: Dec 1 2026, New York, NY; Dec 2 2026, Los Angeles, The Echo">
+  <a class="tb-show" href="#upcoming" aria-label="Next show: Dec 2 2026, Los Angeles, The Echo">
     <span class="tbs-dot" aria-hidden="true"></span>
-    <span class="tbs-lab">next shows</span>
-    <span class="tbs-txt"><b>Dec 1</b><i>/</i>New York, NY<i>&middot;</i><b>Dec 2</b><i>/</i>Los Angeles</span>
+    <span class="tbs-lab">next show</span>
+    <span class="tbs-txt"><b>Dec 2</b><i>/</i>Los Angeles, The Echo</span>
   </a>
   <div class="tb-actions">
     <button class="tb-btn" id="shareBtn" type="button" aria-label="Share this page">
@@ -1299,7 +1300,7 @@ a.srow:hover .sthumb,a.srow:focus-visible .sthumb{opacity:1;transform:scale(1.05
   <div class="np-foot">
     <a class="np-next" href="shows.html">
       <span class="tbs-dot" aria-hidden="true" style="background:#fff"></span>
-      next shows <b>Dec 1</b> / New York, NY &middot; <b>Dec 2</b> / Los Angeles
+      next show <b>Dec 2</b> / Los Angeles, The Echo
     </a>
     <ul class="np-plat">
       <li><a href="https://open.spotify.com/artist/01Xh6d2xRTGEpxZw0Khyrs" target="_blank" rel="noopener">Spotify</a></li>
@@ -1320,8 +1321,7 @@ a.srow:hover .sthumb,a.srow:focus-visible .sthumb{opacity:1;transform:scale(1.05
   <section id="showhead">
     <div class="wrap">
       <p class="sh-kick">campthehills <i>/</i> live</p>
-      <h2 class="sh-mark" aria-label="shows"><span style="--n:var(--n1)" aria-hidden="true">s</span><span style="--n:var(--n2)" aria-hidden="true">h</span><span style="--n:var(--n3)" aria-hidden="true">o</span><span style="--n:var(--n4)" aria-hidden="true">w</span><span style="--n:var(--n5)" aria-hidden="true">s</span></h2>
-      <p class="sh-lede">Every date he plays, in one place. Venue, tickets and flyers land here first &mdash; usually before anywhere else.</p>
+      <h2 class="sh-mark sh-white">shows</h2>
     </div>
   </section>
 
@@ -1329,11 +1329,6 @@ a.srow:hover .sthumb,a.srow:focus-visible .sthumb{opacity:1;transform:scale(1.05
     <div class="wrap">
       <p class="slab">upcoming<span class="line"></span></p>
       <div class="slist next">
-        <div class="srow">
-          <span class="d">Dec 1, 2026</span>
-          <span class="v" style="--n:var(--n2)"><span class="c">New York, NY</span><i>&mdash;</i>venue to be announced</span>
-          <span class="chip">Details soon</span>
-        </div>
         <a class="srow" href="https://www.ticketmaster.com/event/0900652F2CC36415" target="_blank" rel="noopener" aria-label="Dec 2, 2026, Los Angeles, The Echo, with Babe Dylan. Doors 7pm. Tickets on Ticketmaster.">
           <span class="d">Dec 2, 2026</span>
           <span class="v" style="--n:var(--n4)"><span class="c">Los Angeles</span><i>&mdash;</i>The Echo, w/ Babe Dylan</span>
