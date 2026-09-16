@@ -140,6 +140,24 @@
     },
     {
       "@type": "Event",
+      "name": "campthehills & Babe Dylan at The Echo",
+      "startDate": "2026-12-02T19:00:00-08:00",
+      "doorTime": "19:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "organizer": { "@type": "Organization", "name": "Echoe Presents", "url": "https://echoepresents.com" },
+      "performer": [{ "@id": "https://campthehills.net/#campbell" }, { "@type": "MusicGroup", "name": "Babe Dylan" }],
+      "image": "https://campthehills.net/assets/flyers/theecho.jpg",
+      "url": "https://www.ticketmaster.com/event/0900652F2CC36415",
+      "offers": { "@type": "Offer", "url": "https://www.ticketmaster.com/event/0900652F2CC36415", "availability": "https://schema.org/InStock" },
+      "location": {
+        "@type": "Place",
+        "name": "The Echo",
+        "address": { "@type": "PostalAddress", "streetAddress": "1822 Sunset Blvd", "addressLocality": "Los Angeles", "addressRegion": "CA", "postalCode": "90026", "addressCountry": "US" }
+      }
+    },
+    {
+      "@type": "Event",
       "name": "campthehills at the Babe Dylan release party",
       "startDate": "2026-08-08",
       "eventStatus": "https://schema.org/EventCompleted",
@@ -1251,6 +1269,16 @@ section{scroll-margin-top:clamp(74px,9vw,98px)}
 }
 @media (prefers-reduced-motion:reduce){.showlist.past .show{transition:none}}
 
+/* upcoming rows with a ticket link */
+#shows a.show-link{text-decoration:none;color:inherit;transition:padding-left .2s var(--e-state),background .2s var(--e-state),color .2s var(--e-state)}
+#shows a.show-link:hover,#shows a.show-link:focus-visible{background:var(--ink);color:#fff;padding-left:14px}
+#shows a.show-link:hover .v i,#shows a.show-link:focus-visible .v i{color:rgba(255,255,255,.5)}
+#shows .chip-tix{background:transparent;color:var(--n1);box-shadow:inset 0 0 0 1px var(--n1)}
+#shows a.show-link:hover .chip-tix,#shows a.show-link:focus-visible .chip-tix{background:var(--n1);color:#050505}
+#shows a.show-link:hover,#shows a.show-link:focus-visible{background:rgba(255,255,255,.07)}
+@media (max-width:640px){#shows a.show-link:hover{padding-left:0}}
+@media (prefers-reduced-motion:reduce){#shows a.show-link{transition:none}}
+
 /* ---- music: the featured release and the catalog in one section ---- */
 #listen .release{margin-bottom:clamp(40px,5.4vw,72px)}
 #listen .sub-head,
@@ -1823,6 +1851,23 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
   #hero .hero-kick{letter-spacing:normal;font-size:10.5px;gap:6px}
   #hero .hero-kick .hk-go{display:none}
 }
+
+/* ---- the landing keeps a preview of the shows band ----------------
+   The full list, the past dates with their flyers, and the signup that
+   used to be a floating tab all live on shows.html now. This band shows
+   the next date and hands off. */
+.shows-more{
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;
+  margin:clamp(26px,3.4vw,42px) 0 0;font-size:14px;line-height:1.55}
+.shows-more > span{color:rgba(255,255,255,.55);max-width:40ch}
+.shows-all{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 20px;text-decoration:none;
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.42);
+  font-size:14px;letter-spacing:-.005em;
+  transition:background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state)}
+.shows-all:hover,.shows-all:focus-visible{background:var(--n1);border-color:var(--n1);color:#050505}
+.shows-all svg{width:15px;height:15px;flex:none}
 </style>
 </head>
 <body class="photo-hero">
@@ -2155,30 +2200,19 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
           <span class="v"><span class="c">New York, NY</span><i>&mdash;</i>venue to be announced</span>
           <span class="chip">Details soon</span>
         </div>
-      </div>
-
-      <p class="sub-head sub-head-past">Past<span class="line"></span></p>
-
-      <div class="showlist past">
-        <a class="show" href="https://partiful.com/e/opWSHYlnn7WTOhigwq7g" target="_blank" rel="noopener">
-          <span class="d">Aug 8</span>
-          <span class="v"><span class="c">Los Angeles</span><i>&mdash;</i>Babe Dylan release party</span>
-          <span class="show-thumb"><img src="assets/flyers/babedylan.jpg" alt="Flyer for the Babe Dylan release party." loading="lazy" decoding="async"></span>
-        </a>
-        <a class="show" href="https://www.instagram.com/p/DagdlhLgbOU/" target="_blank" rel="noopener">
-          <span class="d">Jul 9</span>
-          <span class="v"><span class="c">Los Angeles</span><i>&mdash;</i>No Vacancy</span>
-          <span class="show-thumb"><img src="assets/flyers/novacancy.jpg" alt="Flyer for the No Vacancy show." loading="lazy" decoding="async"></span>
-        </a>
-        <a class="show" href="https://www.instagram.com/p/DYDOIMEErwD/" target="_blank" rel="noopener">
-          <span class="d">May 15</span>
-          <span class="v"><span class="c">West Hollywood</span><i>&mdash;</i>The Roxy Theatre</span>
-          <span class="show-thumb"><img src="assets/flyers/roxy.jpg" alt="Flyer for the show at The Roxy Theatre." loading="lazy" decoding="async"></span>
+        <a class="show show-link" href="https://www.ticketmaster.com/event/0900652F2CC36415" target="_blank" rel="noopener" aria-label="Dec 2, 2026, Los Angeles, The Echo, with Babe Dylan. Tickets on Ticketmaster.">
+          <span class="d">Dec 2, 2026</span>
+          <span class="v"><span class="c">Los Angeles</span><i>&mdash;</i>The Echo, w/ Babe Dylan</span>
+          <span class="chip chip-tix">Tickets</span>
         </a>
       </div>
 
-      <p class="shows-sub">Venue and tickets go up here first &mdash;
-        <a href="https://laylo.com/campthehills/profile" target="_blank" rel="noopener">get notified</a>.</p>
+      <p class="shows-more">
+        <a class="shows-all" href="shows.html">All shows
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8h11M9.5 3.5 14 8l-4.5 4.5"/></svg>
+        </a>
+        <span>Past dates, flyers and the mailing list.</span>
+      </p>
     </div>
   </section>
 
@@ -2455,7 +2489,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
      and where his face lands in the frame changes with every crop - the
      photograph is `cover` at `57% 38%`, so a fixed margin would be right at
      one width and wrong at the next. HEAD is measured off the matte in
-     assets/hero-cut.png as a fraction of the photograph; this repeats the
+     assets/hero-cut.webp as a fraction of the photograph; this repeats the
      browser's own cover maths to find where that lands, and centres the
      wordmark on it. Never upward (the top of the frame is the show line's),
      and never so low that the mark runs past the middle of the hero. */
