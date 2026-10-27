@@ -3081,7 +3081,7 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
       e.preventDefault();
       var pad = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
       lenis.scrollTo(el, { offset: -pad, duration: 1.1 });
-      try { history.pushState(null, '', id); } catch(err){}
+      try { history.replaceState(null, '', location.pathname + location.search); } catch(err){}
     });
   }
   if (window.Lenis) startLenis();
@@ -3139,6 +3139,14 @@ body.settled #hero .hero-photo,body.settled #hero .hero-cut{transition:none}
   // wait for the real font: splitting against a fallback face measures wrong
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(run).catch(run);
   else window.addEventListener('load', run);
+})();
+</script>
+<script>
+/* keep the address bar clean: no #section after in-page jumps */
+(function(){
+  function clean(){ if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch(e){} } }
+  window.addEventListener('hashchange', clean);
+  window.addEventListener('load', function(){ setTimeout(clean, 1500); });
 })();
 </script>
 </body>
