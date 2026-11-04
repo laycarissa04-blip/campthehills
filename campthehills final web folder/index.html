@@ -2072,20 +2072,20 @@ section{padding:clamp(44px,5.6vw,84px) 0}
       <div class="sec-head">
         <span class="gl" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span><h2>music</h2><span class="gl gl-end" aria-hidden="true"><svg class="gl-a" viewBox="-6 -6 112 112"><path d="M50.0 2.3L54.1 40.1L85.9 14.1L59.6 46.0L98.1 50.0L60.0 54.1L82.5 82.5L54.0 59.7L50.0 98.8L45.6 60.7L17.9 82.1L41.0 53.7L4.6 50.0L39.3 45.6L15.2 15.2L46.6 41.8Z"/></svg><svg class="gl-b" viewBox="-6 -6 112 112"><path d="M56.9 1.1L63.7 35.8L101.0 41.0L67.5 58.5L73.0 93.3L47.2 69.6L16.4 84.7L27.6 53.9L8.8 29.9L40.5 32.1Z"/></svg></span>
         <span class="line"></span>
-        <span class="num">out now</span>
+        <span class="num">new single</span>
       </div>
 
       <div class="release">
         <figure>
-          <span class="tag">out now</span>
-          <img src="assets/art-brayfool.jpg" alt="Artwork for bray fool by campthehills: a painted yellow donkey standing inside a ring, with a star on its flank and a red sunburst behind it.">
+          <span class="tag">coming soon</span>
+          <img src="assets/art-leech.jpg" width="1060" height="1080" alt="Artwork for leech by campthehills: a black-and-white painted cross on white paper, with mirrored faces on each arm and rough black brushstrokes behind it.">
         </figure>
         <div>
-          <h3>bray fool</h3>
-          <p class="meta">Single &middot; 2026 &middot; 2:52 &middot; artwork by campthehills</p>
-          <p class="lede">Out now, everywhere.</p>
+          <h3>leech</h3>
+          <p class="meta">New single &middot; coming soon</p>
+          <p class="lede">Pre-save it now.</p>
           <div class="actions" style="margin-top:26px">
-            <a class="btn" href="https://open.spotify.com/track/5eoIH4MwZ9YQ7dvg9Txw6i" target="_blank" rel="noopener">Play on Spotify <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg></a>
+            <a class="btn" href="https://runthings.co/leech" target="_blank" rel="noopener">Pre-save <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6z"/></svg></a>
           </div>
         </div>
       </div>
@@ -2387,16 +2387,16 @@ section{padding:clamp(44px,5.6vw,84px) 0}
   <img class="pk pk-a" src="assets/peek-a.webp" alt="" width="430" height="764" loading="lazy" decoding="async">
   <img class="pk pk-b" src="assets/peek-b.webp" alt="" width="380" height="506" loading="lazy" decoding="async">
 </div>
-<aside class="outnow" id="outnow" aria-label="Out now">
+<aside class="outnow" id="outnow" aria-label="New single: leech">
   <button class="on-x" id="onClose" type="button" aria-label="Hide">&times;</button>
-  <img src="assets/art-brayfool.jpg" alt="">
+  <img src="assets/art-leech.jpg" alt="">
   <div class="on-body">
-    <span class="on-kick">Out now</span>
-    <span class="on-t">bray fool</span>
-    <a class="on-l" href="#listen">Listen &rarr;</a>
+    <span class="on-kick">Coming soon</span>
+    <span class="on-t">leech</span>
+    <a class="on-l" href="https://runthings.co/leech" target="_blank" rel="noopener">Pre-save &rarr;</a>
   </div>
 </aside>
-<button class="on-tab" id="onTab" type="button" aria-expanded="false" aria-controls="outnow" aria-label="bray fool is out now">out now</button>
+<button class="on-tab" id="onTab" type="button" aria-expanded="false" aria-controls="outnow" aria-label="Pre-save leech">pre-save</button>
 <aside class="joinbox" id="joinbox">
   <button class="jb-tab" id="jbTab" type="button" aria-expanded="false" aria-controls="jbPanel">
     <span class="bd" aria-hidden="true"></span>
@@ -2680,16 +2680,16 @@ section{padding:clamp(44px,5.6vw,84px) 0}
       onTab=document.getElementById('onTab');
   if(onCard){
     var collapsed=false;
-    try{ collapsed = localStorage.getItem('cth_outnow')==='mini'; }catch(e){}
+    try{ collapsed = localStorage.getItem('cth_outnow_leech')==='mini'; }catch(e){}
     function onOpen(){
       onCard.classList.add('up'); onCard.classList.remove('mini');
       if(onTab){ onTab.classList.remove('show'); onTab.setAttribute('aria-expanded','true'); }
-      try{ localStorage.removeItem('cth_outnow'); }catch(e){}
+      try{ localStorage.removeItem('cth_outnow_leech'); }catch(e){}
     }
     function onCollapse(){
       onCard.classList.remove('up');
       if(onTab){ onTab.classList.add('show'); onTab.setAttribute('aria-expanded','false'); }
-      try{ localStorage.setItem('cth_outnow','mini'); }catch(e){}
+      try{ localStorage.setItem('cth_outnow_leech','mini'); }catch(e){}
     }
     /* on a phone the card reaches a third of the way across the screen and
        sits on top of whatever section you are reading, so it starts as its
