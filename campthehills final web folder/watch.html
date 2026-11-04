@@ -860,6 +860,8 @@ footer{position:relative;z-index:1}
   transition:opacity .3s var(--e-state),transform .3s var(--e-state),background .16s var(--e-state),color .16s var(--e-state),border-color .16s var(--e-state);
 }
 .topbar.solid .tb-show{opacity:1;transform:none;pointer-events:auto}
+/* next-show chip centred on the page, not in the leftover gap */
+.tb-show{position:absolute;left:50%;translate:-50% 0;margin:0}
 .tb-show:hover,.tb-show:focus-visible{background:var(--red);border-color:var(--red);color:#fff}
 .tbs-dot{width:7px;height:7px;border-radius:50%;background:var(--red);flex:none;animation:tbs-pulse 1.9s ease-in-out infinite}
 .tb-show:hover .tbs-dot,.tb-show:focus-visible .tbs-dot{background:#fff}
